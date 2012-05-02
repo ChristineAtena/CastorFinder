@@ -64,27 +64,14 @@ namespace Pollux.UserInterface
                 }
                 else
                 {
-                    client = new Client(-1, textBoxNom.Text, textBoxAdresse.Text, textBoxTelephone.Text, ((Ville)comboBoxVilles.SelectedItem).Index);
+                    client = new Client(textBoxNom.Text, textBoxAdresse.Text, textBoxTelephone.Text, ((Ville)comboBoxVilles.SelectedItem).Index);
                 }
 
                 if (radioButtonBien.Checked)
                 {
-                    /*
-                    UserControl ajouterBien = new UCAjouterBien(c);
-                    ajouterBien.Parent = this.Parent;
-                    ajouterBien.Dock = DockStyle.Fill;
-                    ajouterBien.Show();
-                    this.Hide();
-                    */
-
                     this.Hide();
                     UserControl ajouterBien = new UCAjouterBien(client);
-
                     ajouterBien.Parent = Application.OpenForms["FenetrePrincipale"];
-                    //this.Parent.MdiChild = ajouterBien;
-                    //ajouterBien.Parent = this.Parent;
-
-
                     ajouterBien.Dock = DockStyle.Fill;
                     ajouterBien.Show();
                 }
@@ -93,11 +80,9 @@ namespace Pollux.UserInterface
                     // vérification si ce client a déjà un agent assigné dans le cas où il existe déjà
                     client.Agent = (Agent)comboBoxAgents.SelectedItem;
 
-
+                    this.Hide();
                     UserControl ajouterSouhait = new UCAjouterSouhait(client);
-                    FenetrePrincipale parent = (FenetrePrincipale)this.Parent;
-                    parent.MdiChild = null;
-                    parent.MdiChild = ajouterSouhait;
+                    ajouterSouhait.Parent = Application.OpenForms["FenetrePrincipale"];
                     ajouterSouhait.Dock = DockStyle.Fill;
                     ajouterSouhait.Show();
                 }
@@ -153,8 +138,5 @@ namespace Pollux.UserInterface
             activationBoutonCreer();
         }
         #endregion
-
-
-
     }
 }

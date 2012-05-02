@@ -48,6 +48,25 @@ namespace Pollux.DataBase
             return ajout;
         }
 
+        static public int trouverClient(string nom, string adresse)
+        {
+            int index = -1;
+            if (DBConnect())
+            {
+                string requete = string.Format("SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}'", nom, adresse);
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    index = reader.GetInt16(0);
+                    // déconnexion
+                    connect.Close();
+                    break;
+                }
+            }
+            return index;
+        }
+
         static public List<string> GetListeNomClients()
         {
             List<string> listeNomClients = new List<string>() ;

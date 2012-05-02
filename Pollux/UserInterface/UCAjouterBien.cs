@@ -14,7 +14,7 @@ namespace Pollux.UserInterface
 {
     public partial class UCAjouterBien : UserControl, InterfaceFenetre
     {
-
+        Client client;
         public UCAjouterBien()
         {
             InitializeComponent();
@@ -28,6 +28,8 @@ namespace Pollux.UserInterface
             loadVilles();
             comboBoxProprietaire.SelectedText = c.ToString(); 
             comboBoxProprietaire.Enabled = false;
+            client = c;
+            client.Index = SqlDataProvider.trouverClient(client.Nom, client.Adresse);
         }
         #region Chargement des comboBox
         private void loadClients()
@@ -83,30 +85,44 @@ namespace Pollux.UserInterface
         {
             // Récupération des infos
             int prix = int.Parse(textBoxAjoutBienPrix.Text);
-            // TODO un controle pour la date de mise en vente
             int surfHab = int.Parse(textBoxAjoutBienSurfHab.Text);
             int surfJard = int.Parse(textBoxAjoutBienJardin.Text);
-            Client proprietaire = (Client)comboBoxProprietaire.SelectedItem;
+            DateTime date = dateMiseEnVente.Value;
             Ville ville = (Ville)comboBoxVille.SelectedItem;
-            Bien bien = new Bien(prix, new DateTime(2000,5,12), surfHab, surfJard, ville, proprietaire);
             // Ajout en base du bien
-            if (SqlDataProvider.AjouterBien(bien))
+            if (comboBoxProprietaire.Enabled)
             {
-                // l'ajout du bien réussit on peut ajouter le proprio mais si l'ajout du proprio échoue, faudrait enlever le bien ?? rofl
-                MessageBox.Show("Ajout du bien effectué", "Opération réussit");
-                if (SqlDataProvider.ajouterClient(proprietaire))
-                    MessageBox.Show("Ajout du client effectué", "Opération réussit");
+                Client proprietaire = (Client)comboBoxProprietaire.SelectedItem;
+                Bien bien = new Bien(prix, date, surfHab, surfJard, ville, proprietaire);
+                if (SqlDataProvider.AjouterBien(bien))
+                {
+                    MessageBox.Show("Ajout du bien effectué", "Opération réussie");
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Ajout du bien non effectué", "Echec");
+                }
             }
             else
-                MessageBox.Show("Ajout du bien non effectué", "Echec");
-            this.Hide();
+            {
+                Bien bien = new Bien(prix, date, surfHab, surfJard, ville, client);
+                if (SqlDataProvider.ajouterBienEtClient(client, bien))
+                {
+                        MessageBox.Show("Ajout du bien et du client effectué", "Opération réussie");
+                        this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Echec de l'ajout du Bien\net du client.", "Opération échouée");
+                    this.Hide();
+                }
+            }
         }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
-
-
     }
 }

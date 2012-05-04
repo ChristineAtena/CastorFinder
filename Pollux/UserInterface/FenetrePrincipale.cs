@@ -34,16 +34,19 @@ namespace Pollux
                 toolStripStatusLabel.Text = "Attention : impossible de se connecter à la base de données";
         }
         #region Fenetres
-        private void init()
+        public void init()
         {
             mdiChild.Parent = this;
             mdiChild.Dock = DockStyle.Fill;
             mdiChild.Show();
         }
-        private void fermer()
+        public void fermer()
         {
             if (mdiChild != null)
+            {
+                //mdiChild = null;
                 mdiChild.Parent = null;
+            }
         }
         private void nouveauClientToolStripMenuItem_Click(object sender, EventArgs e)
         {

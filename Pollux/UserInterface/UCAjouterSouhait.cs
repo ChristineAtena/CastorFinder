@@ -20,13 +20,14 @@ namespace Pollux.UserInterface
             loadClients();
             loadVilles();
         }
-        public UCAjouterSouhait(Client c)
+        public UCAjouterSouhait(Client c, bool clientExiste)
         {
             InitializeComponent();
             loadClients();
             loadVilles();
             comboBoxAcheteur.SelectedText = c.Nom;
-            comboBoxAcheteur.Enabled = false;
+            if (!clientExiste)
+                comboBoxAcheteur.Enabled = false;
         }
         #region Chargement des comboBox
         private void loadClients()
@@ -80,5 +81,65 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
+
+        // A FINIR
+        private void buttonAjout_Click(object sender, EventArgs e)
+        {
+            
+            // Récupération des infos
+            int prix = -1;
+            int surfHab = -1;
+            int surfJard = -1;
+            List<Ville> villes = null;
+            if (checkBoxBudgetMax.Checked)
+                prix = int.Parse(textBoxAjoutSouhaitsBudget.Text);
+            if (checkBoxSurfHab.Checked)
+                surfHab = int.Parse(textBoxAjoutSouhaitSurfHab.Text);
+            if (checkBoxJardin.Checked)
+                surfJard = int.Parse(textBoxAjoutSouhaitJardin.Text);
+            if (checkBoxVilles.Checked)
+                villes = listBoxVilles.SelectedItems.Cast<Ville>().ToList();
+            // Ajout en base du bien
+
+            Souhait souhait = new Souhait(prix, surfHab, surfJard, villes);
+            Client acheteur = (Client)comboBoxAcheteur.SelectedItem;
+            if (comboBoxAcheteur.Enabled)
+            {
+                if (SqlDataProvider.AjouterSouhait(souhait))
+                {
+                    MessageBox.Show("Ajout du souhait effectué", "Opération réussie");
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Ajout du souhait non effectué", "Echec");
+                }
+            }
+            else
+            {
+                if (SqlDataProvider.ajouterSouhaitEtClient(acheteur, souhait))
+                {
+                    MessageBox.Show("Ajout du souhait et du client effectué", "Opération réussie");
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Echec de l'ajout du souhait\net du client.", "Opération échouée");
+                    this.Dispose();
+                }
+            }
+        }
+        #region Activation bouton Ajouter
+        private void activationBoutonCreer()
+        {
+            if (checkBoxBudgetMax.Checked ||
+                checkBoxSurfHab.Checked ||
+                checkBoxJardin.Checked ||
+                checkBoxVilles.Checked)
+                buttonAjout.Enabled = true;
+            else
+                buttonAjout.Enabled = false;
+        }
+        #endregion
     }
 }

@@ -11,43 +11,6 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        /// <summary>
-        /// méthode obsolète, remplacée par ajouterBienEtClient(Client, Bien) et ajouterSouhaitEtClient(Souhait, Bien)
-        /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
-        static public bool ajouterClient(Client c)
-        {
-            bool ajout;
-            // si pas de connexion
-            if (!DBConnect())
-                ajout = false;
-            // si connexion
-            else
-            {
-                string requete;
-                if (c.Agent == null)
-                {
-                    requete = string.Format("INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C) VALUES (N'{0}',N'{1}',N'{2}',N'{3}')", c.Nom, c.Adresse, c.Ville.Index, c.Telephone);
-                }
-                else
-                {
-                    requete = string.Format("INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C, NUM_A) VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}')", c.Nom, c.Adresse, c.Ville.Index, c.Telephone, c.Agent.Index);
-                }
-                OleDbCommand command = new OleDbCommand(requete, connect);
-                int rowCount = command.ExecuteNonQuery();
-                if (rowCount == 1)
-                {
-                    ajout = true;  // ajout effectué
-                }
-                else
-                    ajout = false; // ajout non effectué
-                // déconnexion
-                connect.Close();
-            }
-            return ajout;
-        }
-
         static public int trouverClient(string nom, string adresse)
         {
             int index = -1;

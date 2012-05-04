@@ -30,5 +30,12 @@ namespace Pollux.Object
             }
             #endregion
 
+            public Souhait(int prixMax, int surfaceHab, int surfJard, List<Ville> villes)
+            {
+                m_prixMax = prixMax;
+                m_surfaceHabitableMin = surfaceHab;
+                m_surfaceJardinMin = surfJard;
+                m_villes = villes;
+            }
         }
 }

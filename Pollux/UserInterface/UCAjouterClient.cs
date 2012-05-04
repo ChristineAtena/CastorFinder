@@ -56,11 +56,22 @@ namespace Pollux.UserInterface
             if (textBoxNom.Text != "" && textBoxAdresse.Text != "" && textBoxTelephone.Text != "" && comboBoxVilles.SelectedItem != null)
             {
                 Client client = SqlDataProvider.ClientExiste(textBoxNom.Text, (Ville)comboBoxVilles.SelectedItem);
-                // si client existe, on bascule directement sur UCAjouterBien avec ce client
+
                 if (client != null)
                 {
-                    // limite rajouter un truc pour choisir entre continuer ou modifier les infos client saisies ?
-                    MessageBox.Show("Attention, ce client existe déjà.", "Alerte", MessageBoxButtons.YesNoCancel);
+                    MessageBox.Show("Ce client existe déjà.", "Attention", MessageBoxButtons.OK);
+                    if (radioButtonBien.Checked)
+                    {
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, true);
+                        ((FenetrePrincipale)this.Parent).init();
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, true);
+                        ((FenetrePrincipale)this.Parent).init();
+                        this.Dispose();
+                    }
                 }
                 else
                 {
@@ -69,22 +80,17 @@ namespace Pollux.UserInterface
 
                 if (radioButtonBien.Checked)
                 {
-                    this.Hide();
-                    UserControl ajouterBien = new UCAjouterBien(client);
-                    ajouterBien.Parent = Application.OpenForms["FenetrePrincipale"];
-                    ajouterBien.Dock = DockStyle.Fill;
-                    ajouterBien.Show();
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, false);
+                    ((FenetrePrincipale)this.Parent).init();
+                    this.Dispose();
                 }
                 else
                 {
-                    // vérification si ce client a déjà un agent assigné dans le cas où il existe déjà
                     client.Agent = (Agent)comboBoxAgents.SelectedItem;
 
-                    this.Hide();
-                    UserControl ajouterSouhait = new UCAjouterSouhait(client);
-                    ajouterSouhait.Parent = Application.OpenForms["FenetrePrincipale"];
-                    ajouterSouhait.Dock = DockStyle.Fill;
-                    ajouterSouhait.Show();
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, false);
+                    ((FenetrePrincipale)this.Parent).init();
+                    this.Dispose();
                 }
             }
         }

@@ -34,7 +34,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.buttonAddVilles = new System.Windows.Forms.Button();
             this.buttonAnnuler = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAjout = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.groupBoxAjoutSouhaits.Controls.Add(this.label12);
             this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAddVilles);
             this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAnnuler);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.button1);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAjout);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label3);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label2);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label1);
@@ -105,9 +105,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(32, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(56, 13);
+            this.label12.Size = new System.Drawing.Size(39, 13);
             this.label12.TabIndex = 8;
-            this.label12.Text = "Acheteur :";
+            this.label12.Text = "Client :";
             // 
             // buttonAddVilles
             // 
@@ -130,14 +130,15 @@
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
-            // button1
+            // buttonAjout
             // 
-            this.button1.Location = new System.Drawing.Point(375, 204);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Ajouter";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAjout.Location = new System.Drawing.Point(375, 204);
+            this.buttonAjout.Name = "buttonAjout";
+            this.buttonAjout.Size = new System.Drawing.Size(75, 23);
+            this.buttonAjout.TabIndex = 4;
+            this.buttonAjout.Text = "Ajouter";
+            this.buttonAjout.UseVisualStyleBackColor = true;
+            this.buttonAjout.Click += new System.EventHandler(this.buttonAjout_Click);
             // 
             // label3
             // 
@@ -279,7 +280,7 @@
         private System.Windows.Forms.GroupBox groupBoxAjoutSouhaits;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonAnnuler;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAjout;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

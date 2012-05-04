@@ -46,44 +46,44 @@ namespace Pollux.DataBase
         }
 
         /// <summary>
-        /// A FINIR ! C'est dégueulasse !!
+        /// ça marche, c'est cool
         /// </summary>
-        /// <param name="c"></param>
-        /// <param name="bien"></param>
+        /// <param name="c">Client à ajouter</param>
+        /// <param name="bien">Bien à ajouter</param>
         /// <returns></returns>
         static public bool ajouterBienEtClient(Client c, Bien bien)
         {
-            bool ajout = false;
             // si connexion
             if (DBConnect())
             {
-                string requete;
-
-                //ajout client
-                requete = string.Format("INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C) VALUES (N'{0}',N'{1}',N'{2}',N'{3}')", c.Nom, c.Adresse, c.Ville.Index, c.Telephone);
+                string requete = string.Format("BEGIN TRAN "
+                                + "INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C) "
+                                + "VALUES (N'{0}',N'{1}',N'{2}',N'{3}') "
+                                + "INSERT INTO BIENS (PRIX_VENTE_B, DATE_MISE_EN_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, NUM_V, NUM_C) "
+                                + "VALUES (N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', "
+                                + "(SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}')) "
+                                + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
+                                + "ELSE BEGIN COMMIT TRAN END",
+                                c.Nom, c.Adresse, c.Ville.Index, c.Telephone,
+                                bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index);
                 OleDbCommand command = new OleDbCommand(requete, connect);
-                int rowCount = command.ExecuteNonQuery();
-                if (rowCount == 1)
+                try
                 {
-                    c.Index = SqlDataProvider.trouverClient(c.Nom, c.Adresse);  // ajout client effectué
-                    //déconnexion
-                    connect.Close();
-
-                    DBConnect();
-                    //ajout bien
-                    requete = string.Format("INSERT INTO BIENS (PRIX_VENTE_B, DATE_MISE_EN_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, NUM_V, NUM_C) VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}')",
-                    bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index, bien.Client.Index);
-                    command = new OleDbCommand(requete, connect);
-                    rowCount = command.ExecuteNonQuery();
-                    if (rowCount == 1)
-                    {
-                        ajout = true;  // ajout effectué
-                    }
-                    //déconnexion
-                    connect.Close();
+                    OleDbDataReader reader = command.ExecuteReader();
                 }
+                catch (Exception)
+                {
+                    connect.Close();
+                    return false;
+                }
+                //déconnexion
+                connect.Close();
+                return true;
             }
-            return ajout;
+            else
+            {
+                return false;
+            }
         }
     }
 }

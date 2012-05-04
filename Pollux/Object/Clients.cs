@@ -110,6 +110,7 @@ namespace Pollux.Object
             m_hasAgent = true;
         }
         #endregion
+
         public override string ToString()
         {
             return m_nom ;

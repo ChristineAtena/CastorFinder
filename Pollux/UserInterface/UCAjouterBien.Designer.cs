@@ -121,6 +121,7 @@
             this.comboBoxVille.Name = "comboBoxVille";
             this.comboBoxVille.Size = new System.Drawing.Size(153, 21);
             this.comboBoxVille.TabIndex = 8;
+            this.comboBoxVille.SelectedIndexChanged += new System.EventHandler(this.comboBoxVille_SelectedIndexChanged);
             // 
             // comboBoxProprietaire
             // 
@@ -129,6 +130,7 @@
             this.comboBoxProprietaire.Name = "comboBoxProprietaire";
             this.comboBoxProprietaire.Size = new System.Drawing.Size(271, 21);
             this.comboBoxProprietaire.TabIndex = 7;
+            this.comboBoxProprietaire.SelectedIndexChanged += new System.EventHandler(this.comboBoxProprietaire_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -229,6 +231,7 @@
             this.textBoxAjoutBienJardin.Name = "textBoxAjoutBienJardin";
             this.textBoxAjoutBienJardin.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutBienJardin.TabIndex = 2;
+            this.textBoxAjoutBienJardin.TextChanged += new System.EventHandler(this.textBoxAjoutBienJardin_TextChanged);
             // 
             // textBoxAjoutBienSurfHab
             // 
@@ -236,6 +239,7 @@
             this.textBoxAjoutBienSurfHab.Name = "textBoxAjoutBienSurfHab";
             this.textBoxAjoutBienSurfHab.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutBienSurfHab.TabIndex = 2;
+            this.textBoxAjoutBienSurfHab.TextChanged += new System.EventHandler(this.textBoxAjoutBienSurfHab_TextChanged);
             // 
             // textBoxAjoutBienPrix
             // 
@@ -243,6 +247,7 @@
             this.textBoxAjoutBienPrix.Name = "textBoxAjoutBienPrix";
             this.textBoxAjoutBienPrix.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutBienPrix.TabIndex = 2;
+            this.textBoxAjoutBienPrix.TextChanged += new System.EventHandler(this.textBoxAjoutBienPrix_TextChanged);
             // 
             // trackBarAjoutBienJardin
             // 

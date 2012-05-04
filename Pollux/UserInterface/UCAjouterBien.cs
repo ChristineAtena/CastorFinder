@@ -20,16 +20,19 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadClients();
             loadVilles();
+            buttonAjouter.Enabled = false;
         }
-        public UCAjouterBien(Client c)
+        public UCAjouterBien(Client c, bool clientExiste)
         {
             InitializeComponent();
             loadClients();
             loadVilles();
-            comboBoxProprietaire.SelectedText = c.ToString(); 
-            comboBoxProprietaire.Enabled = false;
+            comboBoxProprietaire.SelectedText = c.ToString();
+            if (!clientExiste)
+                comboBoxProprietaire.Enabled = false;
             client = c;
             client.Index = SqlDataProvider.trouverClient(client.Nom, client.Adresse);
+            buttonAjouter.Enabled = false;
         }
         #region Chargement des comboBox
         private void loadClients()
@@ -79,7 +82,6 @@ namespace Pollux.UserInterface
         }
 
 
-
         // A FINIR
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
@@ -97,7 +99,7 @@ namespace Pollux.UserInterface
                 if (SqlDataProvider.AjouterBien(bien))
                 {
                     MessageBox.Show("Ajout du bien effectué", "Opération réussie");
-                    this.Hide();
+                    this.Dispose();
                 }
                 else
                 {
@@ -110,19 +112,57 @@ namespace Pollux.UserInterface
                 if (SqlDataProvider.ajouterBienEtClient(client, bien))
                 {
                         MessageBox.Show("Ajout du bien et du client effectué", "Opération réussie");
-                        this.Hide();
+                        this.Dispose();
                 }
                 else
                 {
                     MessageBox.Show("Echec de l'ajout du Bien\net du client.", "Opération échouée");
-                    this.Hide();
+                    this.Dispose();
                 }
             }
         }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Dispose();
         }
+
+        #region Activation bouton Créer
+        private void activationBoutonCreer()
+        {
+            if (textBoxAjoutBienPrix.Text != "" &&
+                textBoxAjoutBienSurfHab.Text != "" &&
+                textBoxAjoutBienJardin.Text != "" &&
+                comboBoxVille.SelectedItem != null)
+                buttonAjouter.Enabled = true;
+            else
+                buttonAjouter.Enabled = false;
+        }
+
+        private void comboBoxProprietaire_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+
+        private void textBoxAjoutBienPrix_TextChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+
+        private void textBoxAjoutBienSurfHab_TextChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+
+        private void textBoxAjoutBienJardin_TextChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+
+        private void comboBoxVille_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+        #endregion
     }
 }

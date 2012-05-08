@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using Pollux.DataBase;
+using Pollux.Object;
 
 namespace Pollux.UserInterface
 {
@@ -22,10 +23,11 @@ namespace Pollux.UserInterface
         #region Chargement des comboBox
         private void loadClients()
         {
-            List<string> listeClients = SqlDataProvider.GetListeNomClients();
-            foreach (string prenom in listeClients)
+            comboBoxClients.Items.Clear();
+            List<Client> listeClient = SqlDataProvider.GetListeClients();
+            foreach (Client proprietaire in listeClient)
             {
-                comboBoxClients.Items.Add(prenom);
+                comboBoxClients.Items.Add(proprietaire);
             }
         }
         #endregion

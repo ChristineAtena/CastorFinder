@@ -116,6 +116,7 @@
             // 
             // comboBoxVille
             // 
+            this.comboBoxVille.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVille.FormattingEnabled = true;
             this.comboBoxVille.Location = new System.Drawing.Point(104, 156);
             this.comboBoxVille.Name = "comboBoxVille";
@@ -125,6 +126,7 @@
             // 
             // comboBoxProprietaire
             // 
+            this.comboBoxProprietaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProprietaire.FormattingEnabled = true;
             this.comboBoxProprietaire.Location = new System.Drawing.Point(104, 20);
             this.comboBoxProprietaire.Name = "comboBoxProprietaire";

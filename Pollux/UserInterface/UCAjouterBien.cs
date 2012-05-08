@@ -14,7 +14,7 @@ namespace Pollux.UserInterface
 {
     public partial class UCAjouterBien : UserControl, InterfaceFenetre
     {
-        Client client;
+        private Client client;  // UTILE ?? pas l'impression
         public UCAjouterBien()
         {
             InitializeComponent();
@@ -24,14 +24,16 @@ namespace Pollux.UserInterface
         }
         public UCAjouterBien(Client c, bool clientExiste)
         {
-            InitializeComponent();
-            loadClients();
-            loadVilles();
-            comboBoxProprietaire.SelectedText = c.ToString();
-            if (!clientExiste)
-                comboBoxProprietaire.Enabled = false;
             client = c;
-            client.Index = SqlDataProvider.trouverClient(client.Nom, client.Adresse);
+            InitializeComponent();
+            loadVilles();
+            // Chargement comboBox propriétaire avec ce client
+            comboBoxProprietaire.Items.Clear();
+            comboBoxProprietaire.Items.Add(client);
+            comboBoxProprietaire.SelectedItem = client;
+            comboBoxProprietaire.Enabled = false;          
+            // pas besoin de rechercher son index on le connait déjà
+            //client.Index = SqlDataProvider.trouverClient(client.Nom, client.Adresse);
             buttonAjouter.Enabled = false;
         }
         #region Chargement des comboBox
@@ -133,36 +135,34 @@ namespace Pollux.UserInterface
             if (textBoxAjoutBienPrix.Text != "" &&
                 textBoxAjoutBienSurfHab.Text != "" &&
                 textBoxAjoutBienJardin.Text != "" &&
-                comboBoxVille.SelectedItem != null)
+                comboBoxVille.SelectedItem != null &&
+                comboBoxProprietaire.SelectedItem != null)
                 buttonAjouter.Enabled = true;
             else
                 buttonAjouter.Enabled = false;
         }
-
         private void comboBoxProprietaire_SelectedIndexChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
         }
-
         private void textBoxAjoutBienPrix_TextChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
         }
-
         private void textBoxAjoutBienSurfHab_TextChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
         }
-
         private void textBoxAjoutBienJardin_TextChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
         }
-
         private void comboBoxVille_SelectedIndexChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
         }
         #endregion
+
+
     }
 }

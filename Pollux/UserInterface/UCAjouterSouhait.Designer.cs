@@ -34,7 +34,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.buttonAddVilles = new System.Windows.Forms.Button();
             this.buttonAnnuler = new System.Windows.Forms.Button();
-            this.buttonAjout = new System.Windows.Forms.Button();
+            this.buttonAjouter = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.groupBoxAjoutSouhaits.Controls.Add(this.label12);
             this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAddVilles);
             this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAnnuler);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAjout);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAjouter);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label3);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label2);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label1);
@@ -91,14 +91,17 @@
             this.listBoxVilles.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxVilles.Size = new System.Drawing.Size(200, 69);
             this.listBoxVilles.TabIndex = 10;
+            this.listBoxVilles.SelectedIndexChanged += new System.EventHandler(this.listBoxVilles_SelectedIndexChanged);
             // 
             // comboBoxAcheteur
             // 
+            this.comboBoxAcheteur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAcheteur.FormattingEnabled = true;
             this.comboBoxAcheteur.Location = new System.Drawing.Point(155, 19);
             this.comboBoxAcheteur.Name = "comboBoxAcheteur";
             this.comboBoxAcheteur.Size = new System.Drawing.Size(271, 21);
             this.comboBoxAcheteur.TabIndex = 9;
+            this.comboBoxAcheteur.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -130,15 +133,15 @@
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
-            // buttonAjout
+            // buttonAjouter
             // 
-            this.buttonAjout.Location = new System.Drawing.Point(375, 204);
-            this.buttonAjout.Name = "buttonAjout";
-            this.buttonAjout.Size = new System.Drawing.Size(75, 23);
-            this.buttonAjout.TabIndex = 4;
-            this.buttonAjout.Text = "Ajouter";
-            this.buttonAjout.UseVisualStyleBackColor = true;
-            this.buttonAjout.Click += new System.EventHandler(this.buttonAjout_Click);
+            this.buttonAjouter.Location = new System.Drawing.Point(375, 204);
+            this.buttonAjouter.Name = "buttonAjouter";
+            this.buttonAjouter.Size = new System.Drawing.Size(75, 23);
+            this.buttonAjouter.TabIndex = 4;
+            this.buttonAjouter.Text = "Ajouter";
+            this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             // 
             // label3
             // 
@@ -173,6 +176,7 @@
             this.textBoxAjoutSouhaitJardin.Name = "textBoxAjoutSouhaitJardin";
             this.textBoxAjoutSouhaitJardin.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutSouhaitJardin.TabIndex = 2;
+            this.textBoxAjoutSouhaitJardin.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitJardin_TextChanged);
             // 
             // textBoxAjoutSouhaitSurfHab
             // 
@@ -180,6 +184,7 @@
             this.textBoxAjoutSouhaitSurfHab.Name = "textBoxAjoutSouhaitSurfHab";
             this.textBoxAjoutSouhaitSurfHab.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutSouhaitSurfHab.TabIndex = 2;
+            this.textBoxAjoutSouhaitSurfHab.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitSurfHab_TextChanged);
             // 
             // textBoxAjoutSouhaitsBudget
             // 
@@ -187,6 +192,7 @@
             this.textBoxAjoutSouhaitsBudget.Name = "textBoxAjoutSouhaitsBudget";
             this.textBoxAjoutSouhaitsBudget.Size = new System.Drawing.Size(112, 20);
             this.textBoxAjoutSouhaitsBudget.TabIndex = 2;
+            this.textBoxAjoutSouhaitsBudget.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitsBudget_TextChanged);
             // 
             // trackBarAjoutSouhaitJardin
             // 
@@ -227,6 +233,7 @@
             this.checkBoxVilles.TabIndex = 0;
             this.checkBoxVilles.Text = "Villes :";
             this.checkBoxVilles.UseVisualStyleBackColor = true;
+            this.checkBoxVilles.CheckedChanged += new System.EventHandler(this.checkBoxVilles_CheckedChanged);
             // 
             // checkBoxJardin
             // 
@@ -237,6 +244,7 @@
             this.checkBoxJardin.TabIndex = 0;
             this.checkBoxJardin.Text = "Surface de jardin min :";
             this.checkBoxJardin.UseVisualStyleBackColor = true;
+            this.checkBoxJardin.CheckedChanged += new System.EventHandler(this.checkBoxJardin_CheckedChanged);
             // 
             // checkBoxSurfHab
             // 
@@ -247,6 +255,7 @@
             this.checkBoxSurfHab.TabIndex = 0;
             this.checkBoxSurfHab.Text = "Surface habitable min :";
             this.checkBoxSurfHab.UseVisualStyleBackColor = true;
+            this.checkBoxSurfHab.CheckedChanged += new System.EventHandler(this.checkBoxSurfHab_CheckedChanged);
             // 
             // checkBoxBudgetMax
             // 
@@ -257,6 +266,7 @@
             this.checkBoxBudgetMax.TabIndex = 0;
             this.checkBoxBudgetMax.Text = "Budget max :";
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
+            this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
             // UCAjouterSouhait
             // 
@@ -280,7 +290,7 @@
         private System.Windows.Forms.GroupBox groupBoxAjoutSouhaits;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonAnnuler;
-        private System.Windows.Forms.Button buttonAjout;
+        private System.Windows.Forms.Button buttonAjouter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

@@ -84,6 +84,7 @@
             // 
             // comboBoxVilles
             // 
+            this.comboBoxVilles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVilles.FormattingEnabled = true;
             this.comboBoxVilles.Items.AddRange(new object[] {
             "Ajouter une ville..."});
@@ -95,6 +96,7 @@
             // 
             // comboBoxAgents
             // 
+            this.comboBoxAgents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAgents.Enabled = false;
             this.comboBoxAgents.FormattingEnabled = true;
             this.comboBoxAgents.Location = new System.Drawing.Point(244, 181);

@@ -19,24 +19,27 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadClients();
             loadVilles();
+            buttonAjouter.Enabled = false;
         }
-        public UCAjouterSouhait(Client c, bool clientExiste)
+        public UCAjouterSouhait(Client client, bool clientExiste)
         {
             InitializeComponent();
-            loadClients();
             loadVilles();
-            comboBoxAcheteur.SelectedText = c.Nom;
-            if (!clientExiste)
-                comboBoxAcheteur.Enabled = false;
+            // Chargement comboBox propriétaire avec ce client
+            comboBoxAcheteur.Items.Clear();
+            comboBoxAcheteur.Items.Add(client);
+            comboBoxAcheteur.SelectedItem = client;
+            comboBoxAcheteur.Enabled = false;
+            buttonAjouter.Enabled = false;
         }
         #region Chargement des comboBox
         private void loadClients()
         {
             comboBoxAcheteur.Items.Clear();
-            List<string> listeClients = SqlDataProvider.GetListeNomClients();
-            foreach (string prenom in listeClients)
+            List<Client> listeClient = SqlDataProvider.GetListeClients();
+            foreach (Client proprietaire in listeClient)
             {
-                comboBoxAcheteur.Items.Add(prenom);
+                comboBoxAcheteur.Items.Add(proprietaire);
             }
         }
         private void loadVilles()
@@ -45,7 +48,7 @@ namespace Pollux.UserInterface
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
             foreach (Ville ville in listeVilles)
             {
-                listBoxVilles.Items.Add(string.Format("{0} ({1})", ville.Nom, ville.CodePostal));
+                listBoxVilles.Items.Add(ville);
             }
         }
         #endregion
@@ -67,6 +70,143 @@ namespace Pollux.UserInterface
         }
         #endregion
 
+        #region Zones de texte
+        private void textBoxAjoutSouhaitsBudget_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBoxAjoutSouhaitsBudget.Text))
+            {
+                try
+                {
+                    trackBarAjoutSouhaitsBudget.Value = int.Parse(textBoxAjoutSouhaitsBudget.Text);
+                    checkBoxBudgetMax.Checked = true;
+                }
+                catch (Exception)
+                {
+                    textBoxAjoutSouhaitsBudget.Text = string.Empty;
+                    trackBarAjoutSouhaitsBudget.Value = 0;
+                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.",
+                        trackBarAjoutSouhaitsBudget.Minimum,trackBarAjoutSouhaitsBudget.Maximum), "Attention");
+                }
+            }
+            else
+                checkBoxBudgetMax.Checked = false;
+        }
+        private void textBoxAjoutSouhaitSurfHab_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBoxAjoutSouhaitSurfHab.Text))
+            {
+                try
+                {
+                    trackBarAjoutSouhaitSurfHab.Value = int.Parse(textBoxAjoutSouhaitSurfHab.Text);
+                    checkBoxSurfHab.Checked = true;
+                }
+                catch (Exception)
+                {
+                    textBoxAjoutSouhaitSurfHab.Text = string.Empty;
+                    trackBarAjoutSouhaitSurfHab.Value = 0;
+                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.",
+                        trackBarAjoutSouhaitSurfHab.Minimum, trackBarAjoutSouhaitSurfHab.Maximum), "Attention");
+                }
+            }
+            else
+                checkBoxSurfHab.Checked = false;
+        }
+        private void textBoxAjoutSouhaitJardin_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBoxAjoutSouhaitJardin.Text))
+            {
+                try
+                {
+                    trackBarAjoutSouhaitJardin.Value = int.Parse(textBoxAjoutSouhaitJardin.Text);
+                    checkBoxJardin.Checked = true;
+                }
+                catch (Exception)
+                {
+                    textBoxAjoutSouhaitJardin.Text = string.Empty;
+                    trackBarAjoutSouhaitJardin.Value = 0;
+                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.", 
+                        trackBarAjoutSouhaitJardin.Minimum, trackBarAjoutSouhaitJardin.Maximum), "Attention");
+                }
+            }
+            else
+                checkBoxJardin.Checked = false;
+        }
+        #endregion
+
+        #region Activation bouton Ajouter
+        private void activationBoutonCreer()
+        {
+            if (comboBoxAcheteur.SelectedItem != null &&
+                (checkBoxBudgetMax.Checked ||
+                 checkBoxSurfHab.Checked ||
+                 checkBoxJardin.Checked ||
+                 checkBoxVilles.Checked))
+                buttonAjouter.Enabled = true;
+            else
+                buttonAjouter.Enabled = false;
+        }
+        private void comboBoxAcheteur_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+        private void checkBoxBudgetMax_CheckedChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+            // si coche la case, on fixe le budget a son maximum
+            if (checkBoxBudgetMax.Checked == true)
+                textBoxAjoutSouhaitsBudget.Text = trackBarAjoutSouhaitsBudget.Maximum.ToString();
+            else // si décoche la case, on remet à zéro
+            {
+                textBoxAjoutSouhaitsBudget.Text = string.Empty;
+                trackBarAjoutSouhaitsBudget.Value = 0;
+            }
+        }
+        private void checkBoxSurfHab_CheckedChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+            // si coche la case, on fixe la surf Hab à son minimum
+            if (checkBoxSurfHab.Checked == true)
+                textBoxAjoutSouhaitSurfHab.Text = trackBarAjoutSouhaitSurfHab.Minimum.ToString();
+            else // si décoche la case, on remet à zéro
+            {
+                textBoxAjoutSouhaitSurfHab.Text = string.Empty;
+                trackBarAjoutSouhaitSurfHab.Value = 0;
+            }
+        }
+        private void checkBoxJardin_CheckedChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+            // si coche la case, on fixe la surf du jardin à son minimum
+            if (checkBoxJardin.Checked == true)
+                textBoxAjoutSouhaitJardin.Text = trackBarAjoutSouhaitJardin.Minimum.ToString();
+            else // si décoche la case, on remet à zéro
+            {
+                textBoxAjoutSouhaitJardin.Text = string.Empty;
+                trackBarAjoutSouhaitJardin.Value = 0;
+            }
+        }
+        private void checkBoxVilles_CheckedChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+            // si décoche la case, la sélection supprimée
+            if (checkBoxVilles.Checked == false)
+                listBoxVilles.SelectedItems.Clear();
+            // si coche la case, toutes les villes sont sélectionnée
+            else if (listBoxVilles.SelectedItems.Count == 0)
+            {
+                for (int i = 0; i < listBoxVilles.Items.Count; i++)
+                    listBoxVilles.SelectedItems.Add(listBoxVilles.Items[i]);
+            }
+        }
+        private void listBoxVilles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxVilles.SelectedItem != null)
+                checkBoxVilles.Checked = true;
+            else
+                checkBoxVilles.Checked = false;
+        }
+        #endregion  
+        
         private void buttonAddVilles_Click(object sender, EventArgs e)
         {
             Form Ville = new FormVilles();
@@ -83,9 +223,8 @@ namespace Pollux.UserInterface
 
 
         // A FINIR
-        private void buttonAjout_Click(object sender, EventArgs e)
+        private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            
             // Récupération des infos
             int prix = -1;
             int surfHab = -1;
@@ -99,11 +238,10 @@ namespace Pollux.UserInterface
                 surfJard = int.Parse(textBoxAjoutSouhaitJardin.Text);
             if (checkBoxVilles.Checked)
                 villes = listBoxVilles.SelectedItems.Cast<Ville>().ToList();
-            // Ajout en base du bien
-
-            Souhait souhait = new Souhait(prix, surfHab, surfJard, villes);
+            // Ajout en base du souhait
             Client acheteur = (Client)comboBoxAcheteur.SelectedItem;
-            if (comboBoxAcheteur.Enabled)
+            Souhait souhait = new Souhait(prix, surfHab, surfJard, villes, acheteur);       
+            if (comboBoxAcheteur.Enabled)  // client déjà présent en base
             {
                 if (SqlDataProvider.AjouterSouhait(souhait))
                 {
@@ -115,7 +253,7 @@ namespace Pollux.UserInterface
                     MessageBox.Show("Ajout du souhait non effectué", "Echec");
                 }
             }
-            else
+            else  // client non présent en base : ajout souhait et client
             {
                 if (SqlDataProvider.ajouterSouhaitEtClient(acheteur, souhait))
                 {
@@ -129,17 +267,12 @@ namespace Pollux.UserInterface
                 }
             }
         }
-        #region Activation bouton Ajouter
-        private void activationBoutonCreer()
-        {
-            if (checkBoxBudgetMax.Checked ||
-                checkBoxSurfHab.Checked ||
-                checkBoxJardin.Checked ||
-                checkBoxVilles.Checked)
-                buttonAjout.Enabled = true;
-            else
-                buttonAjout.Enabled = false;
-        }
-        #endregion
+
+
+    
+
+        
+
+
     }
 }

@@ -48,10 +48,10 @@ namespace Pollux.DataBase
         /// <summary>
         /// ça marche, c'est cool
         /// </summary>
-        /// <param name="c">Client à ajouter</param>
+        /// <param name="client">Client à ajouter</param>
         /// <param name="bien">Bien à ajouter</param>
         /// <returns></returns>
-        static public bool ajouterBienEtClient(Client c, Bien bien)
+        static public bool ajouterBienEtClient(Client client, Bien bien)
         {
             // si connexion
             if (DBConnect())
@@ -64,7 +64,7 @@ namespace Pollux.DataBase
                                 + "(SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}')) "
                                 + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
                                 + "ELSE BEGIN COMMIT TRAN END",
-                                c.Nom, c.Adresse, c.Ville.Index, c.Telephone,
+                                client.Nom, client.Adresse, client.Ville.Index, client.Telephone,
                                 bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index);
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 try

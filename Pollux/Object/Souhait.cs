@@ -11,6 +11,7 @@ namespace Pollux.Object
             private int m_surfaceHabitableMin;
             private int m_surfaceJardinMin;
             private List<Ville> m_villes;
+            private Client m_client;
 
             #region Propriétés
             public int PrixMax
@@ -28,14 +29,25 @@ namespace Pollux.Object
                 get { return m_surfaceJardinMin; }
                 set { m_surfaceJardinMin = value; }
             }
+            public List<Ville> Villes
+            {
+                get { return m_villes; }
+                set { m_villes = value; }
+            }
+            public Client Client
+            {
+                get { return m_client; }
+                set { m_client = value; }
+            }
             #endregion
 
-            public Souhait(int prixMax, int surfaceHab, int surfJard, List<Ville> villes)
+            public Souhait(int prixMax, int surfaceHab, int surfJard, List<Ville> villes, Client client)
             {
                 m_prixMax = prixMax;
                 m_surfaceHabitableMin = surfaceHab;
                 m_surfaceJardinMin = surfJard;
                 m_villes = villes;
+                m_client = client;
             }
         }
 }

@@ -30,23 +30,26 @@ namespace Pollux.DataBase
             return index;
         }
 
-        static public List<string> GetListeNomClients()
-        {
-            List<string> listeNomClients = new List<string>() ;
-            if (DBConnect())
-            {
-                string requete = "SELECT NOM_C FROM CLIENTS ORDER BY NOM_C";
-                OleDbCommand command = new OleDbCommand(requete, connect);
-                OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
-                while (reader.Read())
-                    listeNomClients.Add(reader.GetString(0));
-                // déconnexion
-                reader.Close();
-                connect.Close();
-            }
-            return listeNomClients;
-        }
+
+        /*   // En principe inutile maintenant car on remplit les comboBox avec le Client entier
+             // et non plus juste avec son nom
+             static public List<string> GetListeNomClients()
+             {
+                 List<string> listeNomClients = new List<string>() ;
+                 if (DBConnect())
+                 {
+                     string requete = "SELECT NOM_C FROM CLIENTS ORDER BY NOM_C";
+                     OleDbCommand command = new OleDbCommand(requete, connect);
+                     OleDbDataReader reader = command.ExecuteReader();
+                     // ajout des noms des clients dans la liste
+                     while (reader.Read())
+                         listeNomClients.Add(reader.GetString(0));
+                     // déconnexion
+                     reader.Close();
+                     connect.Close();
+                 }
+                 return listeNomClients;
+             }*/
 
 
         static public List<string> GetListeNomClients(string prenomAgent)
@@ -68,7 +71,7 @@ namespace Pollux.DataBase
                 connect.Close();
             }
             return listeNomClients;
-        }
+        } 
 
         static public List<Client> GetListeClients()
         {
@@ -100,7 +103,8 @@ namespace Pollux.DataBase
             return listeClients;
         }
 
-        // TODO
+        // Vérifie si un client avec le même nom et même ville est déjà présent en base
+        // si oui retourne ce client, sinon retourne null
         static public Client ClientExiste(string nom, Ville ville)
         {
             Client client = null;

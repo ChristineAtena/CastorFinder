@@ -56,7 +56,7 @@ namespace Pollux.UserInterface
             if (textBoxNom.Text != "" && textBoxAdresse.Text != "" && textBoxTelephone.Text != "" && comboBoxVilles.SelectedItem != null)
             {
                 Client client = SqlDataProvider.ClientExiste(textBoxNom.Text, (Ville)comboBoxVilles.SelectedItem);
-
+                // si le client existe déjà
                 if (client != null)
                 {
                     MessageBox.Show("Ce client existe déjà.", "Attention", MessageBoxButtons.OK);
@@ -73,24 +73,23 @@ namespace Pollux.UserInterface
                         this.Dispose();
                     }
                 }
-                else
+                else  // si le client n'existe pas déjà en base
                 {
                     client = new Client(textBoxNom.Text, textBoxAdresse.Text, textBoxTelephone.Text, ((Ville)comboBoxVilles.SelectedItem).Index);
-                }
+                    if (radioButtonBien.Checked)
+                    {
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, false);
+                        ((FenetrePrincipale)this.Parent).init();
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        client.Agent = (Agent)comboBoxAgents.SelectedItem;
 
-                if (radioButtonBien.Checked)
-                {
-                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, false);
-                    ((FenetrePrincipale)this.Parent).init();
-                    this.Dispose();
-                }
-                else
-                {
-                    client.Agent = (Agent)comboBoxAgents.SelectedItem;
-
-                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, false);
-                    ((FenetrePrincipale)this.Parent).init();
-                    this.Dispose();
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, false);
+                        ((FenetrePrincipale)this.Parent).init();
+                        this.Dispose();
+                    }
                 }
             }
         }
@@ -122,7 +121,10 @@ namespace Pollux.UserInterface
         #region Activation bouton Créer
         private void activationBoutonCreer()
         {
-            if (textBoxNom.Text != "" && textBoxAdresse.Text != "" && textBoxTelephone.Text != "" && comboBoxVilles.SelectedItem != null)
+            if (textBoxNom.Text != "" && 
+                textBoxAdresse.Text != "" && 
+                textBoxTelephone.Text != "" && 
+                comboBoxVilles.SelectedItem != null)
                 buttonCreer.Enabled = true;
             else
                 buttonCreer.Enabled = false;

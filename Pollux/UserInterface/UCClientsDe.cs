@@ -35,10 +35,10 @@ namespace Pollux.UserInterface
             listBoxClients.Items.Clear();
             if (comboBoxAgents.SelectedItem != null)
             {
-                List<string> listeClients = SqlDataProvider.GetListeNomClients(comboBoxAgents.SelectedItem.ToString());
-                foreach (string nom in listeClients)
+                List<Client> listeClients = SqlDataProvider.GetListeClients((Agent)comboBoxAgents.SelectedItem);
+                foreach (Client c in listeClients)
                 {
-                    listBoxClients.Items.Add(nom);
+                    listBoxClients.Items.Add(c);
                 }
             }
         }

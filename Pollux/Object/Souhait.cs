@@ -7,6 +7,7 @@ namespace Pollux.Object
 {
         public class Souhait
         {
+            private int m_index;
             private int m_prixMax;
             private int m_surfaceHabitableMin;
             private int m_surfaceJardinMin;
@@ -14,6 +15,11 @@ namespace Pollux.Object
             private Client m_client;
 
             #region Propriétés
+            public int Index
+            {
+                get { return m_index; }
+                set { m_index = value; }
+            }
             public int PrixMax
             {
                 get { return m_prixMax; }
@@ -43,6 +49,24 @@ namespace Pollux.Object
 
             public Souhait(int prixMax, int surfaceHab, int surfJard, List<Ville> villes, Client client)
             {
+                m_prixMax = prixMax;
+                m_surfaceHabitableMin = surfaceHab;
+                m_surfaceJardinMin = surfJard;
+                m_villes = villes;
+                m_client = client;
+            }
+            /// <summary>
+            /// Constructeur de souhait avec index
+            /// </summary>
+            /// <param name="index">index</param>
+            /// <param name="prixMax">prix maximum</param>
+            /// <param name="surfaceHab">surface habitable minimum</param>
+            /// <param name="surfJard">surface de jardin minimum</param>
+            /// <param name="villes">liste de villes</param>
+            /// <param name="client">client</param>
+            public Souhait(int index, int prixMax, int surfaceHab, int surfJard, List<Ville> villes, Client client)
+            {
+                m_index = index;
                 m_prixMax = prixMax;
                 m_surfaceHabitableMin = surfaceHab;
                 m_surfaceJardinMin = surfJard;

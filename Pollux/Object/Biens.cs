@@ -13,8 +13,14 @@ namespace Pollux.Object
         private int m_surfaceJardin;
         private Ville m_ville;
         private Client m_client;
+        private int m_index;
 
         #region Propriétés
+        public int Index
+        {
+            get { return m_index; }
+            set { m_index = value; }
+        }
         public int Prix
         {
             get { return m_prix; }
@@ -46,9 +52,37 @@ namespace Pollux.Object
             set { m_client = value; }
         }
         #endregion
-
+        /// <summary>
+        /// Constructeur sans index
+        /// </summary>
+        /// <param name="prix"></param>
+        /// <param name="dateMiseEnVente"></param>
+        /// <param name="surfaceHabitable"></param>
+        /// <param name="surfaceJardin"></param>
+        /// <param name="ville"></param>
+        /// <param name="client"></param>
         public Bien(int prix, DateTime dateMiseEnVente, int surfaceHabitable, int surfaceJardin, Ville ville, Client client)
         {
+            m_prix = prix;
+            m_dateMiseEnVente = dateMiseEnVente;
+            m_surfaceHabitable = surfaceHabitable;
+            m_surfaceJardin = surfaceJardin;
+            m_ville = ville;
+            m_client = client;
+        }
+        /// <summary>
+        /// Constructeur avec index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="prix"></param>
+        /// <param name="dateMiseEnVente"></param>
+        /// <param name="surfaceHabitable"></param>
+        /// <param name="surfaceJardin"></param>
+        /// <param name="ville"></param>
+        /// <param name="client"></param>
+        public Bien(int index, int prix, DateTime dateMiseEnVente, int surfaceHabitable, int surfaceJardin, Ville ville, Client client)
+        {
+            m_index = index;
             m_prix = prix;
             m_dateMiseEnVente = dateMiseEnVente;
             m_surfaceHabitable = surfaceHabitable;

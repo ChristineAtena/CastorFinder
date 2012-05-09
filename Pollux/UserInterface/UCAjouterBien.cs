@@ -12,7 +12,7 @@ using Pollux.Object;
 
 namespace Pollux.UserInterface
 {
-    public partial class UCAjouterBien : UserControl, InterfaceFenetre
+    public partial class UCAjouterBien : UserControl
     {
         private Client client;  // UTILE ?? pas l'impression
         public UCAjouterBien()

@@ -52,26 +52,106 @@ namespace Pollux.DataBase
              }*/
 
 
-        static public List<string> GetListeNomClients(string prenomAgent)
+        static public List<Client> GetListeClients(Agent agent)
         {
-            List<string> listeNomClients = new List<string>();
+            Client client;
+            Ville ville;
+            List<Client> listeClients = new List<Client>();
             if (DBConnect())
             {
-                string requete = "SELECT NOM_C FROM CLIENTS INNER JOIN AGENTS ON CLIENTS.NUM_A = AGENTS.NUM_A"
-                                + " WHERE AGENTS.PRÉNOM_A = N'"
-                                + prenomAgent
+                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_V FROM CLIENTS "
+                                + " WHERE CLIENTS.NUM_A = N'"
+                                + agent.Index
                                 + "' ORDER BY NOM_C";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
                 // ajout des noms des clients dans la liste
                 while (reader.Read())
-                    listeNomClients.Add(reader.GetString(0));
+                {
+                    ville = SqlDataProvider.trouverVille(reader.GetInt16(4));
+                    client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
+                    listeClients.Add(client);
+                }
                 // déconnexion
                 reader.Close();
                 connect.Close();
             }
-            return listeNomClients;
-        } 
+            return listeClients;
+        }
+
+
+        /// <summary>
+        /// Retourne la liste des vendeurs
+        /// </summary>
+        /// <returns>liste de vendeurs</returns>
+        static public List<Client> GetListeVendeurs()
+        {
+            Client client;
+            Agent agent;
+            Ville ville;
+            List<Client> listeClients = new List<Client>();
+            if (DBConnect())
+            {
+                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS "
+                                + "WHERE CLIENTS.NUM_A IS NULL "
+                                + "ORDER BY NOM_C";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des noms des clients dans la liste
+                while (reader.Read())
+                {
+                    try
+                    {
+                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                    }
+                    catch (Exception) { agent = null; }
+                    ville = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                    client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
+                    listeClients.Add(client);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeClients;
+        }
+
+
+        /// <summary>
+        /// Retourne la liste des acheteurs
+        /// </summary>
+        /// <returns>liste de acheteurs</returns>
+        static public List<Client> GetListeAcheteurs()
+        {
+            Client client;
+            Agent agent;
+            Ville ville;
+            List<Client> listeClients = new List<Client>();
+            if (DBConnect())
+            {
+                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS "
+                                +"WHERE CLIENTS.NUM_A IS NOT NULL "
+                                +"ORDER BY NOM_C";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des noms des clients dans la liste
+                while (reader.Read())
+                {
+                    try
+                    {
+                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                    }
+                    catch (Exception) { agent = null; }
+                    ville = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                    client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
+                    listeClients.Add(client);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeClients;
+        }
 
         static public List<Client> GetListeClients()
         {

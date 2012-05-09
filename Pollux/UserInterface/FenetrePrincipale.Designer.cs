@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FenetrePrincipale));
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripNouveau = new System.Windows.Forms.ToolStripDropDownButton();
-            this.bienToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bienToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.souhaitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripRechercher = new System.Windows.Forms.ToolStripDropDownButton();
@@ -44,6 +44,9 @@
             this.nouvelleVisiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.souhaitsDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.biensDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -78,24 +81,24 @@
             this.toolStripNouveau.Size = new System.Drawing.Size(68, 22);
             this.toolStripNouveau.Text = "&Nouveau";
             // 
-            // bienToolStripMenuItem2
-            // 
-            this.bienToolStripMenuItem2.Name = "bienToolStripMenuItem2";
-            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.bienToolStripMenuItem2.Text = "&Bien";
-            this.bienToolStripMenuItem2.Click += new System.EventHandler(this.bienToolStripMenuItem1_Click);
-            // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.clientToolStripMenuItem.Text = "&Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.nouveauClientToolStripMenuItem_Click);
+            // 
+            // bienToolStripMenuItem2
+            // 
+            this.bienToolStripMenuItem2.Name = "bienToolStripMenuItem2";
+            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(114, 22);
+            this.bienToolStripMenuItem2.Text = "&Bien";
+            this.bienToolStripMenuItem2.Click += new System.EventHandler(this.bienToolStripMenuItem1_Click);
             // 
             // souhaitToolStripMenuItem1
             // 
             this.souhaitToolStripMenuItem1.Name = "souhaitToolStripMenuItem1";
-            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
             this.souhaitToolStripMenuItem1.Text = "&Souhait";
             this.souhaitToolStripMenuItem1.Click += new System.EventHandler(this.souhaitToolStripMenuItem_Click);
             // 
@@ -109,6 +112,9 @@
             this.toolStripRechercher.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripRechercher.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientsDeToolStripMenuItem1,
+            this.biensDeToolStripMenuItem,
+            this.souhaitsDeToolStripMenuItem,
+            this.toolStripSeparator1,
             this.biensToolStripMenuItem,
             this.souhaitsToolStripMenuItem1});
             this.toolStripRechercher.Image = ((System.Drawing.Image)(resources.GetObject("toolStripRechercher.Image")));
@@ -120,21 +126,21 @@
             // clientsDeToolStripMenuItem1
             // 
             this.clientsDeToolStripMenuItem1.Name = "clientsDeToolStripMenuItem1";
-            this.clientsDeToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.clientsDeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.clientsDeToolStripMenuItem1.Text = "&Clients de...";
             this.clientsDeToolStripMenuItem1.Click += new System.EventHandler(this.clientsDeToolStripMenuItem1_Click);
             // 
             // biensToolStripMenuItem
             // 
             this.biensToolStripMenuItem.Name = "biensToolStripMenuItem";
-            this.biensToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.biensToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.biensToolStripMenuItem.Text = "&Biens";
             this.biensToolStripMenuItem.Click += new System.EventHandler(this.bienToolStripMenuItem_Click);
             // 
             // souhaitsToolStripMenuItem1
             // 
             this.souhaitsToolStripMenuItem1.Name = "souhaitsToolStripMenuItem1";
-            this.souhaitsToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
+            this.souhaitsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.souhaitsToolStripMenuItem1.Text = "&Souhaits";
             this.souhaitsToolStripMenuItem1.Click += new System.EventHandler(this.souhaitsToolStripMenuItem_Click);
             // 
@@ -176,10 +182,31 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // souhaitsDeToolStripMenuItem
+            // 
+            this.souhaitsDeToolStripMenuItem.Name = "souhaitsDeToolStripMenuItem";
+            this.souhaitsDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.souhaitsDeToolStripMenuItem.Text = "Souhaits de...";
+            this.souhaitsDeToolStripMenuItem.Click += new System.EventHandler(this.souhaitsDeToolStripMenuItem_Click);
+            // 
+            // biensDeToolStripMenuItem
+            // 
+            this.biensDeToolStripMenuItem.Name = "biensDeToolStripMenuItem";
+            this.biensDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.biensDeToolStripMenuItem.Text = "Biens de...";
+            this.biensDeToolStripMenuItem.Click += new System.EventHandler(this.biensDeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
             // FenetrePrincipale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Pollux.Properties.Resources.castor;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(503, 300);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripMenu);
@@ -216,6 +243,9 @@
         private System.Windows.Forms.ToolStripMenuItem nouvelleVisiteToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem souhaitsDeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem biensDeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

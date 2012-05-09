@@ -63,7 +63,12 @@
     <Compile Include="Object\Clients.cs" />
     <Compile Include="Object\Visite.cs" />
     <Compile Include="Object\Souhait.cs" />
-    <Compile Include="UserInterface\InterfaceFenetre.cs" />
+    <Compile Include="UserInterface\UCBiensDe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UCBiensDe.Designer.cs">
+      <DependentUpon>UCBiensDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UCListeBiens.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +132,15 @@
       <DependentUpon>FormVilles.cs</DependentUpon>
     </Compile>
     <Compile Include="Object\Ville.cs" />
+    <Compile Include="UserInterface\UCSouhaitsDe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UCSouhaitsDe.Designer.cs">
+      <DependentUpon>UCSouhaitsDe.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UserInterface\UCBiensDe.resx">
+      <DependentUpon>UCBiensDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\UCListeBiens.resx">
       <DependentUpon>UCListeBiens.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +155,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserInterface\UCAjouterBien.resx">
       <DependentUpon>UCAjouterBien.cs</DependentUpon>
@@ -166,6 +181,9 @@
     <EmbeddedResource Include="UserInterface\FormVilles.resx">
       <DependentUpon>FormVilles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UCSouhaitsDe.resx">
+      <DependentUpon>UCSouhaitsDe.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="DataBase\DataSet.xsc">
@@ -188,6 +206,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\castor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

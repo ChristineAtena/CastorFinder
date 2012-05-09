@@ -132,13 +132,71 @@ namespace Pollux.DataBase
             }
         }
 
-        static public List<Souhait> GetListeSouhaits(Souhait souhait)
+        static private List<Ville> trouverVillesFromIndexSouhait(int indexSouhait)
         {
-            List<Souhait> listeSouhaits = null;
-            // TODO retourne la liste des biens correspondant au bien fournit en paramètre
-            // voir si en paramètres c'est mieux ça ou chaque attribut
+            List<Ville> listeVilles = new List<Ville>();
+            int codePostal;
+            string nomVille;
+            int index;
+            if (DBConnect())
+            {
+                string requete = "SELECT CODE_POSTAL_V, NOM_V, VILLES.NUM_V FROM VILLES "
+                                + "INNER JOIN VILLES_SOUHAITÉES ON VILLES.NUM_V = VILLES_SOUHAITÉES.NUM_V "
+                                + "WHERE VILLES_SOUHAITÉES.NUM_S = N'"
+                                + indexSouhait + "' ORDER BY NOM_V";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des villes dans la liste
+                while (reader.Read())
+                {
+                    codePostal = reader.GetInt32(0);
+                    nomVille = reader.GetString(1);
+                    index = reader.GetInt16(2);
+                    listeVilles.Add(new Ville(codePostal, nomVille, index));
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeVilles;
+        }
 
-
+        static public List<Souhait> GetListeSouhaits(Client client)
+        {
+            List<Ville> listeVilles = null;
+            List<Souhait> listeSouhaits = new List<Souhait>();
+            if (DBConnect())
+            {
+                string requete = "SELECT NUM_S, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S FROM SOUHAITS "
+                                + " WHERE SOUHAITS.NUM_C = N'"
+                                + client.Index
+                                + "' ORDER BY NUM_S";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des noms des clients dans la liste
+                while (reader.Read())
+                {
+                    listeVilles = SqlDataProvider.trouverVillesFromIndexSouhait(reader.GetInt16(0));
+                    int index = reader.GetInt16(0);
+                    int prix = -1;
+                    int surfHab = -1;
+                    int surfJard = -1;
+                    try{
+                        prix = reader.GetInt32(1);
+                    }catch{}
+                    try{
+                        surfHab = reader.GetInt16(2);
+                    }catch{}
+                    try{
+                        surfJard = reader.GetInt16(3);
+                    }catch{}
+                    Souhait souhait = new Souhait(index, prix, surfHab, surfJard, listeVilles, client);
+                    listeSouhaits.Add(souhait);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
             return listeSouhaits;
         }
 

@@ -48,6 +48,12 @@ namespace Pollux
                 mdiChild.Parent = null;
             }
         }
+        private void souhaitsDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fermer();
+            mdiChild = new UCSouhaitsDe();
+            init();
+        }
         private void nouveauClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fermer();
@@ -91,6 +97,12 @@ namespace Pollux
         {
             fermer();
             mdiChild = new UCClientsDe();
+            init();
+        }
+        private void biensDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fermer();
+            mdiChild = new UCBiensDe();
             init();
         }
         #endregion

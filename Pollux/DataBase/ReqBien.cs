@@ -35,13 +35,35 @@ namespace Pollux.DataBase
             return ajout;
         }
 
-        static public List<Bien> GetListeBiens(Bien bien)
+        static public List<Bien> GetListeBiens(Client client)
         {
-            List<Bien> listeBiens = null;
-            // TODO retourne la liste des biens correspondant au bien fournit en paramètre
-            // voir si en paramètres c'est mieux ça ou chaque attribut
-
-
+            List<Bien> listeBiens = new List<Bien>();
+            if (DBConnect())
+            {
+                string requete = "SELECT NUM_B, PRIX_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, "
+                                +"DATE_MISE_EN_VENTE_B, VILLES.NUM_V, NOM_V, CODE_POSTAL_V FROM BIENS "
+                                +"INNER JOIN VILLES ON BIENS.NUM_V = VILLES.NUM_V "
+                                +"WHERE BIENS.NUM_C = N'"
+                                + client.Index
+                                +"' ORDER BY NUM_B";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des noms des clients dans la liste
+                while (reader.Read())
+                {
+                    Ville ville = new Ville(reader.GetInt32(7), reader.GetString(6), reader.GetInt16(5));
+                    int index = reader.GetInt16(0);
+                    int prix = reader.GetInt32(1);
+                    int surfHab = reader.GetInt16(2);
+                    int surfJard = reader.GetInt16(3);
+                    DateTime date = reader.GetDateTime(4);
+                    Bien bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
+                    listeBiens.Add(bien);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
             return listeBiens;
         }
 

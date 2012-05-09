@@ -67,6 +67,7 @@
             // 
             // comboBoxAgents
             // 
+            this.comboBoxAgents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAgents.FormattingEnabled = true;
             this.comboBoxAgents.Location = new System.Drawing.Point(59, 20);
             this.comboBoxAgents.Name = "comboBoxAgents";

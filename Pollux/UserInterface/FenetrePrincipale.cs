@@ -105,6 +105,13 @@ namespace Pollux
             mdiChild = new UCBiensDe();
             init();
         }
+        private void agentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fermer();
+            mdiChild = new UCAjouterAgent();
+            init();
+        }
         #endregion
+
     }
 }

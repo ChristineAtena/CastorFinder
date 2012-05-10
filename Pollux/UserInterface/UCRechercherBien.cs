@@ -63,5 +63,29 @@ namespace Pollux.UserInterface
                 loadVilles();
             }
         }
+
+        private void buttonRechBien_Click(object sender, EventArgs e)
+        {
+            int prix = -1;
+            int surfHab = -1;
+            int surfJard = -1;
+            Ville ville = null;
+            Client client = null;
+            DateTime date = new DateTime(1,1,1);
+            if (checkBoxBudgetMax.Checked)
+                prix = int.Parse(textBoxRechBienPrix.Text);
+            if (checkBoxSurfHab.Checked)
+                surfHab = int.Parse(textBoxRechBienSurf.Text);
+            if (checkBoxJardin.Checked)
+                surfJard = int.Parse(textBoxRechBienJardin.Text);
+            if (checkBoxVille.Checked)
+                ville = (Ville)comboBoxVilles.SelectedItem;
+            if (checkBoxDate.Checked)
+                date = dateTimePicker.Value;
+            Bien bien = new Bien(prix, date ,surfHab, surfJard, ville, client);
+            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherBiens(SqlDataProvider.RechercherListeBiens(bien));
+            ((FenetrePrincipale)this.Parent).init();
+            this.Dispose();
+        }
     }
 }

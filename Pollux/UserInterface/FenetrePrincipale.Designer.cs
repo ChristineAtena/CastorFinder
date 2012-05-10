@@ -37,6 +37,9 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripRechercher = new System.Windows.Forms.ToolStripDropDownButton();
             this.clientsDeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.biensDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.souhaitsDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.biensToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.souhaitsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,9 +47,8 @@
             this.nouvelleVisiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.souhaitsDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.biensDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.agentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +74,8 @@
             // 
             this.toolStripNouveau.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripNouveau.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agentToolStripMenuItem,
+            this.toolStripSeparator2,
             this.clientToolStripMenuItem,
             this.bienToolStripMenuItem2,
             this.souhaitToolStripMenuItem1});
@@ -84,21 +88,21 @@
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientToolStripMenuItem.Text = "&Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.nouveauClientToolStripMenuItem_Click);
             // 
             // bienToolStripMenuItem2
             // 
             this.bienToolStripMenuItem2.Name = "bienToolStripMenuItem2";
-            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(114, 22);
+            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.bienToolStripMenuItem2.Text = "&Bien";
             this.bienToolStripMenuItem2.Click += new System.EventHandler(this.bienToolStripMenuItem1_Click);
             // 
             // souhaitToolStripMenuItem1
             // 
             this.souhaitToolStripMenuItem1.Name = "souhaitToolStripMenuItem1";
-            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
+            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.souhaitToolStripMenuItem1.Text = "&Souhait";
             this.souhaitToolStripMenuItem1.Click += new System.EventHandler(this.souhaitToolStripMenuItem_Click);
             // 
@@ -130,18 +134,37 @@
             this.clientsDeToolStripMenuItem1.Text = "&Clients de...";
             this.clientsDeToolStripMenuItem1.Click += new System.EventHandler(this.clientsDeToolStripMenuItem1_Click);
             // 
+            // biensDeToolStripMenuItem
+            // 
+            this.biensDeToolStripMenuItem.Name = "biensDeToolStripMenuItem";
+            this.biensDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.biensDeToolStripMenuItem.Text = "&Biens de...";
+            this.biensDeToolStripMenuItem.Click += new System.EventHandler(this.biensDeToolStripMenuItem_Click);
+            // 
+            // souhaitsDeToolStripMenuItem
+            // 
+            this.souhaitsDeToolStripMenuItem.Name = "souhaitsDeToolStripMenuItem";
+            this.souhaitsDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.souhaitsDeToolStripMenuItem.Text = "&Souhaits de...";
+            this.souhaitsDeToolStripMenuItem.Click += new System.EventHandler(this.souhaitsDeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
             // biensToolStripMenuItem
             // 
             this.biensToolStripMenuItem.Name = "biensToolStripMenuItem";
             this.biensToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.biensToolStripMenuItem.Text = "&Biens";
+            this.biensToolStripMenuItem.Text = "B&iens";
             this.biensToolStripMenuItem.Click += new System.EventHandler(this.bienToolStripMenuItem_Click);
             // 
             // souhaitsToolStripMenuItem1
             // 
             this.souhaitsToolStripMenuItem1.Name = "souhaitsToolStripMenuItem1";
             this.souhaitsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.souhaitsToolStripMenuItem1.Text = "&Souhaits";
+            this.souhaitsToolStripMenuItem1.Text = "S&ouhaits";
             this.souhaitsToolStripMenuItem1.Click += new System.EventHandler(this.souhaitsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
@@ -182,24 +205,17 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // souhaitsDeToolStripMenuItem
+            // agentToolStripMenuItem
             // 
-            this.souhaitsDeToolStripMenuItem.Name = "souhaitsDeToolStripMenuItem";
-            this.souhaitsDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.souhaitsDeToolStripMenuItem.Text = "Souhaits de...";
-            this.souhaitsDeToolStripMenuItem.Click += new System.EventHandler(this.souhaitsDeToolStripMenuItem_Click);
+            this.agentToolStripMenuItem.Name = "agentToolStripMenuItem";
+            this.agentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.agentToolStripMenuItem.Text = "&Agent";
+            this.agentToolStripMenuItem.Click += new System.EventHandler(this.agentToolStripMenuItem_Click);
             // 
-            // biensDeToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.biensDeToolStripMenuItem.Name = "biensDeToolStripMenuItem";
-            this.biensDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.biensDeToolStripMenuItem.Text = "Biens de...";
-            this.biensDeToolStripMenuItem.Click += new System.EventHandler(this.biensDeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // FenetrePrincipale
             // 
@@ -246,6 +262,8 @@
         private System.Windows.Forms.ToolStripMenuItem souhaitsDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem biensDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem agentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

@@ -52,6 +52,25 @@ namespace Pollux.DataBase
             return null;
         }
 
+        static public bool AjouterAgent(string prenom)
+        {
+            bool ajout = false;
+            if (DBConnect())
+            // si connexion
+            {
+                string requete = "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'"+prenom+"')";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                int rowCount = command.ExecuteNonQuery();
+                if (rowCount == 1)
+                    ajout = true;  // ajout effectué
+                else
+                    ajout = false; // ajout non effectué
+                // déconnexion
+                connect.Close();
+            }
+            return ajout;
+        }
+
         static public Agent GetAgent(Client client)
         {
             Agent agent = null;

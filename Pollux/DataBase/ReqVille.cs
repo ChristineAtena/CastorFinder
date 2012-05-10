@@ -40,12 +40,9 @@ namespace Pollux.DataBase
         // Ajout d'une ville dans la base
         static public bool SaveVille(Ville ville)
         {
-            bool ajout;
-            // si pas de connexion
-            if (!DBConnect())
-                 ajout = false;
+            bool ajout = false;
+            if (DBConnect())
             // si connexion
-            else
             {
                 string requete = string.Format("INSERT INTO VILLES (NOM_V, CODE_POSTAL_V) VALUES (N'{0}',N'{1}')", ville.Nom, ville.CodePostal);
                 OleDbCommand command = new OleDbCommand(requete, connect);
@@ -57,7 +54,7 @@ namespace Pollux.DataBase
                 // déconnexion
                 connect.Close();
             }
-                return ajout;
+            return ajout;
         }
 
         // Retrouver une ville à partir de son index

@@ -48,7 +48,7 @@ namespace Pollux.DataBase
                                 +"' ORDER BY NUM_B";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
+                // ajout des biens dans la liste
                 while (reader.Read())
                 {
                     Ville ville = new Ville(reader.GetInt32(7), reader.GetString(6), reader.GetInt16(5));
@@ -59,6 +59,60 @@ namespace Pollux.DataBase
                     DateTime date = reader.GetDateTime(4);
                     Bien bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
                     listeBiens.Add(bien);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeBiens;
+        }
+        /// <summary>
+        /// construction de la requête de recherche de bien
+        /// </summary>
+        /// <param name="bien">bien provisoire</param>
+        /// <returns>requete</returns>
+        static private string ConstructionRequeteRechercheBien(Bien bien)
+        {
+            string requetePrix = (bien.Prix != -1) ? " PRIX_VENTE_B < " + bien.Prix : "";
+            string requeteSurfHab = (bien.SurfaceHabitable != -1) ? " SURFACE_HAB_B > " + bien.SurfaceHabitable: "";
+            string requeteSurfJard = (bien.SurfaceJardin != -1) ? " SURFACE_JARDIN_B > " + bien.SurfaceJardin : "";
+            string requeteVille = (bien.Ville != null) ? " NUM_V = " + bien.Ville.Index : "";
+            string requeteDate = (bien.DateMiseEnVente.Year != 1) ? " DATE_MISE_EN_VENTE_B < '" + bien.DateMiseEnVente.Day+"/"+bien.DateMiseEnVente.Month+"/"+bien.DateMiseEnVente.Year+ "'" : "";
+            string requete = "SELECT * FROM BIENS WHERE" + requetePrix;
+            if (requetePrix != "" && requeteSurfHab != "")
+                requete += " AND ";
+            requete += requeteSurfHab;
+            if (requeteSurfHab != "" && requeteSurfJard != "")
+                requete += " AND ";
+            requete += requeteSurfJard;
+            if (requeteSurfJard != "" && requeteVille != "")
+                requete += " AND ";
+            requete += requeteVille;
+            if (requeteVille != "" && requeteDate != "")
+                requete += " AND ";
+            requete += requeteDate;
+            return requete;
+        }
+
+        static public List<Bien> RechercherListeBiens(Bien bien)
+        {
+            List<Bien> listeBiens = new List<Bien>();
+            if (DBConnect())
+            {
+                string requete = ConstructionRequeteRechercheBien(bien);
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des biens dans la liste
+                while (reader.Read())
+                {
+                    int index = reader.GetInt16(0);
+                    Ville ville = SqlDataProvider.trouverVille(reader.GetInt16(1));
+                    int prix = reader.GetInt32(3);
+                    DateTime date = reader.GetDateTime(4);
+                    int surfHab = reader.GetInt16(5);
+                    int surfJard = reader.GetInt16(6);
+                    Bien bienTrouve = new Bien(index, prix, date.Date, surfHab, surfJard, ville, null);
+                    listeBiens.Add(bienTrouve);
                 }
                 // déconnexion
                 reader.Close();

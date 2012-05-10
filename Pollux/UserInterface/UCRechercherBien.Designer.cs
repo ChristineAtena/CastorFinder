@@ -42,10 +42,12 @@
             this.trackBarRechBienJardin = new System.Windows.Forms.TrackBar();
             this.trackBarRechBienSurf = new System.Windows.Forms.TrackBar();
             this.trackBarRechBienPrix = new System.Windows.Forms.TrackBar();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBoxVille = new System.Windows.Forms.CheckBox();
+            this.checkBoxJardin = new System.Windows.Forms.CheckBox();
+            this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
+            this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
+            this.checkBoxDate = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBoxRechBien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienJardin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienSurf)).BeginInit();
@@ -54,6 +56,7 @@
             // 
             // groupBoxRechBien
             // 
+            this.groupBoxRechBien.Controls.Add(this.dateTimePicker);
             this.groupBoxRechBien.Controls.Add(this.buttonAjoutVille);
             this.groupBoxRechBien.Controls.Add(this.comboBoxVilles);
             this.groupBoxRechBien.Controls.Add(this.buttonAnnuler);
@@ -67,10 +70,11 @@
             this.groupBoxRechBien.Controls.Add(this.trackBarRechBienJardin);
             this.groupBoxRechBien.Controls.Add(this.trackBarRechBienSurf);
             this.groupBoxRechBien.Controls.Add(this.trackBarRechBienPrix);
-            this.groupBoxRechBien.Controls.Add(this.checkBox9);
-            this.groupBoxRechBien.Controls.Add(this.checkBox10);
-            this.groupBoxRechBien.Controls.Add(this.checkBox11);
-            this.groupBoxRechBien.Controls.Add(this.checkBox12);
+            this.groupBoxRechBien.Controls.Add(this.checkBoxDate);
+            this.groupBoxRechBien.Controls.Add(this.checkBoxVille);
+            this.groupBoxRechBien.Controls.Add(this.checkBoxJardin);
+            this.groupBoxRechBien.Controls.Add(this.checkBoxSurfHab);
+            this.groupBoxRechBien.Controls.Add(this.checkBoxBudgetMax);
             this.groupBoxRechBien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxRechBien.Location = new System.Drawing.Point(0, 30);
             this.groupBoxRechBien.Name = "groupBoxRechBien";
@@ -116,6 +120,7 @@
             this.buttonRechBien.TabIndex = 4;
             this.buttonRechBien.Text = "Rechercher";
             this.buttonRechBien.UseVisualStyleBackColor = true;
+            this.buttonRechBien.Click += new System.EventHandler(this.buttonRechBien_Click);
             // 
             // label13
             // 
@@ -195,45 +200,63 @@
             this.trackBarRechBienPrix.TickFrequency = 0;
             this.trackBarRechBienPrix.Scroll += new System.EventHandler(this.trackBarRechBienPrix_Scroll);
             // 
-            // checkBox9
+            // checkBoxVille
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(13, 143);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(56, 17);
-            this.checkBox9.TabIndex = 0;
-            this.checkBox9.Text = "Villes :";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBoxVille.AutoSize = true;
+            this.checkBoxVille.Location = new System.Drawing.Point(13, 143);
+            this.checkBoxVille.Name = "checkBoxVille";
+            this.checkBoxVille.Size = new System.Drawing.Size(56, 17);
+            this.checkBoxVille.TabIndex = 0;
+            this.checkBoxVille.Text = "Villes :";
+            this.checkBoxVille.UseVisualStyleBackColor = true;
             // 
-            // checkBox10
+            // checkBoxJardin
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(13, 107);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(131, 17);
-            this.checkBox10.TabIndex = 0;
-            this.checkBox10.Text = "Surface de jardin min :";
-            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBoxJardin.AutoSize = true;
+            this.checkBoxJardin.Location = new System.Drawing.Point(13, 107);
+            this.checkBoxJardin.Name = "checkBoxJardin";
+            this.checkBoxJardin.Size = new System.Drawing.Size(131, 17);
+            this.checkBoxJardin.TabIndex = 0;
+            this.checkBoxJardin.Text = "Surface de jardin min :";
+            this.checkBoxJardin.UseVisualStyleBackColor = true;
             // 
-            // checkBox11
+            // checkBoxSurfHab
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(13, 71);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(134, 17);
-            this.checkBox11.TabIndex = 0;
-            this.checkBox11.Text = "Surface habitable min :";
-            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBoxSurfHab.AutoSize = true;
+            this.checkBoxSurfHab.Location = new System.Drawing.Point(13, 71);
+            this.checkBoxSurfHab.Name = "checkBoxSurfHab";
+            this.checkBoxSurfHab.Size = new System.Drawing.Size(134, 17);
+            this.checkBoxSurfHab.TabIndex = 0;
+            this.checkBoxSurfHab.Text = "Surface habitable min :";
+            this.checkBoxSurfHab.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // checkBoxBudgetMax
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(13, 35);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(88, 17);
-            this.checkBox12.TabIndex = 0;
-            this.checkBox12.Text = "Budget max :";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBoxBudgetMax.AutoSize = true;
+            this.checkBoxBudgetMax.Location = new System.Drawing.Point(13, 35);
+            this.checkBoxBudgetMax.Name = "checkBoxBudgetMax";
+            this.checkBoxBudgetMax.Size = new System.Drawing.Size(88, 17);
+            this.checkBoxBudgetMax.TabIndex = 0;
+            this.checkBoxBudgetMax.Text = "Budget max :";
+            this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDate
+            // 
+            this.checkBoxDate.AutoSize = true;
+            this.checkBoxDate.Location = new System.Drawing.Point(13, 180);
+            this.checkBoxDate.Name = "checkBoxDate";
+            this.checkBoxDate.Size = new System.Drawing.Size(90, 17);
+            this.checkBoxDate.TabIndex = 0;
+            this.checkBoxDate.Text = "Date voulue :";
+            this.checkBoxDate.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(155, 175);
+            this.dateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(162, 20);
+            this.dateTimePicker.TabIndex = 24;
             // 
             // UCRechercherBien
             // 
@@ -266,11 +289,13 @@
         private System.Windows.Forms.TrackBar trackBarRechBienJardin;
         private System.Windows.Forms.TrackBar trackBarRechBienSurf;
         private System.Windows.Forms.TrackBar trackBarRechBienPrix;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBoxVille;
+        private System.Windows.Forms.CheckBox checkBoxJardin;
+        private System.Windows.Forms.CheckBox checkBoxSurfHab;
+        private System.Windows.Forms.CheckBox checkBoxBudgetMax;
         private System.Windows.Forms.ComboBox comboBoxVilles;
         private System.Windows.Forms.Button buttonAjoutVille;
+        private System.Windows.Forms.CheckBox checkBoxDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

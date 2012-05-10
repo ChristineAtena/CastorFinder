@@ -92,7 +92,7 @@
             this.dateMiseEnVente.Location = new System.Drawing.Point(104, 183);
             this.dateMiseEnVente.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateMiseEnVente.Name = "dateMiseEnVente";
-            this.dateMiseEnVente.Size = new System.Drawing.Size(153, 20);
+            this.dateMiseEnVente.Size = new System.Drawing.Size(169, 20);
             this.dateMiseEnVente.TabIndex = 25;
             // 
             // label27

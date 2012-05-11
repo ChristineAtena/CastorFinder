@@ -34,12 +34,12 @@
             this.surfaceHabitable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceJardin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.villes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.comboBoxClients = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.buttonAfficher = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
-            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxBiensDe.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +95,11 @@
             this.villes.Text = "Ville";
             this.villes.Width = 115;
             // 
+            // date
+            // 
+            this.date.Text = "Date dispo";
+            this.date.Width = 82;
+            // 
             // buttonAnnuler
             // 
             this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -142,11 +147,7 @@
             this.buttonAjouter.TabIndex = 4;
             this.buttonAjouter.Text = "Rechercher les souhaits correspondants";
             this.buttonAjouter.UseVisualStyleBackColor = true;
-            // 
-            // date
-            // 
-            this.date.Text = "Date dispo";
-            this.date.Width = 82;
+            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             // 
             // UCBiensDe
             // 

@@ -59,6 +59,9 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
-
+        private void buttonAjouter_Click(object sender, EventArgs e)
+        {
+            //Bien bien = (Bien)listViewBiens.SelectedItems[0];
+        }
     }
 }

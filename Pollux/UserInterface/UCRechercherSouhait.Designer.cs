@@ -29,15 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBoxRechSouhait = new System.Windows.Forms.GroupBox();
-            this.buttonAjoutVille = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxVilles = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonRechercher = new System.Windows.Forms.Button();
             this.textBoxRechBienJardin = new System.Windows.Forms.TextBox();
-            this.checkBoxVilles = new System.Windows.Forms.CheckBox();
+            this.checkBoxVille = new System.Windows.Forms.CheckBox();
             this.textBoxRechBienSurf = new System.Windows.Forms.TextBox();
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
             this.textBoxRechBienPrix = new System.Windows.Forms.TextBox();
@@ -54,15 +53,14 @@
             // 
             // groupBoxRechSouhait
             // 
-            this.groupBoxRechSouhait.Controls.Add(this.buttonAjoutVille);
             this.groupBoxRechSouhait.Controls.Add(this.label13);
             this.groupBoxRechSouhait.Controls.Add(this.comboBoxVilles);
             this.groupBoxRechSouhait.Controls.Add(this.label17);
             this.groupBoxRechSouhait.Controls.Add(this.buttonAnnuler);
             this.groupBoxRechSouhait.Controls.Add(this.label18);
-            this.groupBoxRechSouhait.Controls.Add(this.button3);
+            this.groupBoxRechSouhait.Controls.Add(this.buttonRechercher);
             this.groupBoxRechSouhait.Controls.Add(this.textBoxRechBienJardin);
-            this.groupBoxRechSouhait.Controls.Add(this.checkBoxVilles);
+            this.groupBoxRechSouhait.Controls.Add(this.checkBoxVille);
             this.groupBoxRechSouhait.Controls.Add(this.textBoxRechBienSurf);
             this.groupBoxRechSouhait.Controls.Add(this.checkBoxJardin);
             this.groupBoxRechSouhait.Controls.Add(this.textBoxRechBienPrix);
@@ -79,16 +77,6 @@
             this.groupBoxRechSouhait.TabStop = false;
             this.groupBoxRechSouhait.Text = "Rechercher un souhait";
             // 
-            // buttonAjoutVille
-            // 
-            this.buttonAjoutVille.Location = new System.Drawing.Point(315, 141);
-            this.buttonAjoutVille.Name = "buttonAjoutVille";
-            this.buttonAjoutVille.Size = new System.Drawing.Size(111, 23);
-            this.buttonAjoutVille.TabIndex = 22;
-            this.buttonAjoutVille.Text = "Ajouter une ville";
-            this.buttonAjoutVille.UseVisualStyleBackColor = true;
-            this.buttonAjoutVille.Click += new System.EventHandler(this.buttonAddVilles_Click);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -100,10 +88,11 @@
             // 
             // comboBoxVilles
             // 
+            this.comboBoxVilles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVilles.FormattingEnabled = true;
             this.comboBoxVilles.Location = new System.Drawing.Point(155, 141);
             this.comboBoxVilles.Name = "comboBoxVilles";
-            this.comboBoxVilles.Size = new System.Drawing.Size(153, 21);
+            this.comboBoxVilles.Size = new System.Drawing.Size(271, 21);
             this.comboBoxVilles.TabIndex = 13;
             // 
             // label17
@@ -135,14 +124,15 @@
             this.label18.TabIndex = 21;
             this.label18.Text = "€";
             // 
-            // button3
+            // buttonRechercher
             // 
-            this.button3.Location = new System.Drawing.Point(401, 209);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Rechercher";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Location = new System.Drawing.Point(401, 209);
+            this.buttonRechercher.Name = "buttonRechercher";
+            this.buttonRechercher.Size = new System.Drawing.Size(75, 23);
+            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.Text = "Rechercher";
+            this.buttonRechercher.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
             // 
             // textBoxRechBienJardin
             // 
@@ -151,15 +141,15 @@
             this.textBoxRechBienJardin.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienJardin.TabIndex = 18;
             // 
-            // checkBoxVilles
+            // checkBoxVille
             // 
-            this.checkBoxVilles.AutoSize = true;
-            this.checkBoxVilles.Location = new System.Drawing.Point(13, 143);
-            this.checkBoxVilles.Name = "checkBoxVilles";
-            this.checkBoxVilles.Size = new System.Drawing.Size(56, 17);
-            this.checkBoxVilles.TabIndex = 0;
-            this.checkBoxVilles.Text = "Villes :";
-            this.checkBoxVilles.UseVisualStyleBackColor = true;
+            this.checkBoxVille.AutoSize = true;
+            this.checkBoxVille.Location = new System.Drawing.Point(13, 143);
+            this.checkBoxVille.Name = "checkBoxVille";
+            this.checkBoxVille.Size = new System.Drawing.Size(51, 17);
+            this.checkBoxVille.TabIndex = 0;
+            this.checkBoxVille.Text = "Ville :";
+            this.checkBoxVille.UseVisualStyleBackColor = true;
             // 
             // textBoxRechBienSurf
             // 
@@ -256,8 +246,8 @@
 
         private System.Windows.Forms.GroupBox groupBoxRechSouhait;
         private System.Windows.Forms.Button buttonAnnuler;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBoxVilles;
+        private System.Windows.Forms.Button buttonRechercher;
+        private System.Windows.Forms.CheckBox checkBoxVille;
         private System.Windows.Forms.CheckBox checkBoxJardin;
         private System.Windows.Forms.CheckBox checkBoxSurfHab;
         private System.Windows.Forms.CheckBox checkBoxBudgetMax;
@@ -271,6 +261,5 @@
         private System.Windows.Forms.TrackBar trackBarRechBienJardin;
         private System.Windows.Forms.TrackBar trackBarRechBienSurf;
         private System.Windows.Forms.TrackBar trackBarRechBienPrix;
-        private System.Windows.Forms.Button buttonAjoutVille;
     }
 }

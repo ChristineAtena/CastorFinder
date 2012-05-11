@@ -29,8 +29,42 @@ namespace Pollux.DataBase
             }
             return index;
         }
+        /// <summary>
+        /// Construire un client à partir de son index
+        /// </summary>
+        /// <param name="index">son index</param>
+        /// <returns>le client construit</returns>
+        static public Client trouverClient(int index)
+        {
+            int indexAgent;
+            Client client = null;
+            if (DBConnect())
+            {
+                string requete = "SELECT * FROM CLIENTS WHERE NUM_C = "+index;
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int indexVille = reader.GetInt16(1);
 
-
+                    try
+                    {
+                        indexAgent = reader.GetInt16(2);
+                    }
+                    catch{
+                        indexAgent = -1;
+                    }
+                    string nom = reader.GetString(3);
+                    string adresse = reader.GetString(4);
+                    string telephone = reader.GetString(5);
+                    // déconnexion
+                    connect.Close();
+                    client = new Client(nom, adresse, telephone, indexAgent, indexVille);
+                    break;
+                }
+            }
+            return client;
+        }
         /*   // En principe inutile maintenant car on remplit les comboBox avec le Client entier
              // et non plus juste avec son nom
              static public List<string> GetListeNomClients()
@@ -92,9 +126,9 @@ namespace Pollux.DataBase
             List<Client> listeClients = new List<Client>();
             if (DBConnect())
             {
-                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS "
-                                + "WHERE CLIENTS.NUM_A IS NULL "
-                                + "ORDER BY NOM_C";
+                string requete = "SELECT CLIENTS.NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, CLIENTS.NUM_V FROM CLIENTS "
+                                +"INNER JOIN BIENS ON CLIENTS.NUM_C = BIENS.NUM_C "
+                                +"ORDER BY NOM_C";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
                 // ajout des noms des clients dans la liste

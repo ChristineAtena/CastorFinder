@@ -35,8 +35,6 @@
             this.budget = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceHabitable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceJardin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.villes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxSouhaits.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,9 +76,7 @@
             this.listViewSouhaits.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.budget,
             this.surfaceHabitable,
-            this.surfaceJardin,
-            this.villes,
-            this.date});
+            this.surfaceJardin});
             this.listViewSouhaits.FullRowSelect = true;
             this.listViewSouhaits.Location = new System.Drawing.Point(15, 19);
             this.listViewSouhaits.Name = "listViewSouhaits";
@@ -92,27 +88,17 @@
             // budget
             // 
             this.budget.Text = "Prix";
-            this.budget.Width = 72;
+            this.budget.Width = 147;
             // 
             // surfaceHabitable
             // 
             this.surfaceHabitable.Text = "Surface habitable";
-            this.surfaceHabitable.Width = 95;
+            this.surfaceHabitable.Width = 141;
             // 
             // surfaceJardin
             // 
             this.surfaceJardin.Text = "Surface de jardin";
-            this.surfaceJardin.Width = 92;
-            // 
-            // villes
-            // 
-            this.villes.Text = "Ville";
-            this.villes.Width = 115;
-            // 
-            // date
-            // 
-            this.date.Text = "Date dispo";
-            this.date.Width = 82;
+            this.surfaceJardin.Width = 147;
             // 
             // UCAfficherSouhaits
             // 
@@ -136,7 +122,5 @@
         private System.Windows.Forms.ColumnHeader budget;
         private System.Windows.Forms.ColumnHeader surfaceHabitable;
         private System.Windows.Forms.ColumnHeader surfaceJardin;
-        private System.Windows.Forms.ColumnHeader villes;
-        private System.Windows.Forms.ColumnHeader date;
     }
 }

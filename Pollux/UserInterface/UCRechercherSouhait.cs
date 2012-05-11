@@ -27,7 +27,7 @@ namespace Pollux.UserInterface
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
             foreach (Ville ville in listeVilles)
             {
-                comboBoxVilles.Items.Add(string.Format("{0} ({1})", ville.Nom, ville.CodePostal));
+                comboBoxVilles.Items.Add(ville);
             }
         }
         #endregion
@@ -61,6 +61,29 @@ namespace Pollux.UserInterface
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void buttonRechercher_Click(object sender, EventArgs e)
+        {
+            int prix = -1;
+            int surfHab = -1;
+            int surfJard = -1;
+            List<Ville> villes = new List<Ville>();
+            Client client = null;
+            if (checkBoxBudgetMax.Checked)
+                prix = int.Parse(textBoxRechBienPrix.Text);
+            if (checkBoxSurfHab.Checked)
+                surfHab = int.Parse(textBoxRechBienSurf.Text);
+            if (checkBoxJardin.Checked)
+                surfJard = int.Parse(textBoxRechBienJardin.Text);
+            if (checkBoxVille.Checked)
+                villes.Add((Ville)comboBoxVilles.SelectedItem);
+
+            Souhait souhait = new Souhait(prix, surfHab, surfJard, villes, client);
+            List<Souhait> blargh = SqlDataProvider.RechercherListeSouhaits(souhait);
+            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherSouhaits(blargh);
+            ((FenetrePrincipale)this.Parent).init();
+            this.Dispose();
         }
     }
 }

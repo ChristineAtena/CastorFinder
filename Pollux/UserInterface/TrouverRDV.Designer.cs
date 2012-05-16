@@ -73,6 +73,7 @@
             this.Client = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonValider = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // monthCalendar
@@ -164,11 +165,21 @@
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Pollux.Properties.Resources.castor;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(9, 203);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(227, 110);
+            this.panel1.TabIndex = 4;
+            // 
             // TrouverRDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 325);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonValider);
             this.Controls.Add(this.listViewJour);
@@ -193,5 +204,6 @@
         private System.Windows.Forms.ColumnHeader Client;
         private System.Windows.Forms.Button buttonValider;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

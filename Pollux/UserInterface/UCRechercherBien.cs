@@ -83,7 +83,7 @@ namespace Pollux.UserInterface
             if (checkBoxDate.Checked)
                 date = dateTimePicker.Value;
             Bien bien = new Bien(prix, date ,surfHab, surfJard, ville, client);
-            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherBiens(SqlDataProvider.RechercherListeBiens(bien));
+            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherBiens(bien);
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }

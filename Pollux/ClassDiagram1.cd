@@ -1,38 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="Pollux.Object.Agent" Collapsed="true">
-    <Position X="7" Y="0.75" Width="1.5" />
+  <Class Name="Pollux.Object.Agent">
+    <Position X="5.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAEAAAAAAEAAAAAAAAAAAAAAAAACEAAAAAAAA=</HashCode>
       <FileName>Object\Agents.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pollux.Object.Client">
-    <Position X="3" Y="0.75" Width="1.75" />
+    <Position X="3.25" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAEBCRAAAAAAIAAQAAAAAA=</HashCode>
+      <HashCode>QAAAAAAEEAAAAAAEAAEAAAAEFCRAAAAAAIEAQAAAAAA=</HashCode>
       <FileName>Object\Clients.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pollux.Object.Bien">
-    <Position X="5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAAAAAAAAAAAAgAgHAAAAACAAQAAAgAAACA=</HashCode>
+      <HashCode>AAAAABAAGAAAAAAAAAAAAgAgHAAAAACAAQEAAgAAACQ=</HashCode>
       <FileName>Object\Biens.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pollux.Object.Visite">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAACAACAIAAAAAAAAAAgAAAAAAAAAAAAAAABAAAAQ=</HashCode>
       <FileName>Object\Visite.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Pollux.Object.Ville" Collapsed="true">
-    <Position X="5" Y="1" Width="1.5" />
+  <Class Name="Pollux.Object.Ville">
+    <Position X="5.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QAAAAAQAAAAAAAAAAAAIAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QAAAAAQAEAAAAAAEAAAIAAAAACAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Object\Ville.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pollux.DataBase.SqlDataProvider">
+    <Position X="7.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAABA4ACKYAKAAggQBAABQAAQIBAAAAACgAAAiABA=</HashCode>
+      <FileName>DataBase\ReqAgent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pollux.Object.Souhait">
+    <Position X="3" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGAEAAACAAIAAIAAAkACAAAAAAAEAAACAAAQ=</HashCode>
+      <FileName>Object\Souhait.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

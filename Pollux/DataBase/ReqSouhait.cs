@@ -242,7 +242,7 @@ namespace Pollux.DataBase
             string requete = "SELECT SOUHAITS.NUM_S, SOUHAITS.NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S, "
                             +"COUNT(VILLES_SOUHAITÉES.NUM_V) "
                             +"FROM SOUHAITS LEFT OUTER JOIN VILLES_SOUHAITÉES ON SOUHAITS.NUM_S = VILLES_SOUHAITÉES.NUM_S "
-                            +"WHERE ";
+                            +"GROUP BY SOUHAITS.NUM_S, SOUHAITS.NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S";
             string criteres = requetePrix;
             criteres += " AND ";
             criteres += requeteSurfHab;
@@ -251,7 +251,29 @@ namespace Pollux.DataBase
             if (criteres != "" && requeteVille != "")
                 criteres += " AND ";
             criteres += requeteVille;
-            criteres += " GROUP BY SOUHAITS.NUM_S, SOUHAITS.NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S";
+            if (criteres != "")
+                requete += " HAVING " + criteres;
+            return requete + " ORDER BY SOUHAITS.NUM_C";
+        }
+
+        static private string ConstructionRequeteRechercheSouhait(Bien bien)
+        {
+            string requetePrix = " (BUDGET_MAX_S > " + bien.Prix + " OR BUDGET_MAX_S IS NULL) ";
+            string requeteSurfHab = " (SURFACE_HAB_MIN_S < " + bien.SurfaceHabitable + " OR SURFACE_HAB_MIN_S IS NULL) ";
+            string requeteSurfJard = " (SURFACE_JARDIN_MIN_S < " + bien.SurfaceJardin + " OR SURFACE_JARDIN_MIN_S IS NULL) ";
+            string requeteVille = " (VILLES_SOUHAITÉES.NUM_V = " + bien.Ville.Index + " OR COUNT(VILLES_SOUHAITÉES.NUM_V) = 0) ";
+            string requete = "SELECT SOUHAITS.NUM_S, SOUHAITS.NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S, COUNT(VILLES_SOUHAITÉES.NUM_V) "
+                            + " FROM SOUHAITS LEFT OUTER JOIN VILLES_SOUHAITÉES ON SOUHAITS.NUM_S = VILLES_SOUHAITÉES.NUM_S "
+                            + " GROUP BY SOUHAITS.NUM_S, SOUHAITS.NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S, VILLES_SOUHAITÉES.NUM_V "
+                            + " HAVING ";
+            string criteres = requetePrix;
+            criteres += " AND ";
+            criteres += requeteSurfHab;
+            criteres += " AND ";
+            criteres += requeteSurfJard;
+            if (criteres != "" && requeteVille != "")
+                criteres += " AND ";
+            criteres += requeteVille;
             return requete + criteres;
         }
 
@@ -275,15 +297,27 @@ namespace Pollux.DataBase
                     try
                     {
                         prix = reader.GetInt32(2);
-                    } catch{}
+                    }
+                    catch
+                    {
+                        prix = -1;
+                    }
                     try
                     {
                         surfHab = reader.GetInt16(3);
-                    } catch {}
+                    }
+                    catch 
+                    {
+                        surfHab = -1;
+                    }
                     try
                     {
                         surfJard = reader.GetInt16(4);
-                    } catch {}
+                    }
+                    catch
+                    {
+                        surfJard = -1;
+                    }
                     Souhait souhaitTrouve = new Souhait(index, prix, surfHab, surfJard, villes, client);
                     listeSouhaits.Add(souhaitTrouve);
                 }
@@ -294,6 +328,58 @@ namespace Pollux.DataBase
             return listeSouhaits;
         }
 
+        static public List<Souhait> RechercherListeSouhaits(Bien bien)
+        {
+            int prix = -1;
+            int surfHab = -1;
+            int surfJard = -1;
+            List<Ville> villes = new List<Ville>();
+            List<Souhait> listeSouhaits = new List<Souhait>();
+            if (DBConnect())
+            {
+                string requete = ConstructionRequeteRechercheSouhait(bien);
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des souhaits dans la liste
+                while (reader.Read())
+                {
+                    villes.Clear();
+                    villes.Add(bien.Ville);
+                    int index = reader.GetInt16(0);
+                    Client client = trouverClient(reader.GetInt16(1));
+                    try
+                    {
+                        prix = reader.GetInt32(2);
+                    }
+                    catch
+                    {
+                        prix = -1;
+                    }
+                    try
+                    {
+                        surfHab = reader.GetInt16(3);
+                    }
+                    catch
+                    {
+                        surfHab = -1;
+                    }
+                    try
+                    {
+                        surfJard = reader.GetInt16(4);
+                    }
+                    catch
+                    {
+                        surfJard = -1;
+                    }
+                    Souhait souhaitTrouve = new Souhait(index, prix, surfHab, surfJard, villes, client);
+                    listeSouhaits.Add(souhaitTrouve);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeSouhaits;
+        }
 
     }
 }

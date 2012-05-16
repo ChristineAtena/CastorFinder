@@ -18,6 +18,7 @@ namespace Pollux.UserInterface
         {
             InitializeComponent();
             loadAgents();
+            buttonAfficherBiens.Enabled = false;
         }
         #region Chargement des comboBox
         private void loadAgents()
@@ -45,14 +46,24 @@ namespace Pollux.UserInterface
 
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
-            // TODO affichage de la fenetre d'ajout d'une visite
-
-
+            if (listBoxClients.SelectedItem != null)
+            {
+                Client client = (Client)listBoxClients.SelectedItem;
+                ((FenetrePrincipale)this.Parent).MdiChild = new UCSouhaitsDe(client);
+                ((FenetrePrincipale)this.Parent).init();
+                this.Dispose();
+            }
         }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxClients.SelectedItem != null)
+                buttonAfficherBiens.Enabled = true;
         }
 
        

@@ -69,11 +69,13 @@
             this.date});
             this.listViewBiens.FullRowSelect = true;
             this.listViewBiens.Location = new System.Drawing.Point(15, 55);
+            this.listViewBiens.MultiSelect = false;
             this.listViewBiens.Name = "listViewBiens";
             this.listViewBiens.Size = new System.Drawing.Size(461, 147);
             this.listViewBiens.TabIndex = 10;
             this.listViewBiens.UseCompatibleStateImageBehavior = false;
             this.listViewBiens.View = System.Windows.Forms.View.Details;
+            this.listViewBiens.SelectedIndexChanged += new System.EventHandler(this.listViewBiens_SelectedIndexChanged);
             // 
             // budget
             // 
@@ -119,6 +121,7 @@
             this.comboBoxClients.Name = "comboBoxClients";
             this.comboBoxClients.Size = new System.Drawing.Size(301, 21);
             this.comboBoxClients.TabIndex = 9;
+            this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
             // 
             // label11
             // 

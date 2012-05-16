@@ -18,6 +18,16 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadClients();
         }
+
+        public UCSouhaitsDe(Client client)
+        {
+            InitializeComponent();
+            comboBoxClients.Items.Add(client);
+            comboBoxClients.SelectedItem = client;
+            comboBoxClients.Enabled = false;
+            afficherSouhaits();
+        }
+
         #region Chargement des comboBox
         private void loadClients()
         {
@@ -31,6 +41,11 @@ namespace Pollux.UserInterface
         #endregion
 
         private void buttonAfficher_Click(object sender, EventArgs e)
+        {
+            afficherSouhaits();
+        }
+
+        private void afficherSouhaits()
         {
             string prix;
             string surfHab;
@@ -49,6 +64,7 @@ namespace Pollux.UserInterface
                     surfHab = (souhait.SurfaceHabitableMin == -1) ? "n/c" : souhait.SurfaceHabitableMin.ToString() + " m²";
                     surfJard = (souhait.SurfaceJardinMin == -1) ? "n/c" : souhait.SurfaceJardinMin.ToString() + " m²";
                     ListViewItem item = new ListViewItem(new String[] { prix, surfHab, surfJard, villes });
+                    item.Tag = souhait;
                     listViewSouhaits.Items.Add(item);
                 }
             }
@@ -57,6 +73,14 @@ namespace Pollux.UserInterface
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void buttonRechercher_Click(object sender, EventArgs e)
+        {
+            Souhait souhait = (Souhait)listViewSouhaits.SelectedItems[0].Tag;
+            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherBiens(souhait);
+            ((FenetrePrincipale)this.Parent).init();
+            this.Dispose();
         }
     }
 }

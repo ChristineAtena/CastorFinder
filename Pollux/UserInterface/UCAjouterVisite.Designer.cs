@@ -29,33 +29,35 @@
         private void InitializeComponent()
         {
             this.groupBoxAjoutVisite = new System.Windows.Forms.GroupBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxTelephone = new System.Windows.Forms.TextBox();
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.buttonCréer = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.comboBoxBiens = new System.Windows.Forms.ComboBox();
             this.comboBoxClients = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label28 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.buttonRDV = new System.Windows.Forms.Button();
             this.groupBoxAjoutVisite.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxAjoutVisite
             // 
-            this.groupBoxAjoutVisite.Controls.Add(this.textBox8);
-            this.groupBoxAjoutVisite.Controls.Add(this.textBox7);
+            this.groupBoxAjoutVisite.Controls.Add(this.buttonRDV);
+            this.groupBoxAjoutVisite.Controls.Add(this.textBoxTelephone);
             this.groupBoxAjoutVisite.Controls.Add(this.buttonAnnuler);
             this.groupBoxAjoutVisite.Controls.Add(this.buttonCréer);
             this.groupBoxAjoutVisite.Controls.Add(this.dateTimePicker2);
             this.groupBoxAjoutVisite.Controls.Add(this.dateTimePicker1);
-            this.groupBoxAjoutVisite.Controls.Add(this.label26);
             this.groupBoxAjoutVisite.Controls.Add(this.label28);
             this.groupBoxAjoutVisite.Controls.Add(this.label27);
+            this.groupBoxAjoutVisite.Controls.Add(this.comboBoxBiens);
             this.groupBoxAjoutVisite.Controls.Add(this.comboBoxClients);
+            this.groupBoxAjoutVisite.Controls.Add(this.label1);
             this.groupBoxAjoutVisite.Controls.Add(this.label29);
             this.groupBoxAjoutVisite.Controls.Add(this.label25);
             this.groupBoxAjoutVisite.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,20 +68,13 @@
             this.groupBoxAjoutVisite.TabStop = false;
             this.groupBoxAjoutVisite.Text = "Ajouter une visite";
             // 
-            // textBox8
+            // textBoxTelephone
             // 
-            this.textBox8.Location = new System.Drawing.Point(107, 55);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(162, 20);
-            this.textBox8.TabIndex = 5;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(107, 156);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(268, 66);
-            this.textBox7.TabIndex = 4;
+            this.textBoxTelephone.Enabled = false;
+            this.textBoxTelephone.Location = new System.Drawing.Point(148, 57);
+            this.textBoxTelephone.Name = "textBoxTelephone";
+            this.textBoxTelephone.Size = new System.Drawing.Size(201, 20);
+            this.textBoxTelephone.TabIndex = 5;
             // 
             // buttonAnnuler
             // 
@@ -101,59 +96,43 @@
             this.buttonCréer.Text = "Créer";
             this.buttonCréer.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "HH : mm";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(107, 120);
-            this.dateTimePicker2.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(59, 20);
-            this.dateTimePicker2.TabIndex = 2;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(107, 88);
-            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(162, 20);
-            this.dateTimePicker1.TabIndex = 2;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(15, 158);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(51, 13);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Adresse :";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(15, 122);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(42, 13);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "Heure :";
-            // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(15, 94);
+            this.label27.Location = new System.Drawing.Point(15, 173);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(36, 13);
             this.label27.TabIndex = 0;
             this.label27.Text = "Date :";
             // 
+            // comboBoxBiens
+            // 
+            this.comboBoxBiens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBiens.FormattingEnabled = true;
+            this.comboBoxBiens.Location = new System.Drawing.Point(148, 93);
+            this.comboBoxBiens.Name = "comboBoxBiens";
+            this.comboBoxBiens.Size = new System.Drawing.Size(201, 21);
+            this.comboBoxBiens.TabIndex = 1;
+            this.comboBoxBiens.SelectedIndexChanged += new System.EventHandler(this.comboBoxBiens_SelectedIndexChanged);
+            // 
             // comboBoxClients
             // 
+            this.comboBoxClients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClients.FormattingEnabled = true;
-            this.comboBoxClients.Location = new System.Drawing.Point(107, 21);
+            this.comboBoxClients.Location = new System.Drawing.Point(148, 23);
             this.comboBoxClients.Name = "comboBoxClients";
             this.comboBoxClients.Size = new System.Drawing.Size(201, 21);
             this.comboBoxClients.TabIndex = 1;
+            this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "n° du bien (propriétaire)";
             // 
             // label29
             // 
@@ -173,6 +152,44 @@
             this.label25.TabIndex = 0;
             this.label25.Text = "Client :";
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "HH : mm";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(148, 201);
+            this.dateTimePicker2.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.ShowUpDown = true;
+            this.dateTimePicker2.Size = new System.Drawing.Size(59, 20);
+            this.dateTimePicker2.TabIndex = 2;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(15, 201);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(42, 13);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "Heure :";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(148, 169);
+            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(162, 20);
+            this.dateTimePicker1.TabIndex = 2;
+            // 
+            // buttonRDV
+            // 
+            this.buttonRDV.Location = new System.Drawing.Point(18, 120);
+            this.buttonRDV.Name = "buttonRDV";
+            this.buttonRDV.Size = new System.Drawing.Size(331, 43);
+            this.buttonRDV.TabIndex = 6;
+            this.buttonRDV.Text = "Le bouton qui permet de trouver un rendez-vous qui correspond";
+            this.buttonRDV.UseVisualStyleBackColor = true;
+            this.buttonRDV.Click += new System.EventHandler(this.buttonRDV_Click);
+            // 
             // UCAjouterVisite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,17 +207,18 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxAjoutVisite;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxTelephone;
         private System.Windows.Forms.Button buttonAnnuler;
         private System.Windows.Forms.Button buttonCréer;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox comboBoxClients;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox comboBoxBiens;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonRDV;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label28;
     }
 }

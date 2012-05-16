@@ -35,6 +35,39 @@ namespace Pollux.DataBase
             return ajout;
         }
 
+
+        static public List<Bien> GetListeBiens()
+        {
+            List<Bien> listeBiens = new List<Bien>();
+            if (DBConnect())
+            {
+                string requete = "SELECT NUM_B, PRIX_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, "
+                                + "DATE_MISE_EN_VENTE_B, VILLES.NUM_V, NOM_V, CODE_POSTAL_V, BIENS.NUM_C "
+                                + "FROM BIENS INNER JOIN VILLES ON BIENS.NUM_V = VILLES.NUM_V "
+                                + "ORDER BY NUM_B";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des biens dans la liste
+                while (reader.Read())
+                {
+                    Ville ville = new Ville(reader.GetInt32(7), reader.GetString(6), reader.GetInt16(5));
+                    int index = reader.GetInt16(0);
+                    int prix = reader.GetInt32(1);
+                    int surfHab = reader.GetInt16(2);
+                    int surfJard = reader.GetInt16(3);
+                    DateTime date = reader.GetDateTime(4);
+                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(8));
+                    Bien bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
+                    listeBiens.Add(bien);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeBiens;
+        }
+
+
         static public List<Bien> GetListeBiens(Client client)
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -74,10 +107,10 @@ namespace Pollux.DataBase
         static private string ConstructionRequeteRechercheBien(Bien bien)
         {
             string requetePrix = (bien.Prix != -1) ? " PRIX_VENTE_B < " + bien.Prix : "";
-            string requeteSurfHab = (bien.SurfaceHabitable != -1) ? " SURFACE_HAB_B > " + bien.SurfaceHabitable: "";
+            string requeteSurfHab = (bien.SurfaceHabitable != -1) ? " SURFACE_HAB_B > " + bien.SurfaceHabitable : "";
             string requeteSurfJard = (bien.SurfaceJardin != -1) ? " SURFACE_JARDIN_B > " + bien.SurfaceJardin : "";
             string requeteVille = (bien.Ville != null) ? " NUM_V = " + bien.Ville.Index : "";
-            string requeteDate = (bien.DateMiseEnVente.Year != 1) ? " DATE_MISE_EN_VENTE_B < '" + bien.DateMiseEnVente.Day+"/"+bien.DateMiseEnVente.Month+"/"+bien.DateMiseEnVente.Year+ "'" : "";
+            string requeteDate = (bien.DateMiseEnVente.Year != 1) ? " DATE_MISE_EN_VENTE_B < '" + bien.DateMiseEnVente.Day + "/" + bien.DateMiseEnVente.Month + "/" + bien.DateMiseEnVente.Year + "'" : "";
             string requete = "SELECT * FROM BIENS WHERE" + requetePrix;
             if (requetePrix != "" && requeteSurfHab != "")
                 requete += " AND ";
@@ -94,6 +127,31 @@ namespace Pollux.DataBase
             return requete;
         }
 
+
+        static private string ConstructionRequeteRechercheBien(Souhait souhait)
+        {
+            string requetePrix = (souhait.PrixMax != -1) ? " PRIX_VENTE_B < " + souhait.PrixMax : "";
+            string requeteSurfHab = (souhait.SurfaceHabitableMin != -1) ? " SURFACE_HAB_B > " + souhait.SurfaceHabitableMin : "";
+            string requeteSurfJard = (souhait.SurfaceJardinMin != -1) ? " SURFACE_JARDIN_B > " + souhait.SurfaceJardinMin : "";
+            string requeteVille = (souhait.Villes == null) ? "":
+                 " BIENS.NUM_V IN"
+                +"(SELECT VILLES_SOUHAITÉES.NUM_V FROM VILLES_SOUHAITÉES"
+	            +" INNER JOIN SOUHAITS ON VILLES_SOUHAITÉES.NUM_S = SOUHAITS.NUM_S"
+	            +" WHERE SOUHAITS.NUM_S = " + souhait.Index
+                +")";
+            string requete = "SELECT * FROM BIENS WHERE" + requetePrix;
+            if (requetePrix != "" && requeteSurfHab != "")
+                requete += " AND ";
+            requete += requeteSurfHab;
+            if ((requetePrix != "" || requeteSurfHab != "") && requeteSurfJard != "")
+                requete += " AND ";
+            requete += requeteSurfJard;
+            if ((requetePrix != "" || requeteSurfHab != "" || requeteSurfJard != "") && requeteVille != "")
+                requete += " AND ";
+            requete += requeteVille;
+            return requete;
+        }
+
         static public List<Bien> RechercherListeBiens(Bien bien)
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -107,11 +165,40 @@ namespace Pollux.DataBase
                 {
                     int index = reader.GetInt16(0);
                     Ville ville = SqlDataProvider.trouverVille(reader.GetInt16(1));
+                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(2));
                     int prix = reader.GetInt32(3);
                     DateTime date = reader.GetDateTime(4);
                     int surfHab = reader.GetInt16(5);
                     int surfJard = reader.GetInt16(6);
-                    Bien bienTrouve = new Bien(index, prix, date.Date, surfHab, surfJard, ville, null);
+                    Bien bienTrouve = new Bien(index, prix, date.Date, surfHab, surfJard, ville, client);
+                    listeBiens.Add(bienTrouve);
+                }
+                // déconnexion
+                reader.Close();
+                connect.Close();
+            }
+            return listeBiens;
+        }
+
+        static public List<Bien> RechercherListeBiens(Souhait souhait)
+        {
+            List<Bien> listeBiens = new List<Bien>();
+            if (DBConnect())
+            {
+                string requete = ConstructionRequeteRechercheBien(souhait);
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                // ajout des biens dans la liste
+                while (reader.Read())
+                {
+                    int index = reader.GetInt16(0);
+                    Ville ville = SqlDataProvider.trouverVille(reader.GetInt16(1));
+                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(2));
+                    int prix = reader.GetInt32(3);
+                    DateTime date = reader.GetDateTime(4);
+                    int surfHab = reader.GetInt16(5);
+                    int surfJard = reader.GetInt16(6);
+                    Bien bienTrouve = new Bien(index, prix, date.Date, surfHab, surfJard, ville, client);
                     listeBiens.Add(bienTrouve);
                 }
                 // déconnexion

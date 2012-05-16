@@ -63,6 +63,12 @@
     <Compile Include="Object\Clients.cs" />
     <Compile Include="Object\Visite.cs" />
     <Compile Include="Object\Souhait.cs" />
+    <Compile Include="UserInterface\TrouverRDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\TrouverRDV.Designer.cs">
+      <DependentUpon>TrouverRDV.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UCAfficherBiens.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     <Compile Include="UserInterface\UCSouhaitsDe.Designer.cs">
       <DependentUpon>UCSouhaitsDe.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserInterface\TrouverRDV.resx">
+      <DependentUpon>TrouverRDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\UCAfficherBiens.resx">
       <DependentUpon>UCAfficherBiens.cs</DependentUpon>
     </EmbeddedResource>

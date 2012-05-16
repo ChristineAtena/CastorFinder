@@ -32,6 +32,7 @@
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
             this.listViewSouhaits = new System.Windows.Forms.ListView();
+            this.nomClient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.budget = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceHabitable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceJardin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,10 +71,12 @@
             this.buttonAjouter.TabIndex = 11;
             this.buttonAjouter.Text = "Ajouter une visite";
             this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             // 
             // listViewSouhaits
             // 
             this.listViewSouhaits.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nomClient,
             this.budget,
             this.surfaceHabitable,
             this.surfaceJardin});
@@ -85,20 +88,25 @@
             this.listViewSouhaits.UseCompatibleStateImageBehavior = false;
             this.listViewSouhaits.View = System.Windows.Forms.View.Details;
             // 
+            // nomClient
+            // 
+            this.nomClient.Text = "Client";
+            this.nomClient.Width = 145;
+            // 
             // budget
             // 
             this.budget.Text = "Prix";
-            this.budget.Width = 147;
+            this.budget.Width = 87;
             // 
             // surfaceHabitable
             // 
             this.surfaceHabitable.Text = "Surface habitable";
-            this.surfaceHabitable.Width = 141;
+            this.surfaceHabitable.Width = 101;
             // 
             // surfaceJardin
             // 
             this.surfaceJardin.Text = "Surface de jardin";
-            this.surfaceJardin.Width = 147;
+            this.surfaceJardin.Width = 101;
             // 
             // UCAfficherSouhaits
             // 
@@ -122,5 +130,6 @@
         private System.Windows.Forms.ColumnHeader budget;
         private System.Windows.Forms.ColumnHeader surfaceHabitable;
         private System.Windows.Forms.ColumnHeader surfaceJardin;
+        private System.Windows.Forms.ColumnHeader nomClient;
     }
 }

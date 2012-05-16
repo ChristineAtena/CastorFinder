@@ -7,17 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Pollux.Object;
+using Pollux.DataBase;
 
 namespace Pollux.UserInterface
 {
     public partial class UCAfficherBiens : UserControl
     {
         private List<Bien> listeBiens;
-        public UCAfficherBiens(List <Bien> listeBiens)
+        private Souhait souhait = null;
+
+        public UCAfficherBiens(Bien bien)
         {
             InitializeComponent();
-            this.listeBiens = listeBiens;
+            listeBiens = SqlDataProvider.RechercherListeBiens(bien);
             remplissageListView();
+        }
+
+        public UCAfficherBiens(Souhait souhait)
+        {
+            InitializeComponent();
+            listeBiens = SqlDataProvider.RechercherListeBiens(souhait);
+            remplissageListView();
+            //test
+            this.souhait = souhait;
+            //test
         }
 
         private void remplissageListView()
@@ -36,6 +49,7 @@ namespace Pollux.UserInterface
                 surfJard = bien.SurfaceJardin.ToString() + " m²";
                 date = bien.DateMiseEnVente.ToShortDateString();
                 ListViewItem item = new ListViewItem(new String[] { prix, surfHab, surfJard, ville, date });
+                item.Tag = bien;
                 listViewBiens.Items.Add(item);
             }
         }
@@ -43,6 +57,23 @@ namespace Pollux.UserInterface
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void buttonAjouter_Click(object sender, EventArgs e)
+        {
+            if (listViewBiens.SelectedItems.Count != 0)
+            {
+                if (souhait != null)
+                {
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite(souhait, (Bien)listViewBiens.SelectedItems[0].Tag);
+                }
+                else
+                {
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite((Bien)listViewBiens.SelectedItems[0].Tag);
+                }
+                ((FenetrePrincipale)this.Parent).init();
+                this.Dispose();
+            }
         }
     }
 }

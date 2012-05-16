@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBoxBiens = new System.Windows.Forms.GroupBox();
+            this.buttonAnnuler = new System.Windows.Forms.Button();
+            this.buttonAjouter = new System.Windows.Forms.Button();
             this.listViewBiens = new System.Windows.Forms.ListView();
             this.budget = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceHabitable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.surfaceJardin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.villes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonAnnuler = new System.Windows.Forms.Button();
-            this.buttonAjouter = new System.Windows.Forms.Button();
             this.groupBoxBiens.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,27 @@
             this.groupBoxBiens.TabIndex = 11;
             this.groupBoxBiens.TabStop = false;
             this.groupBoxBiens.Text = "Biens trouvés";
+            // 
+            // buttonAnnuler
+            // 
+            this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonAnnuler.Location = new System.Drawing.Point(288, 208);
+            this.buttonAnnuler.Name = "buttonAnnuler";
+            this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
+            this.buttonAnnuler.TabIndex = 12;
+            this.buttonAnnuler.Text = "Annuler";
+            this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
+            // 
+            // buttonAjouter
+            // 
+            this.buttonAjouter.Location = new System.Drawing.Point(369, 208);
+            this.buttonAjouter.Name = "buttonAjouter";
+            this.buttonAjouter.Size = new System.Drawing.Size(107, 23);
+            this.buttonAjouter.TabIndex = 11;
+            this.buttonAjouter.Text = "Ajouter une visite";
+            this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             // 
             // listViewBiens
             // 
@@ -93,26 +114,6 @@
             // 
             this.date.Text = "Date dispo";
             this.date.Width = 82;
-            // 
-            // buttonAnnuler
-            // 
-            this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnnuler.Location = new System.Drawing.Point(288, 208);
-            this.buttonAnnuler.Name = "buttonAnnuler";
-            this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 12;
-            this.buttonAnnuler.Text = "Annuler";
-            this.buttonAnnuler.UseVisualStyleBackColor = true;
-            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
-            // 
-            // buttonAjouter
-            // 
-            this.buttonAjouter.Location = new System.Drawing.Point(369, 208);
-            this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(107, 23);
-            this.buttonAjouter.TabIndex = 11;
-            this.buttonAjouter.Text = "Ajouter une visite";
-            this.buttonAjouter.UseVisualStyleBackColor = true;
             // 
             // UCAfficherBiens
             // 

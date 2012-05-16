@@ -13,16 +13,26 @@ namespace Pollux.UserInterface
 {
     public partial class UCAfficherSouhaits : UserControl
     {
-        List<Souhait> listeSouhaits;
-        public UCAfficherSouhaits(List<Souhait> listeSouhaits)
+        private List<Souhait> listeSouhaits;
+        private Bien bien = null;
+        public UCAfficherSouhaits(Souhait souhait)
         {
-            this.listeSouhaits = listeSouhaits;
+            listeSouhaits = SqlDataProvider.RechercherListeSouhaits(souhait);
             InitializeComponent();
+            remplissageListView();
+        }
+
+        public UCAfficherSouhaits(Bien bien)
+        {
+            listeSouhaits = SqlDataProvider.RechercherListeSouhaits(bien);
+            InitializeComponent();
+            this.bien = bien;
             remplissageListView();
         }
 
         private void remplissageListView()
         {
+            string nomClient;
             string prix;
             string surfHab;
             string surfJard;
@@ -32,10 +42,12 @@ namespace Pollux.UserInterface
                 villes = "";
                 foreach (Ville ville in souhait.Villes)
                     villes += ville.Nom + ", ";
+                nomClient = souhait.Client.Nom;
                 prix = (souhait.PrixMax == -1) ? "n/c" : souhait.PrixMax.ToString() + " €";
                 surfHab = (souhait.SurfaceHabitableMin == -1) ? "n/c" : souhait.SurfaceHabitableMin.ToString() + " m²";
                 surfJard = (souhait.SurfaceJardinMin == -1) ? "n/c" : souhait.SurfaceJardinMin.ToString() + " m²";
-                ListViewItem item = new ListViewItem(new String[] { prix, surfHab, surfJard, villes });
+                ListViewItem item = new ListViewItem(new String[] { nomClient, prix, surfHab, surfJard, villes });
+                item.Tag = souhait;
                 listViewSouhaits.Items.Add(item);
             }
         }
@@ -43,6 +55,23 @@ namespace Pollux.UserInterface
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void buttonAjouter_Click(object sender, EventArgs e)
+        {
+            if (listViewSouhaits.SelectedItems.Count != 0)
+            {
+                if (bien != null)
+                {
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite((Souhait)listViewSouhaits.SelectedItems[0].Tag, bien);
+                }
+                else
+                {
+                    ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite((Souhait)listViewSouhaits.SelectedItems[0].Tag);
+                }
+                ((FenetrePrincipale)this.Parent).init();
+                this.Dispose();
+            }
         }
     }
 }

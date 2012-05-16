@@ -90,5 +90,10 @@ namespace Pollux.Object
             m_ville = ville;
             m_client = client;
         }
+
+        public override string ToString()
+        {
+            return m_index + " (" + m_client.Nom + ")";
+        }
     }
 }

@@ -80,8 +80,7 @@ namespace Pollux.UserInterface
                 villes.Add((Ville)comboBoxVilles.SelectedItem);
 
             Souhait souhait = new Souhait(prix, surfHab, surfJard, villes, client);
-            List<Souhait> blargh = SqlDataProvider.RechercherListeSouhaits(souhait);
-            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherSouhaits(blargh);
+            ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherSouhaits(souhait);
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }

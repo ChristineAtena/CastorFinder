@@ -38,7 +38,7 @@
             this.villes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label11 = new System.Windows.Forms.Label();
             this.buttonAfficher = new System.Windows.Forms.Button();
-            this.buttonAjouter = new System.Windows.Forms.Button();
+            this.buttonRechercher = new System.Windows.Forms.Button();
             this.groupBoxSouhaitsDe.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.groupBoxSouhaitsDe.Controls.Add(this.comboBoxClients);
             this.groupBoxSouhaitsDe.Controls.Add(this.label11);
             this.groupBoxSouhaitsDe.Controls.Add(this.buttonAfficher);
-            this.groupBoxSouhaitsDe.Controls.Add(this.buttonAjouter);
+            this.groupBoxSouhaitsDe.Controls.Add(this.buttonRechercher);
             this.groupBoxSouhaitsDe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxSouhaitsDe.Location = new System.Drawing.Point(0, 30);
             this.groupBoxSouhaitsDe.Name = "groupBoxSouhaitsDe";
@@ -131,14 +131,15 @@
             this.buttonAfficher.UseVisualStyleBackColor = true;
             this.buttonAfficher.Click += new System.EventHandler(this.buttonAfficher_Click);
             // 
-            // buttonAjouter
+            // buttonRechercher
             // 
-            this.buttonAjouter.Location = new System.Drawing.Point(282, 209);
-            this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(194, 23);
-            this.buttonAjouter.TabIndex = 4;
-            this.buttonAjouter.Text = "Rechercher les biens correspondants";
-            this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Location = new System.Drawing.Point(282, 209);
+            this.buttonRechercher.Name = "buttonRechercher";
+            this.buttonRechercher.Size = new System.Drawing.Size(194, 23);
+            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.Text = "Rechercher les biens correspondants";
+            this.buttonRechercher.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
             // 
             // UCSouhaitsDe
             // 
@@ -161,7 +162,7 @@
         private System.Windows.Forms.GroupBox groupBoxSouhaitsDe;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button buttonAfficher;
-        private System.Windows.Forms.Button buttonAjouter;
+        private System.Windows.Forms.Button buttonRechercher;
         private System.Windows.Forms.ListView listViewSouhaits;
         private System.Windows.Forms.ColumnHeader budget;
         private System.Windows.Forms.ColumnHeader surfaceHabitable;

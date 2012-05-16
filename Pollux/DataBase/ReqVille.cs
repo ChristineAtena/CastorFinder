@@ -60,6 +60,7 @@ namespace Pollux.DataBase
         // Retrouver une ville à partir de son index
         static public Ville trouverVille(int index)
         {
+            Ville ville = null;
             if (DBConnect())
             {
                 string requete = "SELECT CODE_POSTAL_V, NOM_V FROM VILLES WHERE NUM_V = " + index;
@@ -69,14 +70,15 @@ namespace Pollux.DataBase
                 {
                     int cp = reader.GetInt32(0);
                     string nom = reader.GetString(1);
-                    Ville ville = new Ville(cp, nom, index);
-                    return ville;
+                    ville = new Ville(cp, nom, index);
+                    break;
                 }
                 reader.Close();
                 connect.Close();
             }
-            return null;
+            return ville;
         }
+
         static public int trouverVille(int codePostal, string nom)
         {
             int index = -1;

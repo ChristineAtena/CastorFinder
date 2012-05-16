@@ -35,6 +35,31 @@ namespace Pollux.DataBase
             return ajout;
         }
 
+        static private Bien trouverBien(int index)
+        {
+            Bien bien = null;
+            if (DBConnect())
+            {
+                string requete = "SELECT * FROM BIENS WHERE NUM_B = " + index;
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ville ville = trouverVille(reader.GetInt16(1));
+                    Client client = trouverClient(reader.GetInt16(2));
+                    int prix = reader.GetInt32(3);
+                    DateTime date = reader.GetDateTime(4);
+                    int surfHab = reader.GetInt16(5);
+                    int surfJard = reader.GetInt16(6);
+                    bien = new Bien(index, prix, date,surfHab, surfJard, ville, client);
+                    break;
+                }
+                reader.Close();
+                connect.Close();
+            }
+            return bien;
+        }
+
 
         static public List<Bien> GetListeBiens()
         {

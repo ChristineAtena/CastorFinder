@@ -11,6 +11,52 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
+        static private Souhait trouverSouhait (int index)
+        {
+            Souhait souhait = null;
+            if (DBConnect())
+            {
+                string requete = "SELECT * FROM SOUHAITS WHERE NUM_S = " + index;
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Client client = trouverClient (reader.GetInt16(1));
+                    int budget;
+                    try
+                    {
+                        budget = reader.GetInt32(2);
+                    }
+                    catch
+                    {
+                        budget = -1;
+                    }
+                    int surfHab;
+                    try
+                    {
+                        surfHab = reader.GetInt16(3);
+                    }
+                    catch
+                    {
+                        surfHab = -1;
+                    }
+                    int surfJard;
+                    try
+                    {
+                        surfJard = reader.GetInt16(4);
+                    }
+                    catch
+                    {
+                        surfJard = -1;
+                    }
+                    souhait = new Souhait(index, budget, surfHab, surfJard, trouverVillesFromIndexSouhait(index), client);
+                    break;
+                }
+                reader.Close();
+                connect.Close();
+            }
+            return souhait;
+        }
 
         static private string ConstructionRequeteAjoutSouhait(Souhait souhait, Client client)
         {

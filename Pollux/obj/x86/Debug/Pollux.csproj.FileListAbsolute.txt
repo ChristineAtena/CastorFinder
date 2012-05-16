@@ -74,3 +74,9 @@ C:\Users\cdelpech.INFO-ORTIE\Documents\Visual Studio 2010\Projects\ProjetTuteure
 C:\Users\cdelpech.INFO-ORTIE\Documents\Visual Studio 2010\Projects\ProjetTuteure\Pollux_testStructure_v3\Pollux\obj\x86\Debug\Pollux.UserInterface.FormVilles.resources
 C:\Users\cdelpech.INFO-ORTIE\Documents\Visual Studio 2010\Projects\ProjetTuteure\Pollux_testStructure_v3\Pollux\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\cdelpech.INFO-ORTIE\Documents\Visual Studio 2010\Projects\ProjetTuteure\Pollux_testStructure_v3\Pollux\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.UCSouhaitsDe.resources
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.UCBiensDe.resources
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.UCAjouterAgent.resources
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.UCAfficherBiens.resources
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.UCAfficherSouhaits.resources
+C:\Users\jbellue\Documents\Visual Studio 2010\Projects\Pollux_testStructure\Pollux\obj\x86\Debug\Pollux.UserInterface.TrouverRDV.resources

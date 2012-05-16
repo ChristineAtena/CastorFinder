@@ -14,6 +14,7 @@ namespace Pollux.UserInterface
 {
     public partial class UCAjouterVisite : UserControl
     {
+        DateTime date;
         public UCAjouterVisite()
         {
             InitializeComponent();
@@ -97,7 +98,8 @@ namespace Pollux.UserInterface
         private void buttonRDV_Click(object sender, EventArgs e)
         {
             TrouverRDV rdv = new TrouverRDV(((Client)comboBoxClients.SelectedItem).Agent, (Bien)comboBoxBiens.SelectedItem);
-            rdv.ShowDialog();
+            if (rdv.ShowDialog() == DialogResult.OK)
+                date = rdv.Date;
         }
 
         private void comboBoxBiens_SelectedIndexChanged(object sender, EventArgs e)

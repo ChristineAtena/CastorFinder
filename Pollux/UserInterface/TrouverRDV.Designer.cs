@@ -28,33 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("08h-09h");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("09h-10h");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("10h-11h");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("11h-12h");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("12h-13h");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("13h-14h");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("14h-15h");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("15h-16h");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("16h-17h");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("17h-18h");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("18h-19h");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("19h-20h");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "08h-09h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            "09h-10h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "10h-11h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "11h-12h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "12h-13h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "13h-14h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "14h-15h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "15h-16h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "16h-17h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            "17h-18h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            "18h-19h",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            "19h-20h",
+            ""}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrouverRDV));
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.label1 = new System.Windows.Forms.Label();
             this.labelNom = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewJour = new System.Windows.Forms.ListView();
             this.H = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Client = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonValider = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // monthCalendar
             // 
             this.monthCalendar.Location = new System.Drawing.Point(9, 38);
-            this.monthCalendar.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.monthCalendar.Margin = new System.Windows.Forms.Padding(0);
+            this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.ShowToday = false;
             this.monthCalendar.ShowTodayCircle = false;
@@ -79,13 +104,14 @@
             this.labelNom.TabIndex = 1;
             this.labelNom.Text = "NOM";
             // 
-            // listView1
+            // listViewJour
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewJour.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.H,
             this.Client});
-            this.listView1.GridLines = true;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.listViewJour.FullRowSelect = true;
+            this.listViewJour.GridLines = true;
+            this.listViewJour.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
             listViewItem3,
@@ -98,13 +124,14 @@
             listViewItem10,
             listViewItem11,
             listViewItem12});
-            this.listView1.Location = new System.Drawing.Point(258, 38);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 232);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewJour.Location = new System.Drawing.Point(258, 38);
+            this.listViewJour.MultiSelect = false;
+            this.listViewJour.Name = "listViewJour";
+            this.listViewJour.Size = new System.Drawing.Size(242, 232);
+            this.listViewJour.TabIndex = 2;
+            this.listViewJour.UseCompatibleStateImageBehavior = false;
+            this.listViewJour.View = System.Windows.Forms.View.Details;
+            this.listViewJour.SelectedIndexChanged += new System.EventHandler(this.listViewJour_SelectedIndexChanged);
             // 
             // H
             // 
@@ -116,34 +143,35 @@
             this.Client.Text = "Client";
             this.Client.Width = 186;
             // 
-            // button1
+            // buttonValider
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(390, 285);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Valider";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonValider.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonValider.Location = new System.Drawing.Point(390, 285);
+            this.buttonValider.Name = "buttonValider";
+            this.buttonValider.Size = new System.Drawing.Size(110, 23);
+            this.buttonValider.TabIndex = 3;
+            this.buttonValider.Text = "Valider";
+            this.buttonValider.UseVisualStyleBackColor = true;
+            this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
             // 
-            // button2
+            // buttonCancel
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(258, 285);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Annuler";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(258, 285);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(88, 23);
+            this.buttonCancel.TabIndex = 3;
+            this.buttonCancel.Text = "Annuler";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // TrouverRDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 325);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonValider);
+            this.Controls.Add(this.listViewJour);
             this.Controls.Add(this.labelNom);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.monthCalendar);
@@ -160,10 +188,10 @@
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelNom;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewJour;
         private System.Windows.Forms.ColumnHeader H;
         private System.Windows.Forms.ColumnHeader Client;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonValider;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }

@@ -17,20 +17,39 @@ namespace Pollux.UserInterface
         {
             InitializeComponent();
             loadClients();
-            buttonAjouter.Enabled = false;
+            buttonRechercher.Enabled = false;
         }
         #region Chargement des comboBox
         private void loadClients()
         {
             comboBoxClients.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeVendeurs();
-            foreach (Client proprietaire in listeClient)
+            foreach (Client client in listeClient)
             {
-                comboBoxClients.Items.Add(proprietaire);
+                comboBoxClients.Items.Add(client);
             }
         }
         #endregion
 
+        #region Activation bouton Rechercher les correspondances
+        private void listViewBiens_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewBiens.SelectedItems.Count != 0)
+                buttonRechercher.Enabled = true;
+            else 
+                buttonRechercher.Enabled = false;
+        }
+
+        private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listViewBiens.Items.Clear();
+            buttonRechercher.Enabled = false;
+        }
+        #endregion
+
+        /// <summary>
+        /// Affichage dans la listView des biens correspondant au client sélectionné
+        /// </summary>
         private void buttonAfficher_Click(object sender, EventArgs e)
         {
             string prix;
@@ -61,7 +80,10 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
-        private void buttonAjouter_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Appel de la fenetre affichant les souhaits correspondant au bien sélectionné
+        /// </summary>
+        private void buttonRechercher_Click(object sender, EventArgs e)
         {
             Bien bien = (Bien)listViewBiens.SelectedItems[0].Tag;
             ((FenetrePrincipale)this.Parent).MdiChild = new UCAfficherSouhaits(bien);
@@ -69,16 +91,6 @@ namespace Pollux.UserInterface
             this.Dispose();
         }
 
-        private void listViewBiens_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listViewBiens.SelectedItems != null)
-                buttonAjouter.Enabled = true;
-        }
 
-        private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listViewBiens.Items.Clear();
-            buttonAjouter.Enabled = false;
-        }
     }
 }

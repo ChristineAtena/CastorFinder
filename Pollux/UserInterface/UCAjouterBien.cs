@@ -111,7 +111,7 @@ namespace Pollux.UserInterface
             else
             {
                 Bien bien = new Bien(prix, date, surfHab, surfJard, ville, client);
-                if (SqlDataProvider.ajouterBienEtClient(client, bien))
+                if (SqlDataProvider.AjouterBienEtClient(client, bien))
                 {
                         MessageBox.Show("Ajout du bien et du client effectué", "Opération réussie");
                         this.Dispose();

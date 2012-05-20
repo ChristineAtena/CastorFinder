@@ -94,6 +94,7 @@
             this.comboBoxVilles.Name = "comboBoxVilles";
             this.comboBoxVilles.Size = new System.Drawing.Size(271, 21);
             this.comboBoxVilles.TabIndex = 13;
+            this.comboBoxVilles.SelectedIndexChanged += new System.EventHandler(this.comboBoxVille_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -140,6 +141,7 @@
             this.textBoxRechBienJardin.Name = "textBoxRechBienJardin";
             this.textBoxRechBienJardin.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienJardin.TabIndex = 18;
+            this.textBoxRechBienJardin.TextChanged += new System.EventHandler(this.textBoxRechBienJardin_TextChanged);
             // 
             // checkBoxVille
             // 
@@ -150,6 +152,7 @@
             this.checkBoxVille.TabIndex = 0;
             this.checkBoxVille.Text = "Ville :";
             this.checkBoxVille.UseVisualStyleBackColor = true;
+            this.checkBoxVille.CheckedChanged += new System.EventHandler(this.checkBoxVilles_CheckedChanged);
             // 
             // textBoxRechBienSurf
             // 
@@ -157,6 +160,7 @@
             this.textBoxRechBienSurf.Name = "textBoxRechBienSurf";
             this.textBoxRechBienSurf.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienSurf.TabIndex = 17;
+            this.textBoxRechBienSurf.TextChanged += new System.EventHandler(this.textBoxRechBienSurf_TextChanged);
             // 
             // checkBoxJardin
             // 
@@ -167,6 +171,7 @@
             this.checkBoxJardin.TabIndex = 0;
             this.checkBoxJardin.Text = "Surface de jardin min :";
             this.checkBoxJardin.UseVisualStyleBackColor = true;
+            this.checkBoxJardin.CheckedChanged += new System.EventHandler(this.checkBoxJardin_CheckedChanged);
             // 
             // textBoxRechBienPrix
             // 
@@ -174,6 +179,7 @@
             this.textBoxRechBienPrix.Name = "textBoxRechBienPrix";
             this.textBoxRechBienPrix.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienPrix.TabIndex = 16;
+            this.textBoxRechBienPrix.TextChanged += new System.EventHandler(this.textBoxRechBienPrix_TextChanged);
             // 
             // trackBarRechBienJardin
             // 
@@ -194,6 +200,7 @@
             this.checkBoxSurfHab.TabIndex = 0;
             this.checkBoxSurfHab.Text = "Surface habitable min :";
             this.checkBoxSurfHab.UseVisualStyleBackColor = true;
+            this.checkBoxSurfHab.CheckedChanged += new System.EventHandler(this.checkBoxSurfHab_CheckedChanged);
             // 
             // trackBarRechBienSurf
             // 
@@ -214,6 +221,7 @@
             this.checkBoxBudgetMax.TabIndex = 0;
             this.checkBoxBudgetMax.Text = "Budget max :";
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
+            this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
             // trackBarRechBienPrix
             // 

@@ -82,11 +82,13 @@
             this.surfaceJardin});
             this.listViewSouhaits.FullRowSelect = true;
             this.listViewSouhaits.Location = new System.Drawing.Point(15, 19);
+            this.listViewSouhaits.MultiSelect = false;
             this.listViewSouhaits.Name = "listViewSouhaits";
             this.listViewSouhaits.Size = new System.Drawing.Size(461, 183);
             this.listViewSouhaits.TabIndex = 10;
             this.listViewSouhaits.UseCompatibleStateImageBehavior = false;
             this.listViewSouhaits.View = System.Windows.Forms.View.Details;
+            this.listViewSouhaits.SelectedIndexChanged += new System.EventHandler(this.listViewSouhaits_SelectedIndexChanged);
             // 
             // nomClient
             // 

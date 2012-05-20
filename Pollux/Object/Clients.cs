@@ -14,8 +14,6 @@ namespace Pollux.Object
         private string m_telephone;
         private Agent m_agent = null;
         private Ville m_ville;
-        private bool m_hasAgent;
-
 
         #region Propriétés
         public int Index
@@ -57,19 +55,17 @@ namespace Pollux.Object
             m_nom = nom;
             m_adresse = adresse;
             m_telephone = telephone;
-            m_agent = SqlDataProvider.trouverAgent(index_agent);
-            m_ville = SqlDataProvider.trouverVille(index_ville);
-            m_hasAgent = true;
+            m_agent = SqlDataProvider.TrouverAgent(index_agent);
+            m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
-        public Client(int index, string nom, string adresse, string telephone, int index_ville)
+ /*       public Client(int index, string nom, string adresse, string telephone, int index_ville)
         {
             m_index = index;
             m_nom = nom;
             m_adresse = adresse;
             m_telephone = telephone;
             m_ville = SqlDataProvider.trouverVille(index_ville);
-            m_hasAgent = false;
-        }
+        }*/
 
         public Client(int index, string nom, string adresse, string telephone, Agent agent, Ville ville)
         {
@@ -79,7 +75,6 @@ namespace Pollux.Object
             m_telephone = telephone;
             m_agent = agent;
             m_ville = ville;
-            m_hasAgent = true;
         }
         #endregion
         #region Constructeurs Clients sans index
@@ -88,17 +83,15 @@ namespace Pollux.Object
             m_nom = nom;
             m_adresse = adresse;
             m_telephone = telephone;
-            m_agent = SqlDataProvider.trouverAgent(index_agent);
-            m_ville = SqlDataProvider.trouverVille(index_ville);
-            m_hasAgent = true;
+            m_agent = SqlDataProvider.TrouverAgent(index_agent);
+            m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
         public Client(string nom, string adresse, string telephone, int index_ville)
         {
             m_nom = nom;
             m_adresse = adresse;
             m_telephone = telephone;
-            m_ville = SqlDataProvider.trouverVille(index_ville);
-            m_hasAgent = false;
+            m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
         public Client(string nom, string adresse, string telephone, Agent agent, Ville ville)
         {
@@ -107,7 +100,6 @@ namespace Pollux.Object
             m_telephone = telephone;
             m_agent = agent;
             m_ville = ville;
-            m_hasAgent = true;
         }
         #endregion
 

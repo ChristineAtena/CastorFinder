@@ -27,24 +27,24 @@ namespace Pollux.UserInterface
             // si une des cases est vide
             if (textBoxCP.Text == "" || textBoxNom.Text == "")
             {
-                MessageBox.Show("Formulaire mal rempli");
+                MessageBox.Show("Formulaire mal rempli", "Attention");
                 return;
             }
             // si code postal n'est pas un chiffre
             if (!int.TryParse(textBoxCP.Text, out codePostal))
             {
-                MessageBox.Show("Le code postal doit être un chiffre.");
+                MessageBox.Show("Le code postal doit être un chiffre.","Attention");
                 return;
             }
             Ville nouvelleVille = new Ville(codePostal, textBoxNom.Text);
             if (ajoutBdD(nouvelleVille))
             {
-                MessageBox.Show("Ajout OK");
+                MessageBox.Show("La ville a bien été ajoutée dans la base de données.","Ajout réussit");
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Erreur d'ajout");
+                MessageBox.Show("Aucune ville n'a été ajoutée.","Erreur");
             }
         }
 
@@ -53,13 +53,13 @@ namespace Pollux.UserInterface
             // vérification si la ville est déjà en base (même CP et même nom)
             if (SqlDataProvider.VerificationPresenceVille(ville))
             {
-                MessageBox.Show("Ville déjà dans la BdD");
+                MessageBox.Show("La ville est déjà dans la base de données","Avertissement");
                 return false;
             }
             // si ville n'existe pas déjà
             else
             {
-                SqlDataProvider.SaveVille(ville);
+                SqlDataProvider.AjouterVille(ville);
                 return true;
             }
         }

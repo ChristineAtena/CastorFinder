@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBoxRechBien = new System.Windows.Forms.GroupBox();
-            this.buttonAjoutVille = new System.Windows.Forms.Button();
-            this.comboBoxVilles = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxVille = new System.Windows.Forms.ComboBox();
             this.buttonAnnuler = new System.Windows.Forms.Button();
-            this.buttonRechBien = new System.Windows.Forms.Button();
+            this.buttonRechercher = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -42,12 +42,11 @@
             this.trackBarRechBienJardin = new System.Windows.Forms.TrackBar();
             this.trackBarRechBienSurf = new System.Windows.Forms.TrackBar();
             this.trackBarRechBienPrix = new System.Windows.Forms.TrackBar();
+            this.checkBoxDate = new System.Windows.Forms.CheckBox();
             this.checkBoxVille = new System.Windows.Forms.CheckBox();
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
             this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
             this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
-            this.checkBoxDate = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBoxRechBien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienJardin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienSurf)).BeginInit();
@@ -57,10 +56,9 @@
             // groupBoxRechBien
             // 
             this.groupBoxRechBien.Controls.Add(this.dateTimePicker);
-            this.groupBoxRechBien.Controls.Add(this.buttonAjoutVille);
-            this.groupBoxRechBien.Controls.Add(this.comboBoxVilles);
+            this.groupBoxRechBien.Controls.Add(this.comboBoxVille);
             this.groupBoxRechBien.Controls.Add(this.buttonAnnuler);
-            this.groupBoxRechBien.Controls.Add(this.buttonRechBien);
+            this.groupBoxRechBien.Controls.Add(this.buttonRechercher);
             this.groupBoxRechBien.Controls.Add(this.label13);
             this.groupBoxRechBien.Controls.Add(this.label17);
             this.groupBoxRechBien.Controls.Add(this.label18);
@@ -83,23 +81,24 @@
             this.groupBoxRechBien.TabStop = false;
             this.groupBoxRechBien.Text = "Rechercher un bien";
             // 
-            // buttonAjoutVille
+            // dateTimePicker
             // 
-            this.buttonAjoutVille.Location = new System.Drawing.Point(314, 139);
-            this.buttonAjoutVille.Name = "buttonAjoutVille";
-            this.buttonAjoutVille.Size = new System.Drawing.Size(112, 23);
-            this.buttonAjoutVille.TabIndex = 23;
-            this.buttonAjoutVille.Text = "Ajouter une ville";
-            this.buttonAjoutVille.UseVisualStyleBackColor = true;
-            this.buttonAjoutVille.Click += new System.EventHandler(this.buttonAjoutVille_Click);
+            this.dateTimePicker.Location = new System.Drawing.Point(155, 175);
+            this.dateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(162, 20);
+            this.dateTimePicker.TabIndex = 24;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
-            // comboBoxVilles
+            // comboBoxVille
             // 
-            this.comboBoxVilles.FormattingEnabled = true;
-            this.comboBoxVilles.Location = new System.Drawing.Point(155, 141);
-            this.comboBoxVilles.Name = "comboBoxVilles";
-            this.comboBoxVilles.Size = new System.Drawing.Size(153, 21);
-            this.comboBoxVilles.TabIndex = 5;
+            this.comboBoxVille.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVille.FormattingEnabled = true;
+            this.comboBoxVille.Location = new System.Drawing.Point(155, 141);
+            this.comboBoxVille.Name = "comboBoxVille";
+            this.comboBoxVille.Size = new System.Drawing.Size(271, 21);
+            this.comboBoxVille.TabIndex = 5;
+            this.comboBoxVille.SelectedIndexChanged += new System.EventHandler(this.comboBoxVille_SelectedIndexChanged);
             // 
             // buttonAnnuler
             // 
@@ -112,15 +111,15 @@
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
-            // buttonRechBien
+            // buttonRechercher
             // 
-            this.buttonRechBien.Location = new System.Drawing.Point(401, 209);
-            this.buttonRechBien.Name = "buttonRechBien";
-            this.buttonRechBien.Size = new System.Drawing.Size(75, 23);
-            this.buttonRechBien.TabIndex = 4;
-            this.buttonRechBien.Text = "Rechercher";
-            this.buttonRechBien.UseVisualStyleBackColor = true;
-            this.buttonRechBien.Click += new System.EventHandler(this.buttonRechBien_Click);
+            this.buttonRechercher.Location = new System.Drawing.Point(401, 209);
+            this.buttonRechercher.Name = "buttonRechercher";
+            this.buttonRechercher.Size = new System.Drawing.Size(75, 23);
+            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.Text = "Rechercher";
+            this.buttonRechercher.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
             // 
             // label13
             // 
@@ -155,6 +154,7 @@
             this.textBoxRechBienJardin.Name = "textBoxRechBienJardin";
             this.textBoxRechBienJardin.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienJardin.TabIndex = 2;
+            this.textBoxRechBienJardin.TextChanged += new System.EventHandler(this.textBoxRechBienJardin_TextChanged);
             // 
             // textBoxRechBienSurf
             // 
@@ -162,6 +162,7 @@
             this.textBoxRechBienSurf.Name = "textBoxRechBienSurf";
             this.textBoxRechBienSurf.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienSurf.TabIndex = 2;
+            this.textBoxRechBienSurf.TextChanged += new System.EventHandler(this.textBoxRechBienSurf_TextChanged);
             // 
             // textBoxRechBienPrix
             // 
@@ -169,6 +170,7 @@
             this.textBoxRechBienPrix.Name = "textBoxRechBienPrix";
             this.textBoxRechBienPrix.Size = new System.Drawing.Size(112, 20);
             this.textBoxRechBienPrix.TabIndex = 2;
+            this.textBoxRechBienPrix.TextChanged += new System.EventHandler(this.textBoxRechBienPrix_TextChanged);
             // 
             // trackBarRechBienJardin
             // 
@@ -200,15 +202,27 @@
             this.trackBarRechBienPrix.TickFrequency = 0;
             this.trackBarRechBienPrix.Scroll += new System.EventHandler(this.trackBarRechBienPrix_Scroll);
             // 
+            // checkBoxDate
+            // 
+            this.checkBoxDate.AutoSize = true;
+            this.checkBoxDate.Location = new System.Drawing.Point(13, 180);
+            this.checkBoxDate.Name = "checkBoxDate";
+            this.checkBoxDate.Size = new System.Drawing.Size(90, 17);
+            this.checkBoxDate.TabIndex = 0;
+            this.checkBoxDate.Text = "Date voulue :";
+            this.checkBoxDate.UseVisualStyleBackColor = true;
+            this.checkBoxDate.CheckedChanged += new System.EventHandler(this.checkBoxDate_CheckedChanged);
+            // 
             // checkBoxVille
             // 
             this.checkBoxVille.AutoSize = true;
             this.checkBoxVille.Location = new System.Drawing.Point(13, 143);
             this.checkBoxVille.Name = "checkBoxVille";
-            this.checkBoxVille.Size = new System.Drawing.Size(56, 17);
+            this.checkBoxVille.Size = new System.Drawing.Size(51, 17);
             this.checkBoxVille.TabIndex = 0;
-            this.checkBoxVille.Text = "Villes :";
+            this.checkBoxVille.Text = "Ville :";
             this.checkBoxVille.UseVisualStyleBackColor = true;
+            this.checkBoxVille.CheckedChanged += new System.EventHandler(this.checkBoxVilles_CheckedChanged);
             // 
             // checkBoxJardin
             // 
@@ -219,6 +233,7 @@
             this.checkBoxJardin.TabIndex = 0;
             this.checkBoxJardin.Text = "Surface de jardin min :";
             this.checkBoxJardin.UseVisualStyleBackColor = true;
+            this.checkBoxJardin.CheckedChanged += new System.EventHandler(this.checkBoxJardin_CheckedChanged);
             // 
             // checkBoxSurfHab
             // 
@@ -229,6 +244,7 @@
             this.checkBoxSurfHab.TabIndex = 0;
             this.checkBoxSurfHab.Text = "Surface habitable min :";
             this.checkBoxSurfHab.UseVisualStyleBackColor = true;
+            this.checkBoxSurfHab.CheckedChanged += new System.EventHandler(this.checkBoxSurfHab_CheckedChanged);
             // 
             // checkBoxBudgetMax
             // 
@@ -239,24 +255,7 @@
             this.checkBoxBudgetMax.TabIndex = 0;
             this.checkBoxBudgetMax.Text = "Budget max :";
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxDate
-            // 
-            this.checkBoxDate.AutoSize = true;
-            this.checkBoxDate.Location = new System.Drawing.Point(13, 180);
-            this.checkBoxDate.Name = "checkBoxDate";
-            this.checkBoxDate.Size = new System.Drawing.Size(90, 17);
-            this.checkBoxDate.TabIndex = 0;
-            this.checkBoxDate.Text = "Date voulue :";
-            this.checkBoxDate.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(155, 175);
-            this.dateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(162, 20);
-            this.dateTimePicker.TabIndex = 24;
+            this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
             // UCRechercherBien
             // 
@@ -279,7 +278,7 @@
 
         private System.Windows.Forms.GroupBox groupBoxRechBien;
         private System.Windows.Forms.Button buttonAnnuler;
-        private System.Windows.Forms.Button buttonRechBien;
+        private System.Windows.Forms.Button buttonRechercher;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
@@ -293,8 +292,7 @@
         private System.Windows.Forms.CheckBox checkBoxJardin;
         private System.Windows.Forms.CheckBox checkBoxSurfHab;
         private System.Windows.Forms.CheckBox checkBoxBudgetMax;
-        private System.Windows.Forms.ComboBox comboBoxVilles;
-        private System.Windows.Forms.Button buttonAjoutVille;
+        private System.Windows.Forms.ComboBox comboBoxVille;
         private System.Windows.Forms.CheckBox checkBoxDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
     }

@@ -38,7 +38,7 @@ namespace Pollux.DataBase
         }
 
         // Ajout d'une ville dans la base
-        static public bool SaveVille(Ville ville)
+        static public bool AjouterVille(Ville ville)
         {
             bool ajout = false;
             if (DBConnect())
@@ -58,7 +58,7 @@ namespace Pollux.DataBase
         }
 
         // Retrouver une ville à partir de son index
-        static public Ville trouverVille(int index)
+        static public Ville TrouverVille(int index)
         {
             Ville ville = null;
             if (DBConnect())
@@ -79,7 +79,7 @@ namespace Pollux.DataBase
             return ville;
         }
 
-        static public int trouverVille(int codePostal, string nom)
+        static public int TrouverVille(int codePostal, string nom)
         {
             int index = -1;
             if (DBConnect())

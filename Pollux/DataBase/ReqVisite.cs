@@ -27,12 +27,12 @@ namespace Pollux.DataBase
                                 + " WHERE AGENTS.NUM_A = " + agent.Index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des villes dans la liste
+                // ajout des visites dans la liste
                 while (reader.Read())
                 {
                     index = reader.GetInt16(0);
-                    souhait = trouverSouhait(reader.GetInt16(1));
-                    bien = trouverBien(reader.GetInt16(2));
+                    souhait = TrouverSouhait(reader.GetInt16(1));
+                    bien = TrouverBien(reader.GetInt16(2));
                     date = reader.GetDateTime(3);
                     calendrier.Add(new Visite(index, souhait, bien, date));
                 }
@@ -42,13 +42,28 @@ namespace Pollux.DataBase
             }
             return calendrier;
         }
+
+        /// <summary>
+        /// Ajout d'une visite dans la base de données
+        /// </summary>
+        /// <param name="visite">une visite</param>
+        /// <returns>retourne vrai si l'ajout a réussit, sinon faux</returns>
         static public bool AjouterVisite(Visite visite)
         {
             bool ajout = false;
-            // TODO ajouter une visite
-            // REFLECHIR sur les paramètres qu'il faut
-
-
+            if (DBConnect())
+            // si connexion
+            {
+                string requete = "INSERT INTO VISITES (NUM_S, NUM_B, DATE_V) VALUES (" + visite.Souhait.Index + "," + visite.Bien.Index + ",N'" + visite.DateHeure + "')";
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                int rowCount = command.ExecuteNonQuery();
+                if (rowCount == 1)
+                    ajout = true;  // ajout effectué
+                else
+                    ajout = false; // ajout non effectué
+                // déconnexion
+                connect.Close();
+            }
             return ajout;
         }
         

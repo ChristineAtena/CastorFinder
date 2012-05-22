@@ -84,11 +84,13 @@
             this.date});
             this.listViewBiens.FullRowSelect = true;
             this.listViewBiens.Location = new System.Drawing.Point(15, 19);
+            this.listViewBiens.MultiSelect = false;
             this.listViewBiens.Name = "listViewBiens";
             this.listViewBiens.Size = new System.Drawing.Size(461, 183);
             this.listViewBiens.TabIndex = 10;
             this.listViewBiens.UseCompatibleStateImageBehavior = false;
             this.listViewBiens.View = System.Windows.Forms.View.Details;
+            this.listViewBiens.SelectedIndexChanged += new System.EventHandler(this.listViewBiens_SelectedIndexChanged);
             // 
             // budget
             // 

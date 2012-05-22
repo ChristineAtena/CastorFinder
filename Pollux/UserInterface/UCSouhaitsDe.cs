@@ -17,6 +17,7 @@ namespace Pollux.UserInterface
         {
             InitializeComponent();
             loadClients();
+            buttonRechercher.Enabled = false;
         }
 
         public UCSouhaitsDe(Client client)
@@ -25,7 +26,8 @@ namespace Pollux.UserInterface
             comboBoxClients.Items.Add(client);
             comboBoxClients.SelectedItem = client;
             comboBoxClients.Enabled = false;
-            afficherSouhaits();
+            afficherSouhaits(client);
+            buttonRechercher.Enabled = false;
         }
 
         #region Chargement des comboBox
@@ -33,19 +35,38 @@ namespace Pollux.UserInterface
         {
             comboBoxClients.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeAcheteurs();
-            foreach (Client proprietaire in listeClient)
+            foreach (Client client in listeClient)
             {
-                comboBoxClients.Items.Add(proprietaire);
+                comboBoxClients.Items.Add(client);
             }
+        }
+        #endregion
+
+        #region Activation bouton Rechercher les correspondances
+        private void listViewSouhaits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             if (listViewSouhaits.SelectedItems.Count != 0)
+                buttonRechercher.Enabled = true;
+            else
+                buttonRechercher.Enabled = false;
+        }
+
+        private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listViewSouhaits.Items.Clear();
+            buttonRechercher.Enabled = false;
         }
         #endregion
 
         private void buttonAfficher_Click(object sender, EventArgs e)
         {
-            afficherSouhaits();
+            afficherSouhaits((Client)comboBoxClients.SelectedItem);
         }
 
-        private void afficherSouhaits()
+        /// <summary>
+        /// Affichage dans la listView des souhaits correspondant au client passé en paramètre
+        /// </summary>
+        private void afficherSouhaits(Client client)
         {
             string prix;
             string surfHab;
@@ -54,7 +75,7 @@ namespace Pollux.UserInterface
             listViewSouhaits.Items.Clear();
             if (comboBoxClients.SelectedItem != null)
             {
-                List<Souhait> listeSouhaits = SqlDataProvider.GetListeSouhaits((Client)comboBoxClients.SelectedItem);
+                List<Souhait> listeSouhaits = SqlDataProvider.GetListeSouhaits(client);
                 foreach (Souhait souhait in listeSouhaits)
                 {
                     villes = "";
@@ -75,6 +96,9 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
+        /// <summary>
+        /// Appel de la fenetre affichant les biens correspondant au souhait sélectionné
+        /// </summary>
         private void buttonRechercher_Click(object sender, EventArgs e)
         {
             Souhait souhait = (Souhait)listViewSouhaits.SelectedItems[0].Tag;
@@ -82,6 +106,8 @@ namespace Pollux.UserInterface
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }
+
+
     }
 }
 

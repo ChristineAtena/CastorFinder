@@ -41,7 +41,7 @@ namespace Pollux.Object
         {
             m_codePostal = codePostal;
             m_nom = nom;
-            m_index = SqlDataProvider.trouverVille(codePostal, nom);
+            m_index = SqlDataProvider.TrouverVille(codePostal, nom);
         }
        
         public override string ToString()

@@ -11,7 +11,7 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        static public int trouverClient(string nom, string adresse)
+        static public int TrouverClient(string nom, string adresse)
         {
             int index = -1;
             if (DBConnect())
@@ -34,7 +34,7 @@ namespace Pollux.DataBase
         /// </summary>
         /// <param name="index">son index</param>
         /// <returns>le client construit</returns>
-        static public Client trouverClient(int index)
+        static public Client TrouverClient(int index)
         {
             int indexAgent;
             Client client = null;
@@ -46,46 +46,26 @@ namespace Pollux.DataBase
                 while (reader.Read())
                 {
                     int indexVille = reader.GetInt16(1);
-
                     try
                     {
                         indexAgent = reader.GetInt16(2);
                     }
-                    catch{
-                        indexAgent = -1;
-                    }
+                    catch { indexAgent = -1; }
                     string nom = reader.GetString(3);
                     string adresse = reader.GetString(4);
                     string telephone = reader.GetString(5);
                     // déconnexion
                     connect.Close();
-                    client = new Client(nom, adresse, telephone, indexAgent, indexVille);
+                    client = new Client(index, nom, adresse, telephone, indexAgent, indexVille);
                     break;
                 }
             }
             return client;
         }
-        /*   // En principe inutile maintenant car on remplit les comboBox avec le Client entier
-             // et non plus juste avec son nom
-             static public List<string> GetListeNomClients()
-             {
-                 List<string> listeNomClients = new List<string>() ;
-                 if (DBConnect())
-                 {
-                     string requete = "SELECT NOM_C FROM CLIENTS ORDER BY NOM_C";
-                     OleDbCommand command = new OleDbCommand(requete, connect);
-                     OleDbDataReader reader = command.ExecuteReader();
-                     // ajout des noms des clients dans la liste
-                     while (reader.Read())
-                         listeNomClients.Add(reader.GetString(0));
-                     // déconnexion
-                     reader.Close();
-                     connect.Close();
-                 }
-                 return listeNomClients;
-             }*/
 
-
+        /// <summary>
+        /// Retourne la liste des clients de l'agent fourni en paramètre
+        /// </summary>
         static public List<Client> GetListeClients(Agent agent)
         {
             Client client;
@@ -102,7 +82,7 @@ namespace Pollux.DataBase
                 // ajout des noms des clients dans la liste
                 while (reader.Read())
                 {
-                    ville = SqlDataProvider.trouverVille(reader.GetInt16(4));
+                    ville = SqlDataProvider.TrouverVille(reader.GetInt16(4));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
                 }
@@ -128,18 +108,18 @@ namespace Pollux.DataBase
             {
                 string requete = "SELECT CLIENTS.NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, CLIENTS.NUM_V FROM CLIENTS "
                                 +"INNER JOIN BIENS ON CLIENTS.NUM_C = BIENS.NUM_C "
+                                +"GROUP BY CLIENTS.NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, CLIENTS.NUM_V "
                                 +"ORDER BY NOM_C";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
                 while (reader.Read())
                 {
                     try
                     {
-                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
                     }
                     catch (Exception) { agent = null; }
-                    ville = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                    ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
                 }
@@ -168,15 +148,14 @@ namespace Pollux.DataBase
                                 +"ORDER BY NOM_C";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
                 while (reader.Read())
                 {
                     try
                     {
-                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
                     }
                     catch (Exception) { agent = null; }
-                    ville = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                    ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
                 }
@@ -187,6 +166,9 @@ namespace Pollux.DataBase
             return listeClients;
         }
 
+        /// <summary>
+        /// Retourne la liste de tous les clients
+        /// </summary>
         static public List<Client> GetListeClients()
         {
             Client client;
@@ -198,15 +180,14 @@ namespace Pollux.DataBase
                 string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS ORDER BY NOM_C";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
                 while (reader.Read())
                 {
                     try
                     {
-                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
                     }
                     catch(Exception)  { agent = null; }
-                    ville = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                    ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
                 }
@@ -228,17 +209,16 @@ namespace Pollux.DataBase
                 string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS WHERE NOM_C=N'"+nom+"' AND NUM_V=N'"+ville.Index+"'";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                // ajout des noms des clients dans la liste
                 while (reader.Read())
                 {
                     try
                     {
-                        agent = SqlDataProvider.trouverAgent(reader.GetInt16(4));
+                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
                     }
                     catch (Exception) { agent = null; }
                     try
                     {
-                        Ville villeC = SqlDataProvider.trouverVille(reader.GetInt16(5));
+                        Ville villeC = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                         client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, villeC);
                     }
                     catch (Exception) { client = null; }

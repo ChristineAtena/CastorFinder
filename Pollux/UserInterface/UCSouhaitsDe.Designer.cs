@@ -61,6 +61,7 @@
             this.comboBoxClients.Name = "comboBoxClients";
             this.comboBoxClients.Size = new System.Drawing.Size(301, 21);
             this.comboBoxClients.TabIndex = 9;
+            this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
             // 
             // groupBoxSouhaitsDe
             // 
@@ -87,16 +88,18 @@
             this.villes});
             this.listViewSouhaits.FullRowSelect = true;
             this.listViewSouhaits.Location = new System.Drawing.Point(15, 55);
+            this.listViewSouhaits.MultiSelect = false;
             this.listViewSouhaits.Name = "listViewSouhaits";
             this.listViewSouhaits.Size = new System.Drawing.Size(461, 147);
             this.listViewSouhaits.TabIndex = 10;
             this.listViewSouhaits.UseCompatibleStateImageBehavior = false;
             this.listViewSouhaits.View = System.Windows.Forms.View.Details;
+            this.listViewSouhaits.SelectedIndexChanged += new System.EventHandler(this.listViewSouhaits_SelectedIndexChanged);
             // 
             // budget
             // 
             this.budget.Text = "Budget Maximal";
-            this.budget.Width = 153;
+            this.budget.Width = 102;
             // 
             // surfaceHabitable
             // 
@@ -111,6 +114,7 @@
             // villes
             // 
             this.villes.Text = "Villes";
+            this.villes.Width = 187;
             // 
             // label11
             // 

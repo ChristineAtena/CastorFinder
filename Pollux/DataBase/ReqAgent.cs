@@ -33,7 +33,7 @@ namespace Pollux.DataBase
         }
 
         // Retrouver un agent à partir de son index
-        static public Agent trouverAgent(int index)
+        static public Agent TrouverAgent(int index)
         {
             if (DBConnect())
             {
@@ -71,16 +71,5 @@ namespace Pollux.DataBase
             return ajout;
         }
 
-        static public Agent GetAgent(Client client)
-        {
-            Agent agent = null;
-            // TODO rechercher l'agent du client fournit en paramètre
-            // hmm en fait pas besoin si l'agent fait parti du client ...
-
-
-            return agent;
-        }
-
-        
     }
 }

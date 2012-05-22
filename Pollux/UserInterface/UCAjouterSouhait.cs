@@ -37,9 +37,9 @@ namespace Pollux.UserInterface
         {
             comboBoxAcheteur.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
-            foreach (Client proprietaire in listeClient)
+            foreach (Client client in listeClient)
             {
-                comboBoxAcheteur.Items.Add(proprietaire);
+                comboBoxAcheteur.Items.Add(client);
             }
         }
         private void loadVilles()
@@ -255,7 +255,7 @@ namespace Pollux.UserInterface
             }
             else  // client non présent en base : ajout souhait et client
             {
-                if (SqlDataProvider.ajouterSouhaitEtClient(acheteur, souhait))
+                if (SqlDataProvider.AjouterSouhaitEtClient(acheteur, souhait))
                 {
                     MessageBox.Show("Ajout du souhait et du client effectué", "Opération réussie");
                     this.Dispose();

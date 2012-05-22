@@ -21,21 +21,30 @@ namespace Pollux.UserInterface
             InitializeComponent();
             listeBiens = SqlDataProvider.RechercherListeBiens(bien);
             remplissageListView();
+            buttonAjouter.Enabled = false;
         }
 
         public UCAfficherBiens(Souhait souhait)
         {
             InitializeComponent();
             listeBiens = SqlDataProvider.RechercherListeBiens(souhait);
-            remplissageListView();
-            //test
             this.souhait = souhait;
-            //test
+            remplissageListView();
+            buttonAjouter.Enabled = false;
         }
+
+        #region Activation bouton Ajouter une visite
+        private void listViewBiens_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewBiens.SelectedItems.Count != 0)
+                buttonAjouter.Enabled = true;
+            else
+                buttonAjouter.Enabled = false;
+        }
+        #endregion
 
         private void remplissageListView()
         {
-            //listViewBiens.Clear();
             string prix;
             string surfHab;
             string surfJard;
@@ -59,21 +68,27 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
+        /// <summary>
+        /// Appel de la fenetre d'ajout d'une visite
+        /// </summary>
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             if (listViewBiens.SelectedItems.Count != 0)
             {
                 if (souhait != null)
                 {
+                    // appel de la fenetre visite avec un souhait et un bien
                     ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite(souhait, (Bien)listViewBiens.SelectedItems[0].Tag);
                 }
                 else
                 {
+                    // appel de la fenetre visite avec juste un bien
                     ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterVisite((Bien)listViewBiens.SelectedItems[0].Tag);
                 }
                 ((FenetrePrincipale)this.Parent).init();
                 this.Dispose();
             }
         }
+
     }
 }

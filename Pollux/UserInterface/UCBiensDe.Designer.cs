@@ -39,7 +39,7 @@
             this.comboBoxClients = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.buttonAfficher = new System.Windows.Forms.Button();
-            this.buttonAjouter = new System.Windows.Forms.Button();
+            this.buttonRechercher = new System.Windows.Forms.Button();
             this.groupBoxBiensDe.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.groupBoxBiensDe.Controls.Add(this.comboBoxClients);
             this.groupBoxBiensDe.Controls.Add(this.label11);
             this.groupBoxBiensDe.Controls.Add(this.buttonAfficher);
-            this.groupBoxBiensDe.Controls.Add(this.buttonAjouter);
+            this.groupBoxBiensDe.Controls.Add(this.buttonRechercher);
             this.groupBoxBiensDe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxBiensDe.Location = new System.Drawing.Point(0, 30);
             this.groupBoxBiensDe.Name = "groupBoxBiensDe";
@@ -142,15 +142,15 @@
             this.buttonAfficher.UseVisualStyleBackColor = true;
             this.buttonAfficher.Click += new System.EventHandler(this.buttonAfficher_Click);
             // 
-            // buttonAjouter
+            // buttonRechercher
             // 
-            this.buttonAjouter.Location = new System.Drawing.Point(255, 209);
-            this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(221, 23);
-            this.buttonAjouter.TabIndex = 4;
-            this.buttonAjouter.Text = "Rechercher les souhaits correspondants";
-            this.buttonAjouter.UseVisualStyleBackColor = true;
-            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
+            this.buttonRechercher.Location = new System.Drawing.Point(255, 209);
+            this.buttonRechercher.Name = "buttonRechercher";
+            this.buttonRechercher.Size = new System.Drawing.Size(221, 23);
+            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.Text = "Rechercher les souhaits correspondants";
+            this.buttonRechercher.UseVisualStyleBackColor = true;
+            this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
             // 
             // UCBiensDe
             // 
@@ -178,7 +178,7 @@
         private System.Windows.Forms.ComboBox comboBoxClients;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button buttonAfficher;
-        private System.Windows.Forms.Button buttonAjouter;
+        private System.Windows.Forms.Button buttonRechercher;
         private System.Windows.Forms.ColumnHeader date;
     }
 }

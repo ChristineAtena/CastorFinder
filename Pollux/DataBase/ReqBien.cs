@@ -11,31 +11,8 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        // Ajout du bien fournit en paramètre dans la base
-        static public bool AjouterBien(Bien bien)
-        {
-            bool ajout = false;
-            // si pas de connexion
-            if (!DBConnect())
-                 ajout = false;
-            // si connexion
-            else
-            {
-                string requete = string.Format("INSERT INTO BIENS (PRIX_VENTE_B, DATE_MISE_EN_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, NUM_V, NUM_C) VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}')", 
-                    bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index, bien.Client.Index);
-                OleDbCommand command = new OleDbCommand(requete, connect);
-                int rowCount = command.ExecuteNonQuery();  
-                if (rowCount == 1)
-                    ajout = true;  // ajout effectué
-                else
-                    ajout = false; // ajout non effectué
-                // déconnexion
-                connect.Close();
-            }
-            return ajout;
-        }
-
-        static private Bien trouverBien(int index)
+        
+        static private Bien TrouverBien(int index)
         {
             Bien bien = null;
             if (DBConnect())
@@ -45,8 +22,8 @@ namespace Pollux.DataBase
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Ville ville = trouverVille(reader.GetInt16(1));
-                    Client client = trouverClient(reader.GetInt16(2));
+                    Ville ville = TrouverVille(reader.GetInt16(1));
+                    Client client = TrouverClient(reader.GetInt16(2));
                     int prix = reader.GetInt32(3);
                     DateTime date = reader.GetDateTime(4);
                     int surfHab = reader.GetInt16(5);
@@ -81,7 +58,7 @@ namespace Pollux.DataBase
                     int surfHab = reader.GetInt16(2);
                     int surfJard = reader.GetInt16(3);
                     DateTime date = reader.GetDateTime(4);
-                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(8));
+                    Client client = SqlDataProvider.TrouverClient(reader.GetInt16(8));
                     Bien bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
                     listeBiens.Add(bien);
                 }
@@ -158,7 +135,7 @@ namespace Pollux.DataBase
             string requetePrix = (souhait.PrixMax != -1) ? " PRIX_VENTE_B < " + souhait.PrixMax : "";
             string requeteSurfHab = (souhait.SurfaceHabitableMin != -1) ? " SURFACE_HAB_B > " + souhait.SurfaceHabitableMin : "";
             string requeteSurfJard = (souhait.SurfaceJardinMin != -1) ? " SURFACE_JARDIN_B > " + souhait.SurfaceJardinMin : "";
-            string requeteVille = (souhait.Villes == null) ? "":
+            string requeteVille = (souhait.Villes.Count == 0) ? "":
                  " BIENS.NUM_V IN"
                 +"(SELECT VILLES_SOUHAITÉES.NUM_V FROM VILLES_SOUHAITÉES"
 	            +" INNER JOIN SOUHAITS ON VILLES_SOUHAITÉES.NUM_S = SOUHAITS.NUM_S"
@@ -189,8 +166,8 @@ namespace Pollux.DataBase
                 while (reader.Read())
                 {
                     int index = reader.GetInt16(0);
-                    Ville ville = SqlDataProvider.trouverVille(reader.GetInt16(1));
-                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(2));
+                    Ville ville = SqlDataProvider.TrouverVille(reader.GetInt16(1));
+                    Client client = SqlDataProvider.TrouverClient(reader.GetInt16(2));
                     int prix = reader.GetInt32(3);
                     DateTime date = reader.GetDateTime(4);
                     int surfHab = reader.GetInt16(5);
@@ -217,8 +194,8 @@ namespace Pollux.DataBase
                 while (reader.Read())
                 {
                     int index = reader.GetInt16(0);
-                    Ville ville = SqlDataProvider.trouverVille(reader.GetInt16(1));
-                    Client client = SqlDataProvider.trouverClient(reader.GetInt16(2));
+                    Ville ville = SqlDataProvider.TrouverVille(reader.GetInt16(1));
+                    Client client = SqlDataProvider.TrouverClient(reader.GetInt16(2));
                     int prix = reader.GetInt32(3);
                     DateTime date = reader.GetDateTime(4);
                     int surfHab = reader.GetInt16(5);
@@ -233,15 +210,39 @@ namespace Pollux.DataBase
             return listeBiens;
         }
 
+        // Ajout du bien fournit en paramètre dans la base
+        static public bool AjouterBien(Bien bien)
+        {
+            bool ajout = false;
+            // si pas de connexion
+            if (!DBConnect())
+                ajout = false;
+            // si connexion
+            else
+            {
+                string requete = string.Format("INSERT INTO BIENS (PRIX_VENTE_B, DATE_MISE_EN_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, NUM_V, NUM_C) VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}')",
+                    bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index, bien.Client.Index);
+                OleDbCommand command = new OleDbCommand(requete, connect);
+                int rowCount = command.ExecuteNonQuery();
+                if (rowCount == 1)
+                    ajout = true;  // ajout effectué
+                else
+                    ajout = false; // ajout non effectué
+                // déconnexion
+                connect.Close();
+            }
+            return ajout;
+        }
+
         /// <summary>
-        /// ça marche, c'est cool
+        /// Ajoute à la fois le bien et le client ou n'ajoute rien
         /// </summary>
         /// <param name="client">Client à ajouter</param>
         /// <param name="bien">Bien à ajouter</param>
         /// <returns></returns>
-        static public bool ajouterBienEtClient(Client client, Bien bien)
+        static public bool AjouterBienEtClient(Client client, Bien bien)
         {
-            // si connexion
+            bool ajout = false;
             if (DBConnect())
             {
                 string requete = string.Format("BEGIN TRAN "
@@ -258,20 +259,14 @@ namespace Pollux.DataBase
                 try
                 {
                     OleDbDataReader reader = command.ExecuteReader();
+                    ajout = true;
+                    reader.Close();
                 }
-                catch (Exception)
-                {
-                    connect.Close();
-                    return false;
-                }
+                catch { }
                 //déconnexion
                 connect.Close();
-                return true;
             }
-            else
-            {
-                return false;
-            }
+            return ajout; 
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadAgents();
             loadVilles();
-            comboBoxAgents.SelectedIndex = 0;
+            //comboBoxAgents.SelectedIndex = 0;
         }
 
         #region Chargement des comboBox
@@ -28,19 +28,25 @@ namespace Pollux.UserInterface
         {
             comboBoxAgents.Items.Clear();
             List<Agent> listeAgents = SqlDataProvider.GetListeAgents();
+            /*
             foreach (Agent agent in listeAgents)
             {
                 comboBoxAgents.Items.Add(agent);
             }
+            */
+            comboBoxAgents.DataSource = listeAgents;
         }
         private void loadVilles()
         {
             comboBoxVilles.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
+            /*
             foreach (Ville ville in listeVilles)
             {
                 comboBoxVilles.Items.Add(ville);
             }
+            */
+            comboBoxVilles.DataSource = listeVilles;
         }
         #endregion
 

@@ -50,7 +50,7 @@ namespace Pollux.UserInterface
                 if (v.DateHeure.Date == date.Date)
                 {
                     listViewJour.Items[v.DateHeure.Hour - 8].SubItems[1].Text = v.Souhait.Client.Nom;
-                }
+                }// -8 pour que la case 8h-9h soit en position 0
             }
         }
 

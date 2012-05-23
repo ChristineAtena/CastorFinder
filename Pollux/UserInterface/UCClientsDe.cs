@@ -24,10 +24,7 @@ namespace Pollux.UserInterface
         private void loadAgents()
         {
             List<Agent> listeAgents = SqlDataProvider.GetListeAgents();
-            foreach (Agent agent in listeAgents)
-            {
-                comboBoxAgents.Items.Add(agent);
-            }
+            comboBoxAgents.DataSource = listeAgents;
         }
         #endregion
 
@@ -36,20 +33,6 @@ namespace Pollux.UserInterface
         {
             listBoxClients.Items.Clear();
             buttonAfficherSouhaits.Enabled = false;
-        }
-
-        private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxClients.SelectedItem != null)
-                buttonAfficherSouhaits.Enabled = true;
-        }
-        #endregion
-
-        /// <summary>
-        /// Affichage dans la listBox de la liste des clients
-        /// </summary>
-        private void buttonAfficher_Click(object sender, EventArgs e)
-        {
             listBoxClients.Items.Clear();
             if (comboBoxAgents.SelectedItem != null)
             {
@@ -60,6 +43,14 @@ namespace Pollux.UserInterface
                 }
             }
         }
+
+        private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxClients.SelectedItem != null)
+                buttonAfficherSouhaits.Enabled = true;
+        }
+        #endregion
+
 
         /// <summary>
         /// Appel de la fenetre affichant les souhaits du client sélectionné

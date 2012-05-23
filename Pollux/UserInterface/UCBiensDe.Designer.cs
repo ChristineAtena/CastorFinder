@@ -38,7 +38,6 @@
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.comboBoxClients = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.buttonAfficher = new System.Windows.Forms.Button();
             this.buttonRechercher = new System.Windows.Forms.Button();
             this.groupBoxBiensDe.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +48,6 @@
             this.groupBoxBiensDe.Controls.Add(this.buttonAnnuler);
             this.groupBoxBiensDe.Controls.Add(this.comboBoxClients);
             this.groupBoxBiensDe.Controls.Add(this.label11);
-            this.groupBoxBiensDe.Controls.Add(this.buttonAfficher);
             this.groupBoxBiensDe.Controls.Add(this.buttonRechercher);
             this.groupBoxBiensDe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxBiensDe.Location = new System.Drawing.Point(0, 30);
@@ -119,7 +117,7 @@
             this.comboBoxClients.FormattingEnabled = true;
             this.comboBoxClients.Location = new System.Drawing.Point(59, 20);
             this.comboBoxClients.Name = "comboBoxClients";
-            this.comboBoxClients.Size = new System.Drawing.Size(301, 21);
+            this.comboBoxClients.Size = new System.Drawing.Size(217, 21);
             this.comboBoxClients.TabIndex = 9;
             this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
             // 
@@ -131,16 +129,6 @@
             this.label11.Size = new System.Drawing.Size(39, 13);
             this.label11.TabIndex = 5;
             this.label11.Text = "Client :";
-            // 
-            // buttonAfficher
-            // 
-            this.buttonAfficher.Location = new System.Drawing.Point(401, 18);
-            this.buttonAfficher.Name = "buttonAfficher";
-            this.buttonAfficher.Size = new System.Drawing.Size(75, 23);
-            this.buttonAfficher.TabIndex = 4;
-            this.buttonAfficher.Text = "Afficher";
-            this.buttonAfficher.UseVisualStyleBackColor = true;
-            this.buttonAfficher.Click += new System.EventHandler(this.buttonAfficher_Click);
             // 
             // buttonRechercher
             // 
@@ -177,7 +165,6 @@
         private System.Windows.Forms.Button buttonAnnuler;
         private System.Windows.Forms.ComboBox comboBoxClients;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button buttonAfficher;
         private System.Windows.Forms.Button buttonRechercher;
         private System.Windows.Forms.ColumnHeader date;
     }

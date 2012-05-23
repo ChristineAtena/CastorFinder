@@ -54,10 +54,13 @@ namespace Pollux.UserInterface
         {
             listBoxVilles.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
+            /*
             foreach (Ville ville in listeVilles)
             {
                 listBoxVilles.Items.Add(ville);
             }
+            */
+            listBoxVilles.DataSource = listeVilles;
         }
         #endregion
 

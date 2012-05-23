@@ -53,7 +53,7 @@
             // buttonAnnuler
             // 
             this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnnuler.Location = new System.Drawing.Point(65, 170);
+            this.buttonAnnuler.Location = new System.Drawing.Point(169, 85);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
             this.buttonAnnuler.TabIndex = 9;
@@ -64,7 +64,7 @@
             // buttonCreer
             // 
             this.buttonCreer.Enabled = false;
-            this.buttonCreer.Location = new System.Drawing.Point(295, 98);
+            this.buttonCreer.Location = new System.Drawing.Point(293, 85);
             this.buttonCreer.Name = "buttonCreer";
             this.buttonCreer.Size = new System.Drawing.Size(75, 23);
             this.buttonCreer.TabIndex = 8;

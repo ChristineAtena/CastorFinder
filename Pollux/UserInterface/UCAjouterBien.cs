@@ -41,19 +41,25 @@ namespace Pollux.UserInterface
         {
             comboBoxProprietaire.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
+            /*
             foreach (Client proprietaire in listeClient)
             {
                 comboBoxProprietaire.Items.Add(proprietaire);
             }
+            */
+            comboBoxProprietaire.DataSource = listeClient;
         }
         private void loadVilles()
         {
             comboBoxVille.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
+            /*
             foreach (Ville ville in listeVilles)
             {
                 comboBoxVille.Items.Add(ville);
             }
+            */
+            comboBoxVille.DataSource = listeVilles;
         }
         #endregion
 

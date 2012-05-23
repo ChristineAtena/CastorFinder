@@ -19,15 +19,12 @@ namespace Pollux.UserInterface
             loadClients();
             buttonRechercher.Enabled = false;
         }
-        #region Chargement des comboBox
+        #region Chargement comboBox
         private void loadClients()
         {
             comboBoxClients.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeVendeurs();
-            foreach (Client client in listeClient)
-            {
-                comboBoxClients.Items.Add(client);
-            }
+            comboBoxClients.DataSource = listeClient;
         }
         #endregion
 
@@ -39,42 +36,38 @@ namespace Pollux.UserInterface
             else 
                 buttonRechercher.Enabled = false;
         }
+        #endregion
 
+        /// <summary>
+        /// Evenement de remplissage de la liste des biens du client sélectionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             listViewBiens.Items.Clear();
             buttonRechercher.Enabled = false;
-        }
-        #endregion
-
-        /// <summary>
-        /// Affichage dans la listView des biens correspondant au client sélectionné
-        /// </summary>
-        private void buttonAfficher_Click(object sender, EventArgs e)
-        {
             string prix;
             string surfHab;
             string surfJard;
             string ville;
             string date;
             listViewBiens.Items.Clear();
-            if (comboBoxClients.SelectedItem != null)
+            List<Bien> listeBiens = SqlDataProvider.GetListeBiens((Client)comboBoxClients.SelectedItem);
+            foreach (Bien bien in listeBiens)
             {
-                List<Bien> listeBiens = SqlDataProvider.GetListeBiens((Client)comboBoxClients.SelectedItem);
-                foreach (Bien bien in listeBiens)
-                {
-                    ville = bien.Ville.Nom;
-                    prix = bien.Prix.ToString() + " €";
-                    surfHab = bien.SurfaceHabitable.ToString() + " m²";
-                    surfJard = bien.SurfaceJardin.ToString() + " m²";
-                    date = bien.DateMiseEnVente.ToShortDateString();
-                    ListViewItem item = new ListViewItem(new String[] { prix, surfHab, surfJard, ville, date });
-                    item.Tag = bien;
-                    listViewBiens.Items.Add(item);
-                }
+                ville = bien.Ville.Nom;
+                prix = bien.Prix.ToString() + " €";
+                surfHab = bien.SurfaceHabitable.ToString() + " m²";
+                surfJard = bien.SurfaceJardin.ToString() + " m²";
+                date = bien.DateMiseEnVente.ToShortDateString();
+                ListViewItem item = new ListViewItem(new String[] { prix, surfHab, surfJard, ville, date });
+                item.Tag = bien;
+                listViewBiens.Items.Add(item);
             }
         }
 
+        
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();

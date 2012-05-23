@@ -77,19 +77,13 @@ namespace Pollux.UserInterface
         {
             comboBoxClients.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeAcheteurs();
-            foreach (Client acheteur in listeClient)
-            {
-                comboBoxClients.Items.Add(acheteur);
-            }
+            comboBoxClients.DataSource = listeClient;
         }
         private void loadBiens()
         {
             comboBoxBiens.Items.Clear();
             List<Bien> listeBiens = SqlDataProvider.GetListeBiens();
-            foreach (Bien bien in listeBiens)
-            {
-                comboBoxBiens.Items.Add(bien);
-            }
+            comboBoxBiens.DataSource = listeBiens;
         }
         #endregion
 

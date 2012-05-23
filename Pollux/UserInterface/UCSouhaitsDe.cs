@@ -19,14 +19,16 @@ namespace Pollux.UserInterface
             loadClients();
             buttonRechercher.Enabled = false;
         }
-
+        /// <summary>
+        /// Constructeur en venant de la liste de clients
+        /// </summary>
+        /// <param name="client">Client qui a été selectionné</param>
         public UCSouhaitsDe(Client client)
         {
             InitializeComponent();
             comboBoxClients.Items.Add(client);
             comboBoxClients.SelectedItem = client;
             comboBoxClients.Enabled = false;
-            afficherSouhaits(client);
             buttonRechercher.Enabled = false;
         }
 
@@ -35,10 +37,7 @@ namespace Pollux.UserInterface
         {
             comboBoxClients.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeAcheteurs();
-            foreach (Client client in listeClient)
-            {
-                comboBoxClients.Items.Add(client);
-            }
+            comboBoxClients.DataSource = listeClient;
         }
         #endregion
 
@@ -55,19 +54,6 @@ namespace Pollux.UserInterface
         {
             listViewSouhaits.Items.Clear();
             buttonRechercher.Enabled = false;
-        }
-        #endregion
-
-        private void buttonAfficher_Click(object sender, EventArgs e)
-        {
-            afficherSouhaits((Client)comboBoxClients.SelectedItem);
-        }
-
-        /// <summary>
-        /// Affichage dans la listView des souhaits correspondant au client passé en paramètre
-        /// </summary>
-        private void afficherSouhaits(Client client)
-        {
             string prix;
             string surfHab;
             string surfJard;
@@ -75,7 +61,7 @@ namespace Pollux.UserInterface
             listViewSouhaits.Items.Clear();
             if (comboBoxClients.SelectedItem != null)
             {
-                List<Souhait> listeSouhaits = SqlDataProvider.GetListeSouhaits(client);
+                List<Souhait> listeSouhaits = SqlDataProvider.GetListeSouhaits((Client)comboBoxClients.SelectedItem);
                 foreach (Souhait souhait in listeSouhaits)
                 {
                     villes = "";
@@ -90,6 +76,7 @@ namespace Pollux.UserInterface
                 }
             }
         }
+        #endregion
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
@@ -106,8 +93,6 @@ namespace Pollux.UserInterface
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }
-
-
     }
 }
 

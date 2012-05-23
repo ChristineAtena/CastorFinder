@@ -111,7 +111,11 @@ namespace Pollux
             mdiChild = new UCAjouterAgent();
             init();
         }
+        private void agendaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AgendaAgent agenda = new AgendaAgent();
+            agenda.ShowDialog();
+        }
         #endregion
-
     }
 }

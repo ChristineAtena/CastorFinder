@@ -18,6 +18,7 @@ namespace Pollux.UserInterface
         {
             InitializeComponent();
             loadClients();
+            loadAgents();
             loadVilles();
             buttonAjouter.Enabled = false;
         }
@@ -30,17 +31,24 @@ namespace Pollux.UserInterface
             comboBoxAcheteur.Items.Add(client);
             comboBoxAcheteur.SelectedItem = client;
             comboBoxAcheteur.Enabled = false;
+            if (client.Agent != null)
+                comboBoxAgent.SelectedItem = client.Agent;
+            else
+                comboBoxAgent.SelectedIndex = -1; 
             buttonAjouter.Enabled = false;
         }
         #region Chargement des comboBox
+        private void loadAgents()
+        {
+            comboBoxAgent.Items.Clear();
+            List<Agent> listeAgents = SqlDataProvider.GetListeAgents();
+            comboBoxAgent.DataSource = listeAgents;
+        }
         private void loadClients()
         {
             comboBoxAcheteur.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
-            foreach (Client client in listeClient)
-            {
-                comboBoxAcheteur.Items.Add(client);
-            }
+            comboBoxAcheteur.DataSource = listeClient;
         }
         private void loadVilles()
         {
@@ -148,6 +156,25 @@ namespace Pollux.UserInterface
         private void comboBoxAcheteur_SelectedIndexChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
+            if (((Client)comboBoxAcheteur.SelectedItem).Agent != null)
+            {
+                int i = 0;
+                foreach (Agent agent in comboBoxAgent.Items)
+                {
+                    if (agent.Prenom == ((Client)comboBoxAcheteur.SelectedItem).Agent.Prenom)
+                    {
+                        comboBoxAgent.SelectedIndex = i;
+                        comboBoxAgent.Enabled = false;
+                        break;
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                comboBoxAgent.SelectedIndex = -1;
+                comboBoxAgent.Enabled = true;
+            }
         }
         private void checkBoxBudgetMax_CheckedChanged(object sender, EventArgs e)
         {

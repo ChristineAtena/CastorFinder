@@ -48,6 +48,8 @@
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
             this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
             this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxAgent = new System.Windows.Forms.ComboBox();
             this.groupBoxAjoutSouhaits.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitJardin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitSurfHab)).BeginInit();
@@ -57,6 +59,8 @@
             // groupBoxAjoutSouhaits
             // 
             this.groupBoxAjoutSouhaits.Controls.Add(this.listBoxVilles);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.comboBoxAgent);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.label4);
             this.groupBoxAjoutSouhaits.Controls.Add(this.comboBoxAcheteur);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label12);
             this.groupBoxAjoutSouhaits.Controls.Add(this.buttonAddVilles);
@@ -97,16 +101,16 @@
             // 
             this.comboBoxAcheteur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAcheteur.FormattingEnabled = true;
-            this.comboBoxAcheteur.Location = new System.Drawing.Point(155, 19);
+            this.comboBoxAcheteur.Location = new System.Drawing.Point(60, 19);
             this.comboBoxAcheteur.Name = "comboBoxAcheteur";
-            this.comboBoxAcheteur.Size = new System.Drawing.Size(271, 21);
+            this.comboBoxAcheteur.Size = new System.Drawing.Size(164, 21);
             this.comboBoxAcheteur.TabIndex = 9;
             this.comboBoxAcheteur.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(32, 22);
+            this.label12.Location = new System.Drawing.Point(12, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(39, 13);
             this.label12.TabIndex = 8;
@@ -268,6 +272,25 @@
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
             this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(238, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Agent :";
+            // 
+            // comboBoxAgent
+            // 
+            this.comboBoxAgent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAgent.FormattingEnabled = true;
+            this.comboBoxAgent.Location = new System.Drawing.Point(286, 19);
+            this.comboBoxAgent.Name = "comboBoxAgent";
+            this.comboBoxAgent.Size = new System.Drawing.Size(164, 21);
+            this.comboBoxAgent.TabIndex = 9;
+            this.comboBoxAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
+            // 
             // UCAjouterSouhait
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,5 +330,7 @@
         private System.Windows.Forms.ComboBox comboBoxAcheteur;
         private System.Windows.Forms.ListBox listBoxVilles;
         private System.Windows.Forms.Button buttonAddVilles;
+        private System.Windows.Forms.ComboBox comboBoxAgent;
+        private System.Windows.Forms.Label label4;
     }
 }

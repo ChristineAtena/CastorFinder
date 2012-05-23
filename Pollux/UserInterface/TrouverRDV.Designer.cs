@@ -178,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 325);
+            this.ClientSize = new System.Drawing.Size(514, 323);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonValider);
@@ -186,6 +186,7 @@
             this.Controls.Add(this.labelNom);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.monthCalendar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrouverRDV";
             this.Text = "Réserver";

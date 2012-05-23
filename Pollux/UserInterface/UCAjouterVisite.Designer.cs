@@ -71,11 +71,12 @@
             // buttonRDV
             // 
             this.buttonRDV.Enabled = false;
-            this.buttonRDV.Location = new System.Drawing.Point(18, 120);
+            this.buttonRDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRDV.Location = new System.Drawing.Point(148, 126);
             this.buttonRDV.Name = "buttonRDV";
-            this.buttonRDV.Size = new System.Drawing.Size(331, 43);
+            this.buttonRDV.Size = new System.Drawing.Size(201, 30);
             this.buttonRDV.TabIndex = 6;
-            this.buttonRDV.Text = "Le bouton qui permet de trouver un rendez-vous qui correspond";
+            this.buttonRDV.Text = "&Trouver un rendez-vous";
             this.buttonRDV.UseVisualStyleBackColor = true;
             this.buttonRDV.Click += new System.EventHandler(this.buttonRDV_Click);
             // 
@@ -94,7 +95,7 @@
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
             this.buttonAnnuler.TabIndex = 3;
-            this.buttonAnnuler.Text = "Annuler";
+            this.buttonAnnuler.Text = "&Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
@@ -105,7 +106,7 @@
             this.buttonCréer.Name = "buttonCréer";
             this.buttonCréer.Size = new System.Drawing.Size(75, 23);
             this.buttonCréer.TabIndex = 3;
-            this.buttonCréer.Text = "Créer";
+            this.buttonCréer.Text = "&Créer";
             this.buttonCréer.UseVisualStyleBackColor = true;
             this.buttonCréer.Click += new System.EventHandler(this.buttonCréer_Click);
             // 

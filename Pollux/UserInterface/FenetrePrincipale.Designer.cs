@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FenetrePrincipale));
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripNouveau = new System.Windows.Forms.ToolStripDropDownButton();
+            this.agentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bienToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.souhaitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +49,8 @@
             this.nouvelleVisiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.agentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.agendaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -85,24 +87,36 @@
             this.toolStripNouveau.Size = new System.Drawing.Size(68, 22);
             this.toolStripNouveau.Text = "&Nouveau";
             // 
+            // agentToolStripMenuItem
+            // 
+            this.agentToolStripMenuItem.Name = "agentToolStripMenuItem";
+            this.agentToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.agentToolStripMenuItem.Text = "&Agent";
+            this.agentToolStripMenuItem.Click += new System.EventHandler(this.agentToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(111, 6);
+            // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.clientToolStripMenuItem.Text = "&Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.nouveauClientToolStripMenuItem_Click);
             // 
             // bienToolStripMenuItem2
             // 
             this.bienToolStripMenuItem2.Name = "bienToolStripMenuItem2";
-            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.bienToolStripMenuItem2.Size = new System.Drawing.Size(114, 22);
             this.bienToolStripMenuItem2.Text = "&Bien";
             this.bienToolStripMenuItem2.Click += new System.EventHandler(this.bienToolStripMenuItem1_Click);
             // 
             // souhaitToolStripMenuItem1
             // 
             this.souhaitToolStripMenuItem1.Name = "souhaitToolStripMenuItem1";
-            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.souhaitToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
             this.souhaitToolStripMenuItem1.Text = "&Souhait";
             this.souhaitToolStripMenuItem1.Click += new System.EventHandler(this.souhaitToolStripMenuItem_Click);
             // 
@@ -176,7 +190,9 @@
             // 
             this.toolStripVisite.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripVisite.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nouvelleVisiteToolStripMenuItem});
+            this.nouvelleVisiteToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.agendaDeToolStripMenuItem});
             this.toolStripVisite.Image = ((System.Drawing.Image)(resources.GetObject("toolStripVisite.Image")));
             this.toolStripVisite.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripVisite.Name = "toolStripVisite";
@@ -186,7 +202,7 @@
             // nouvelleVisiteToolStripMenuItem
             // 
             this.nouvelleVisiteToolStripMenuItem.Name = "nouvelleVisiteToolStripMenuItem";
-            this.nouvelleVisiteToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.nouvelleVisiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nouvelleVisiteToolStripMenuItem.Text = "&Nouvelle visite";
             this.nouvelleVisiteToolStripMenuItem.Click += new System.EventHandler(this.nouvelleVisitToolStripMenuItem_Click);
             // 
@@ -205,17 +221,16 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // agentToolStripMenuItem
+            // agendaDeToolStripMenuItem
             // 
-            this.agentToolStripMenuItem.Name = "agentToolStripMenuItem";
-            this.agentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.agentToolStripMenuItem.Text = "&Agent";
-            this.agentToolStripMenuItem.Click += new System.EventHandler(this.agentToolStripMenuItem_Click);
+            this.agendaDeToolStripMenuItem.Name = "agendaDeToolStripMenuItem";
+            this.agendaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.agendaDeToolStripMenuItem.Text = "&Agenda de...";
             // 
-            // toolStripSeparator2
+            // toolStripSeparator5
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // FenetrePrincipale
             // 
@@ -264,6 +279,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem agentToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem agendaDeToolStripMenuItem;
     }
 }
 

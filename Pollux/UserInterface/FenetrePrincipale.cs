@@ -116,6 +116,12 @@ namespace Pollux
             AgendaAgent agenda = new AgendaAgent();
             agenda.ShowDialog();
         }
+        private void aProposDeCastorFinderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            APropos apropos = new APropos();
+            apropos.ShowDialog();
+        }
         #endregion
+
     }
 }

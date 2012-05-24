@@ -38,12 +38,14 @@ namespace Pollux.UserInterface
                 monthCalendar.AddBoldedDate(v.DateHeure.Date);
             }
             monthCalendar.SelectionStart = DateTime.Now; //et on sélectionne la date du jour, sinon c'est bizarre
+            monthCalendar.UpdateBoldedDates();
         }
 
         private void buttonAfficher_Click(object sender, EventArgs e)
         {
             chargerAgenda((Agent)comboBoxAgents.SelectedItem);
         }
+
         private void RemplissageCalendrierDuJour(DateTime date)
         {
             // Initialisation subItem correspondant au client à ""

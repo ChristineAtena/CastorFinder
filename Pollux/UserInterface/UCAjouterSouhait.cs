@@ -20,6 +20,7 @@ namespace Pollux.UserInterface
             loadClients();
             loadAgents();
             loadVilles();
+            listBoxVilles.SelectedItem = null;
             buttonAjouter.Enabled = false;
         }
         public UCAjouterSouhait(Client client, bool clientExiste)

@@ -34,13 +34,10 @@ namespace Pollux.UserInterface
             listBoxClients.Items.Clear();
             buttonAfficherSouhaits.Enabled = false;
             listBoxClients.Items.Clear();
-            if (comboBoxAgents.SelectedItem != null)
+            List<Client> listeClients = SqlDataProvider.GetListeClients((Agent)comboBoxAgents.SelectedItem);
+            foreach (Client c in listeClients)
             {
-                List<Client> listeClients = SqlDataProvider.GetListeClients((Agent)comboBoxAgents.SelectedItem);
-                foreach (Client c in listeClients)
-                {
-                    listBoxClients.Items.Add(c);
-                }
+                listBoxClients.Items.Add(c);
             }
         }
 

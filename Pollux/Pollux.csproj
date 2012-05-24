@@ -69,6 +69,12 @@
     <Compile Include="UserInterface\AgendaAgent.Designer.cs">
       <DependentUpon>AgendaAgent.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\APropos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\APropos.Designer.cs">
+      <DependentUpon>APropos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\TrouverRDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </Compile>
     <EmbeddedResource Include="UserInterface\AgendaAgent.resx">
       <DependentUpon>AgendaAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\APropos.resx">
+      <DependentUpon>APropos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\TrouverRDV.resx">
       <DependentUpon>TrouverRDV.cs</DependentUpon>

@@ -22,7 +22,7 @@ namespace Pollux.DataBase
             }
             catch (Exception)
             {
-                MessageBox.Show("Attention", "erreur connexion BdD");
+                MessageBox.Show("erreur connexion BdD","Attention");
                 return false;
             }
         }

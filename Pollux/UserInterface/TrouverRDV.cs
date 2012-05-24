@@ -31,6 +31,13 @@ namespace Pollux.UserInterface
             monthCalendar.MinDate = bien.DateMiseEnVente.Date;
             calendrier = SqlDataProvider.TrouverListeVisites(agent);
             buttonValider.Enabled = false;
+            monthCalendar.RemoveAllBoldedDates();//on enlève tout le gras du jambon
+            //on met en gras les date où il y a des rendez-vous
+            foreach (Visite v in calendrier)
+            {
+                monthCalendar.AddBoldedDate(v.DateHeure.Date);
+            }
+            monthCalendar.UpdateBoldedDates();
             // remplissage du calendrier avec les rendez-vous du jour
             RemplissageCalendrierDuJour(DateTime.Now);
         }
@@ -50,7 +57,7 @@ namespace Pollux.UserInterface
                 if (v.DateHeure.Date == date.Date)
                 {
                     listViewJour.Items[v.DateHeure.Hour - 8].SubItems[1].Text = v.Souhait.Client.Nom;
-                }// -8 pour que la case 8h-9h soit en position 0
+                }// -8 pour que la case 8h-9h soit en position 0 de la liste
             }
         }
 

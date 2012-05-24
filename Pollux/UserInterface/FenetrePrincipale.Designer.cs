@@ -49,6 +49,9 @@
             this.nouvelleVisiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.agendaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.aProposDeCastorFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMenu.SuspendLayout();
@@ -64,7 +67,9 @@
             this.toolStripSeparator3,
             this.toolStripRechercher,
             this.toolStripSeparator4,
-            this.toolStripVisite});
+            this.toolStripVisite,
+            this.toolStripSeparator6,
+            this.toolStripDropDownButton1});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
             this.toolStripMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -197,7 +202,7 @@
             this.toolStripVisite.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripVisite.Name = "toolStripVisite";
             this.toolStripVisite.Size = new System.Drawing.Size(48, 22);
-            this.toolStripVisite.Text = "Visite";
+            this.toolStripVisite.Text = "&Visite";
             // 
             // nouvelleVisiteToolStripMenuItem
             // 
@@ -217,6 +222,30 @@
             this.agendaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.agendaDeToolStripMenuItem.Text = "&Agenda de...";
             this.agendaDeToolStripMenuItem.Click += new System.EventHandler(this.agendaDeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aProposDeCastorFinderToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.ShowDropDownArrow = false;
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(16, 22);
+            this.toolStripDropDownButton1.Text = "?";
+            // 
+            // aProposDeCastorFinderToolStripMenuItem
+            // 
+            this.aProposDeCastorFinderToolStripMenuItem.Name = "aProposDeCastorFinderToolStripMenuItem";
+            this.aProposDeCastorFinderToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.aProposDeCastorFinderToolStripMenuItem.Text = "&À propos de Castor Finder";
+            this.aProposDeCastorFinderToolStripMenuItem.Click += new System.EventHandler(this.aProposDeCastorFinderToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -282,6 +311,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem agendaDeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem aProposDeCastorFinderToolStripMenuItem;
     }
 }
 

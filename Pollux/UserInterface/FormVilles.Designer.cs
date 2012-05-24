@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVilles));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.boutonAnnuler = new System.Windows.Forms.Button();
             this.boutonAjouter = new System.Windows.Forms.Button();
@@ -47,9 +48,9 @@
             this.groupBox1.Controls.Add(this.textBoxCP);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 123);
+            this.groupBox1.Size = new System.Drawing.Size(318, 118);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ajouter une ville";
@@ -112,7 +113,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 123);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormVilles";
+            this.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.Text = "Villes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

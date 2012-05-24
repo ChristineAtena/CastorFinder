@@ -117,13 +117,13 @@ namespace Pollux.DataBase
             if (requetePrix != "" && requeteSurfHab != "")
                 requete += " AND ";
             requete += requeteSurfHab;
-            if (requeteSurfHab != "" && requeteSurfJard != "")
+            if ((requetePrix != "" || requeteSurfHab != "") && requeteSurfJard != "")
                 requete += " AND ";
             requete += requeteSurfJard;
-            if (requeteSurfJard != "" && requeteVille != "")
+            if ((requetePrix != "" || requeteSurfHab != "" || requeteSurfJard != "") && requeteVille != "")
                 requete += " AND ";
             requete += requeteVille;
-            if (requeteVille != "" && requeteDate != "")
+            if ((requetePrix != "" || requeteSurfHab != "" || requeteSurfJard != "" || requeteVille != "") && requeteDate != "")
                 requete += " AND ";
             requete += requeteDate;
             return requete;

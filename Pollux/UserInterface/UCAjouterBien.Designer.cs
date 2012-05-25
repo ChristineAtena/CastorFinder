@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxAjoutBien = new System.Windows.Forms.GroupBox();
+            this.numericUpDownSurfJard = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownSurfHab = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBudget = new System.Windows.Forms.NumericUpDown();
             this.dateMiseEnVente = new System.Windows.Forms.DateTimePicker();
             this.label27 = new System.Windows.Forms.Label();
             this.buttonAjoutVille = new System.Windows.Forms.Button();
@@ -44,13 +47,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxAjoutBienJardin = new System.Windows.Forms.TextBox();
-            this.textBoxAjoutBienSurfHab = new System.Windows.Forms.TextBox();
-            this.textBoxAjoutBienPrix = new System.Windows.Forms.TextBox();
             this.trackBarAjoutBienJardin = new System.Windows.Forms.TrackBar();
             this.trackBarAjoutBienSurfHab = new System.Windows.Forms.TrackBar();
             this.trackBarAjoutBienPrix = new System.Windows.Forms.TrackBar();
             this.groupBoxAjoutBien.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienJardin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienSurfHab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienPrix)).BeginInit();
@@ -58,6 +61,9 @@
             // 
             // groupBoxAjoutBien
             // 
+            this.groupBoxAjoutBien.Controls.Add(this.numericUpDownSurfJard);
+            this.groupBoxAjoutBien.Controls.Add(this.numericUpDownSurfHab);
+            this.groupBoxAjoutBien.Controls.Add(this.numericUpDownBudget);
             this.groupBoxAjoutBien.Controls.Add(this.dateMiseEnVente);
             this.groupBoxAjoutBien.Controls.Add(this.label27);
             this.groupBoxAjoutBien.Controls.Add(this.buttonAjoutVille);
@@ -73,9 +79,6 @@
             this.groupBoxAjoutBien.Controls.Add(this.label4);
             this.groupBoxAjoutBien.Controls.Add(this.label5);
             this.groupBoxAjoutBien.Controls.Add(this.label6);
-            this.groupBoxAjoutBien.Controls.Add(this.textBoxAjoutBienJardin);
-            this.groupBoxAjoutBien.Controls.Add(this.textBoxAjoutBienSurfHab);
-            this.groupBoxAjoutBien.Controls.Add(this.textBoxAjoutBienPrix);
             this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienJardin);
             this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienSurfHab);
             this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienPrix);
@@ -86,6 +89,50 @@
             this.groupBoxAjoutBien.TabIndex = 7;
             this.groupBoxAjoutBien.TabStop = false;
             this.groupBoxAjoutBien.Text = "Ajouter un bien";
+            // 
+            // numericUpDownSurfJard
+            // 
+            this.numericUpDownSurfJard.Location = new System.Drawing.Point(268, 120);
+            this.numericUpDownSurfJard.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
+            this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfJard.TabIndex = 26;
+            this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
+            // 
+            // numericUpDownSurfHab
+            // 
+            this.numericUpDownSurfHab.Location = new System.Drawing.Point(268, 84);
+            this.numericUpDownSurfHab.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
+            this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfHab.TabIndex = 26;
+            this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
+            // 
+            // numericUpDownBudget
+            // 
+            this.numericUpDownBudget.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownBudget.Location = new System.Drawing.Point(268, 48);
+            this.numericUpDownBudget.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownBudget.Name = "numericUpDownBudget";
+            this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownBudget.TabIndex = 26;
+            this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
             // 
             // dateMiseEnVente
             // 
@@ -122,7 +169,6 @@
             this.comboBoxVille.Name = "comboBoxVille";
             this.comboBoxVille.Size = new System.Drawing.Size(153, 21);
             this.comboBoxVille.TabIndex = 8;
-            this.comboBoxVille.SelectedIndexChanged += new System.EventHandler(this.comboBoxVille_SelectedIndexChanged);
             // 
             // comboBoxProprietaire
             // 
@@ -132,7 +178,6 @@
             this.comboBoxProprietaire.Name = "comboBoxProprietaire";
             this.comboBoxProprietaire.Size = new System.Drawing.Size(271, 21);
             this.comboBoxProprietaire.TabIndex = 7;
-            this.comboBoxProprietaire.SelectedIndexChanged += new System.EventHandler(this.comboBoxProprietaire_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -227,30 +272,6 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "€";
             // 
-            // textBoxAjoutBienJardin
-            // 
-            this.textBoxAjoutBienJardin.Location = new System.Drawing.Point(263, 119);
-            this.textBoxAjoutBienJardin.Name = "textBoxAjoutBienJardin";
-            this.textBoxAjoutBienJardin.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutBienJardin.TabIndex = 2;
-            this.textBoxAjoutBienJardin.TextChanged += new System.EventHandler(this.textBoxAjoutBienJardin_TextChanged);
-            // 
-            // textBoxAjoutBienSurfHab
-            // 
-            this.textBoxAjoutBienSurfHab.Location = new System.Drawing.Point(263, 83);
-            this.textBoxAjoutBienSurfHab.Name = "textBoxAjoutBienSurfHab";
-            this.textBoxAjoutBienSurfHab.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutBienSurfHab.TabIndex = 2;
-            this.textBoxAjoutBienSurfHab.TextChanged += new System.EventHandler(this.textBoxAjoutBienSurfHab_TextChanged);
-            // 
-            // textBoxAjoutBienPrix
-            // 
-            this.textBoxAjoutBienPrix.Location = new System.Drawing.Point(263, 47);
-            this.textBoxAjoutBienPrix.Name = "textBoxAjoutBienPrix";
-            this.textBoxAjoutBienPrix.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutBienPrix.TabIndex = 2;
-            this.textBoxAjoutBienPrix.TextChanged += new System.EventHandler(this.textBoxAjoutBienPrix_TextChanged);
-            // 
             // trackBarAjoutBienJardin
             // 
             this.trackBarAjoutBienJardin.Location = new System.Drawing.Point(104, 119);
@@ -291,6 +312,9 @@
             this.Size = new System.Drawing.Size(497, 255);
             this.groupBoxAjoutBien.ResumeLayout(false);
             this.groupBoxAjoutBien.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienJardin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienSurfHab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienPrix)).EndInit();
@@ -311,9 +335,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxAjoutBienJardin;
-        private System.Windows.Forms.TextBox textBoxAjoutBienSurfHab;
-        private System.Windows.Forms.TextBox textBoxAjoutBienPrix;
         private System.Windows.Forms.TrackBar trackBarAjoutBienJardin;
         private System.Windows.Forms.TrackBar trackBarAjoutBienSurfHab;
         private System.Windows.Forms.TrackBar trackBarAjoutBienPrix;
@@ -322,5 +343,8 @@
         private System.Windows.Forms.Button buttonAjoutVille;
         private System.Windows.Forms.DateTimePicker dateMiseEnVente;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown numericUpDownSurfJard;
+        private System.Windows.Forms.NumericUpDown numericUpDownSurfHab;
+        private System.Windows.Forms.NumericUpDown numericUpDownBudget;
     }
 }

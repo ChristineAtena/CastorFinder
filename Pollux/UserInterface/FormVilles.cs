@@ -18,18 +18,13 @@ namespace Pollux.UserInterface
         public FormVilles()
         {
             InitializeComponent();
+            boutonAjouter.Enabled = false;
         }
 
         
         private void boutonAjouter_Click(object sender, EventArgs e)
         {
             int codePostal;
-            // si une des cases est vide
-            if (textBoxCP.Text == "" || textBoxNom.Text == "")
-            {
-                MessageBox.Show("Formulaire mal rempli", "Attention");
-                return;
-            }
             // si code postal n'est pas un chiffre
             if (!int.TryParse(textBoxCP.Text, out codePostal))
             {
@@ -63,5 +58,24 @@ namespace Pollux.UserInterface
                 return true;
             }
         }
+
+        #region activation du bouton valider
+        private void textBoxCP_TextChanged(object sender, EventArgs e)
+        {
+            activationBoutonValider();
+        }
+
+        private void textBoxNom_TextChanged(object sender, EventArgs e)
+        {
+            activationBoutonValider();
+        }
+        private void activationBoutonValider()
+        {
+            if (textBoxCP.Text != "" && textBoxNom.Text != "")
+                boutonAjouter.Enabled = true;
+            else
+                boutonAjouter.Enabled = false;
+        }
+        #endregion
     }
 }

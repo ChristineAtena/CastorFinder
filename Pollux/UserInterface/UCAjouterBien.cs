@@ -31,9 +31,7 @@ namespace Pollux.UserInterface
             comboBoxProprietaire.Items.Clear();
             comboBoxProprietaire.Items.Add(client);
             comboBoxProprietaire.SelectedItem = client;
-            comboBoxProprietaire.Enabled = false;          
-            // pas besoin de rechercher son index on le connait déjà
-            //client.Index = SqlDataProvider.trouverClient(client.Nom, client.Adresse);
+            comboBoxProprietaire.Enabled = false;
             buttonAjouter.Enabled = false;
         }
         #region Chargement des comboBox
@@ -41,12 +39,6 @@ namespace Pollux.UserInterface
         {
             comboBoxProprietaire.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
-            /*
-            foreach (Client proprietaire in listeClient)
-            {
-                comboBoxProprietaire.Items.Add(proprietaire);
-            }
-            */
             comboBoxProprietaire.DataSource = listeClient;
         }
         private void loadVilles()
@@ -66,20 +58,40 @@ namespace Pollux.UserInterface
         #region Trackbars
         private void trackBarAjoutBienPrix_Scroll(object sender, EventArgs e)
         {
-            textBoxAjoutBienPrix.Text = trackBarAjoutBienPrix.Value.ToString();
+            numericUpDownBudget.Value = trackBarAjoutBienPrix.Value;
         }
 
         private void trackBarAjoutBienSurfHab_Scroll(object sender, EventArgs e)
         {
-            textBoxAjoutBienSurfHab.Text = trackBarAjoutBienSurfHab.Value.ToString();
+            numericUpDownSurfHab.Value = trackBarAjoutBienSurfHab.Value;
         }
 
         private void trackBarAjoutBienJardin_Scroll(object sender, EventArgs e)
         {
-            textBoxAjoutBienJardin.Text = trackBarAjoutBienJardin.Value.ToString();
+            numericUpDownSurfJard.Value = trackBarAjoutBienJardin.Value;
         } 
         #endregion
 
+        #region numericUpDowns
+        private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
+        {
+            trackBarAjoutBienPrix.Value = (int)numericUpDownBudget.Value;
+            activationBoutonCreer();
+        }
+
+        private void numericUpDownSurfHab_ValueChanged(object sender, EventArgs e)
+        {
+            trackBarAjoutBienSurfHab.Value = (int)numericUpDownSurfHab.Value;
+            activationBoutonCreer();
+        }
+
+        private void numericUpDownSurfJard_ValueChanged(object sender, EventArgs e)
+        {
+            trackBarAjoutBienJardin.Value = (int)numericUpDownSurfJard.Value;
+            activationBoutonCreer();
+        }
+        #endregion
+        
         private void buttonAjoutVille_Click(object sender, EventArgs e)
         {
             Form Ville = new FormVilles();
@@ -94,9 +106,9 @@ namespace Pollux.UserInterface
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             // Récupération des infos
-            int prix = int.Parse(textBoxAjoutBienPrix.Text);
-            int surfHab = int.Parse(textBoxAjoutBienSurfHab.Text);
-            int surfJard = int.Parse(textBoxAjoutBienJardin.Text);
+            int prix = (int)numericUpDownBudget.Value;
+            int surfHab = (int)numericUpDownSurfHab.Value;
+            int surfJard = (int)numericUpDownSurfJard.Value;
             DateTime date = dateMiseEnVente.Value;
             Ville ville = (Ville)comboBoxVille.SelectedItem;
             // Ajout en base du bien
@@ -135,40 +147,14 @@ namespace Pollux.UserInterface
             this.Dispose();
         }
 
-        #region Activation bouton Créer
         private void activationBoutonCreer()
         {
-            if (textBoxAjoutBienPrix.Text != "" &&
-                textBoxAjoutBienSurfHab.Text != "" &&
-                textBoxAjoutBienJardin.Text != "" &&
-                comboBoxVille.SelectedItem != null &&
-                comboBoxProprietaire.SelectedItem != null)
+            //pas de contrôle sur la taille du jardin : elle peut être à 0.
+            if (numericUpDownBudget.Value != 0 &&
+                numericUpDownSurfHab.Value != 0)
                 buttonAjouter.Enabled = true;
             else
                 buttonAjouter.Enabled = false;
         }
-        private void comboBoxProprietaire_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            activationBoutonCreer();
-        }
-        private void textBoxAjoutBienPrix_TextChanged(object sender, EventArgs e)
-        {
-            activationBoutonCreer();
-        }
-        private void textBoxAjoutBienSurfHab_TextChanged(object sender, EventArgs e)
-        {
-            activationBoutonCreer();
-        }
-        private void textBoxAjoutBienJardin_TextChanged(object sender, EventArgs e)
-        {
-            activationBoutonCreer();
-        }
-        private void comboBoxVille_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            activationBoutonCreer();
-        }
-        #endregion
-
-
     }
 }

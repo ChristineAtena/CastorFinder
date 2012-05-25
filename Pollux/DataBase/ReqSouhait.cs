@@ -119,8 +119,17 @@ namespace Pollux.DataBase
         /// <summary>
         /// Ajoute à la fois le souhait et les villes souhaitées 
         /// dans les tables correspondantes ou n'ajoute rien si l'une des insertions échoue
+        /// 
+        /// J'ai pas bien pris le temps de lire comme ça marchait, ça, mais ça à l'air vraiment con :
+        /// on connait le client, vu qu'il est spécifié, alors pourquoi on galère à retrouver son
+        /// numéro dans la BdD ?
+        /// C'est peut-être idiot comme remarque, mais j'ai plus trop le courage de déchiffrer
+        /// la construction de la requete =)
+        /// 
+        /// Courage !
+        /// 
         /// </summary>
-        static public bool AjouterSouhait(Souhait souhait)
+        static public bool AjouterSouhait(Souhait souhait, Agent agent)
         {
             bool ajout = false;
             if (DBConnect())

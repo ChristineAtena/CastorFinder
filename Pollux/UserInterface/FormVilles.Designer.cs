@@ -61,7 +61,7 @@
             this.boutonAnnuler.Location = new System.Drawing.Point(147, 89);
             this.boutonAnnuler.Name = "boutonAnnuler";
             this.boutonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.boutonAnnuler.TabIndex = 3;
+            this.boutonAnnuler.TabIndex = 4;
             this.boutonAnnuler.Text = "Annuler";
             this.boutonAnnuler.UseVisualStyleBackColor = true;
             // 
@@ -70,7 +70,7 @@
             this.boutonAjouter.Location = new System.Drawing.Point(228, 89);
             this.boutonAjouter.Name = "boutonAjouter";
             this.boutonAjouter.Size = new System.Drawing.Size(75, 23);
-            this.boutonAjouter.TabIndex = 4;
+            this.boutonAjouter.TabIndex = 3;
             this.boutonAjouter.Text = "Ajouter";
             this.boutonAjouter.UseVisualStyleBackColor = true;
             this.boutonAjouter.Click += new System.EventHandler(this.boutonAjouter_Click);
@@ -81,6 +81,7 @@
             this.textBoxNom.Name = "textBoxNom";
             this.textBoxNom.Size = new System.Drawing.Size(203, 20);
             this.textBoxNom.TabIndex = 2;
+            this.textBoxNom.TextChanged += new System.EventHandler(this.textBoxNom_TextChanged);
             // 
             // label4
             // 
@@ -97,6 +98,7 @@
             this.textBoxCP.Name = "textBoxCP";
             this.textBoxCP.Size = new System.Drawing.Size(203, 20);
             this.textBoxCP.TabIndex = 1;
+            this.textBoxCP.TextChanged += new System.EventHandler(this.textBoxCP_TextChanged);
             // 
             // label3
             // 

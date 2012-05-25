@@ -18,6 +18,7 @@ namespace Pollux.UserInterface
         {
             InitializeComponent();
             loadVilles();
+            disableNumericUpDowns();
         }
 
         #region Chargement des comboBox
@@ -33,82 +34,37 @@ namespace Pollux.UserInterface
         #region trackBar
         private void trackBarRechBienPrix_Scroll(object sender, EventArgs e)
         {
-            textBoxRechBienPrix.Text = trackBarRechBienPrix.Value.ToString();
+            numericUpDownBudget.Value = trackBarRechBienPrix.Value;
+            numericUpDownBudget.Enabled = true;
         }
 
         private void trackBarRechBienSurf_Scroll(object sender, EventArgs e)
         {
-            textBoxRechBienSurf.Text = trackBarRechBienSurf.Value.ToString();
+            numericUpDownSurfHab.Value = trackBarRechBienSurf.Value;
+            numericUpDownSurfHab.Enabled = true;
         }
 
         private void trackBarRechBienJardin_Scroll(object sender, EventArgs e)
         {
-            textBoxRechBienJardin.Text = trackBarRechBienJardin.Value.ToString();
+            numericUpDownSurfJard.Value = trackBarRechBienJardin.Value;
+            numericUpDownSurfJard.Enabled = true;
         }
         #endregion
 
-        #region Zones de texte
-        private void textBoxRechBienPrix_TextChanged(object sender, EventArgs e)
+        #region numericUpDowns
+        private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBoxRechBienPrix.Text))
-            {
-                try
-                {
-                    trackBarRechBienPrix.Value = int.Parse(textBoxRechBienPrix.Text);
-                    checkBoxBudgetMax.Checked = true;
-                }
-                catch (Exception) // la valeur n'est pas un chiffre ou non comprise dans la gamme de valeur
-                {
-                    textBoxRechBienPrix.Text = string.Empty;
-                    trackBarRechBienPrix.Value = 0;
-                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.",
-                        trackBarRechBienPrix.Minimum, trackBarRechBienPrix.Maximum), "Attention");
-                }
-            }
-            else
-                checkBoxBudgetMax.Checked = false;
+            trackBarRechBienPrix.Value = (int)numericUpDownBudget.Value;
         }
 
-        private void textBoxRechBienSurf_TextChanged(object sender, EventArgs e)
+        private void numericUpDownSurfHab_ValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBoxRechBienSurf.Text))
-            {
-                try
-                {
-                    trackBarRechBienSurf.Value = int.Parse(textBoxRechBienSurf.Text);
-                    checkBoxSurfHab.Checked = true;
-                }
-                catch (Exception) // la valeur n'est pas un chiffre ou non comprise dans la gamme de valeur
-                {
-                    textBoxRechBienSurf.Text = string.Empty;
-                    trackBarRechBienSurf.Value = 0;
-                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.",
-                        trackBarRechBienSurf.Minimum, trackBarRechBienSurf.Maximum), "Attention");
-                }
-            }
-            else
-                checkBoxSurfHab.Checked = false;
+            trackBarRechBienSurf.Value = (int)numericUpDownSurfHab.Value;
         }
 
-        private void textBoxRechBienJardin_TextChanged(object sender, EventArgs e)
+        private void numericUpDownSurfJard_ValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBoxRechBienJardin.Text))
-            {
-                try
-                {
-                    trackBarRechBienJardin.Value = int.Parse(textBoxRechBienJardin.Text);
-                    checkBoxJardin.Checked = true;
-                }
-                catch (Exception) // la valeur n'est pas un chiffre ou non comprise dans la gamme de valeur
-                {
-                    textBoxRechBienJardin.Text = string.Empty;
-                    trackBarRechBienJardin.Value = 0;
-                    MessageBox.Show(string.Format("Valeur non valide \ndoit être comprise entre {0} et {1}.",
-                        trackBarRechBienJardin.Minimum, trackBarRechBienJardin.Maximum), "Attention");
-                }
-            }
-            else
-                checkBoxJardin.Checked = false;
+            trackBarRechBienJardin.Value = (int)numericUpDownSurfJard.Value;
         }
         #endregion
 
@@ -129,12 +85,16 @@ namespace Pollux.UserInterface
         {
             activationBoutonRechercher();
             // si coche la case, on fixe le budget a son maximum
-            if (checkBoxBudgetMax.Checked == true)
-                textBoxRechBienPrix.Text = trackBarRechBienPrix.Maximum.ToString();
+            if (checkBoxBudgetMax.Checked)
+            {
+                numericUpDownBudget.Value = trackBarRechBienPrix.Maximum;
+                numericUpDownBudget.Enabled = true;
+            }
             else // si décoche la case, on remet à zéro
             {
-                textBoxRechBienPrix.Text = string.Empty;
+                numericUpDownBudget.Value = 0;
                 trackBarRechBienPrix.Value = 0;
+                numericUpDownBudget.Enabled = false;
             }
         }
 
@@ -142,12 +102,16 @@ namespace Pollux.UserInterface
         {
             activationBoutonRechercher();
             // si coche la case, on fixe la surf Hab à son minimum
-            if (checkBoxSurfHab.Checked == true)
-                textBoxRechBienSurf.Text = trackBarRechBienSurf.Minimum.ToString();
+            if (checkBoxSurfHab.Checked)
+            {
+                numericUpDownSurfHab.Value = trackBarRechBienSurf.Minimum;
+                numericUpDownSurfHab.Enabled = true;
+            }
             else // si décoche la case, on remet à zéro
             {
-                textBoxRechBienSurf.Text = string.Empty;
+                numericUpDownSurfHab.Value = 0;
                 trackBarRechBienSurf.Value = 0;
+                numericUpDownSurfHab.Enabled = false;
             }
         }
 
@@ -155,12 +119,16 @@ namespace Pollux.UserInterface
         {
             activationBoutonRechercher();
             // si coche la case, on fixe la surf du jardin à son minimum
-            if (checkBoxJardin.Checked == true)
-                textBoxRechBienJardin.Text = trackBarRechBienJardin.Minimum.ToString();
+            if (checkBoxJardin.Checked)
+            {
+                numericUpDownSurfJard.Value = trackBarRechBienJardin.Minimum;
+                numericUpDownSurfJard.Enabled = true;
+            }
             else // si décoche la case, on remet à zéro
             {
-                textBoxRechBienJardin.Text = string.Empty;
+                numericUpDownSurfJard.Value = 0;
                 trackBarRechBienJardin.Value = 0;
+                numericUpDownSurfJard.Enabled = false;
             }
         }
 
@@ -193,6 +161,12 @@ namespace Pollux.UserInterface
         }
         #endregion  
 
+        private void disableNumericUpDowns()
+        {
+            numericUpDownBudget.Enabled = false;
+            numericUpDownSurfHab.Enabled = false;
+            numericUpDownSurfJard.Enabled = false;
+        }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
@@ -213,11 +187,11 @@ namespace Pollux.UserInterface
             DateTime date = new DateTime(1,1,1);
             // Récupération des infos des textBox sélectionnées
             if (checkBoxBudgetMax.Checked)
-                prix = int.Parse(textBoxRechBienPrix.Text);
+                prix = (int)numericUpDownBudget.Value;
             if (checkBoxSurfHab.Checked)
-                surfHab = int.Parse(textBoxRechBienSurf.Text);
+                surfHab = (int)numericUpDownSurfHab.Value;
             if (checkBoxJardin.Checked)
-                surfJard = int.Parse(textBoxRechBienJardin.Text);
+                surfJard = (int)numericUpDownSurfJard.Value;
             if (checkBoxVille.Checked)
                 ville = (Ville)comboBoxVille.SelectedItem;
             if (checkBoxDate.Checked)
@@ -229,7 +203,5 @@ namespace Pollux.UserInterface
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }
-
-
     }
 }

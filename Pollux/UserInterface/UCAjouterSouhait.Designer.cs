@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBoxAjoutSouhaits = new System.Windows.Forms.GroupBox();
+            this.numericUpDownBudget = new System.Windows.Forms.NumericUpDown();
             this.listBoxVilles = new System.Windows.Forms.ListBox();
+            this.comboBoxAgent = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.comboBoxAcheteur = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.buttonAddVilles = new System.Windows.Forms.Button();
@@ -38,9 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxAjoutSouhaitJardin = new System.Windows.Forms.TextBox();
-            this.textBoxAjoutSouhaitSurfHab = new System.Windows.Forms.TextBox();
-            this.textBoxAjoutSouhaitsBudget = new System.Windows.Forms.TextBox();
             this.trackBarAjoutSouhaitJardin = new System.Windows.Forms.TrackBar();
             this.trackBarAjoutSouhaitSurfHab = new System.Windows.Forms.TrackBar();
             this.trackBarAjoutSouhaitsBudget = new System.Windows.Forms.TrackBar();
@@ -48,16 +48,22 @@
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
             this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
             this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxAgent = new System.Windows.Forms.ComboBox();
+            this.numericUpDownSurfJard = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownSurfHab = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAjoutSouhaits.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitJardin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitSurfHab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitsBudget)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxAjoutSouhaits
             // 
+            this.groupBoxAjoutSouhaits.Controls.Add(this.numericUpDownSurfHab);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.numericUpDownSurfJard);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.numericUpDownBudget);
             this.groupBoxAjoutSouhaits.Controls.Add(this.listBoxVilles);
             this.groupBoxAjoutSouhaits.Controls.Add(this.comboBoxAgent);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label4);
@@ -69,9 +75,6 @@
             this.groupBoxAjoutSouhaits.Controls.Add(this.label3);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label2);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label1);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.textBoxAjoutSouhaitJardin);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.textBoxAjoutSouhaitSurfHab);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.textBoxAjoutSouhaitsBudget);
             this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitJardin);
             this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitSurfHab);
             this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitsBudget);
@@ -87,6 +90,24 @@
             this.groupBoxAjoutSouhaits.TabStop = false;
             this.groupBoxAjoutSouhaits.Text = "Ajouter un souhait";
             // 
+            // numericUpDownBudget
+            // 
+            this.numericUpDownBudget.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownBudget.Location = new System.Drawing.Point(314, 49);
+            this.numericUpDownBudget.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownBudget.Name = "numericUpDownBudget";
+            this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownBudget.TabIndex = 11;
+            this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
+            // 
             // listBoxVilles
             // 
             this.listBoxVilles.FormattingEnabled = true;
@@ -96,6 +117,25 @@
             this.listBoxVilles.Size = new System.Drawing.Size(200, 69);
             this.listBoxVilles.TabIndex = 10;
             this.listBoxVilles.SelectedIndexChanged += new System.EventHandler(this.listBoxVilles_SelectedIndexChanged);
+            // 
+            // comboBoxAgent
+            // 
+            this.comboBoxAgent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAgent.FormattingEnabled = true;
+            this.comboBoxAgent.Location = new System.Drawing.Point(286, 19);
+            this.comboBoxAgent.Name = "comboBoxAgent";
+            this.comboBoxAgent.Size = new System.Drawing.Size(164, 21);
+            this.comboBoxAgent.TabIndex = 9;
+            this.comboBoxAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(238, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Agent :";
             // 
             // comboBoxAcheteur
             // 
@@ -174,30 +214,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "€";
             // 
-            // textBoxAjoutSouhaitJardin
-            // 
-            this.textBoxAjoutSouhaitJardin.Location = new System.Drawing.Point(314, 122);
-            this.textBoxAjoutSouhaitJardin.Name = "textBoxAjoutSouhaitJardin";
-            this.textBoxAjoutSouhaitJardin.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutSouhaitJardin.TabIndex = 2;
-            this.textBoxAjoutSouhaitJardin.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitJardin_TextChanged);
-            // 
-            // textBoxAjoutSouhaitSurfHab
-            // 
-            this.textBoxAjoutSouhaitSurfHab.Location = new System.Drawing.Point(314, 86);
-            this.textBoxAjoutSouhaitSurfHab.Name = "textBoxAjoutSouhaitSurfHab";
-            this.textBoxAjoutSouhaitSurfHab.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutSouhaitSurfHab.TabIndex = 2;
-            this.textBoxAjoutSouhaitSurfHab.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitSurfHab_TextChanged);
-            // 
-            // textBoxAjoutSouhaitsBudget
-            // 
-            this.textBoxAjoutSouhaitsBudget.Location = new System.Drawing.Point(314, 50);
-            this.textBoxAjoutSouhaitsBudget.Name = "textBoxAjoutSouhaitsBudget";
-            this.textBoxAjoutSouhaitsBudget.Size = new System.Drawing.Size(112, 20);
-            this.textBoxAjoutSouhaitsBudget.TabIndex = 2;
-            this.textBoxAjoutSouhaitsBudget.TextChanged += new System.EventHandler(this.textBoxAjoutSouhaitsBudget_TextChanged);
-            // 
             // trackBarAjoutSouhaitJardin
             // 
             this.trackBarAjoutSouhaitJardin.Location = new System.Drawing.Point(155, 122);
@@ -272,24 +288,31 @@
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
             this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
-            // label4
+            // numericUpDownSurfJard
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(238, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Agent :";
+            this.numericUpDownSurfJard.Location = new System.Drawing.Point(314, 121);
+            this.numericUpDownSurfJard.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
+            this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfJard.TabIndex = 11;
+            this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
             // 
-            // comboBoxAgent
+            // numericUpDownSurfHab
             // 
-            this.comboBoxAgent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAgent.FormattingEnabled = true;
-            this.comboBoxAgent.Location = new System.Drawing.Point(286, 19);
-            this.comboBoxAgent.Name = "comboBoxAgent";
-            this.comboBoxAgent.Size = new System.Drawing.Size(164, 21);
-            this.comboBoxAgent.TabIndex = 9;
-            this.comboBoxAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
+            this.numericUpDownSurfHab.Location = new System.Drawing.Point(314, 85);
+            this.numericUpDownSurfHab.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
+            this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfHab.TabIndex = 11;
+            this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
             // 
             // UCAjouterSouhait
             // 
@@ -301,9 +324,12 @@
             this.Size = new System.Drawing.Size(533, 306);
             this.groupBoxAjoutSouhaits.ResumeLayout(false);
             this.groupBoxAjoutSouhaits.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitJardin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitSurfHab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitsBudget)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -317,9 +343,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxAjoutSouhaitJardin;
-        private System.Windows.Forms.TextBox textBoxAjoutSouhaitSurfHab;
-        private System.Windows.Forms.TextBox textBoxAjoutSouhaitsBudget;
         private System.Windows.Forms.TrackBar trackBarAjoutSouhaitJardin;
         private System.Windows.Forms.TrackBar trackBarAjoutSouhaitSurfHab;
         private System.Windows.Forms.TrackBar trackBarAjoutSouhaitsBudget;
@@ -332,5 +355,8 @@
         private System.Windows.Forms.Button buttonAddVilles;
         private System.Windows.Forms.ComboBox comboBoxAgent;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numericUpDownBudget;
+        private System.Windows.Forms.NumericUpDown numericUpDownSurfHab;
+        private System.Windows.Forms.NumericUpDown numericUpDownSurfJard;
     }
 }

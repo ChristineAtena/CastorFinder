@@ -75,6 +75,12 @@
     <Compile Include="UserInterface\APropos.Designer.cs">
       <DependentUpon>APropos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\ConnexionBDD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ConnexionBDD.Designer.cs">
+      <DependentUpon>ConnexionBDD.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\TrouverRDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\APropos.resx">
       <DependentUpon>APropos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\ConnexionBDD.resx">
+      <DependentUpon>ConnexionBDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\TrouverRDV.resx">
       <DependentUpon>TrouverRDV.cs</DependentUpon>

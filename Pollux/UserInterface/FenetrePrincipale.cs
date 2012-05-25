@@ -14,6 +14,14 @@ namespace Pollux
 {       
     public partial class FenetrePrincipale : Form
     {
+        private static string adresseBaseDeDonnees = "localhost";
+
+        public static string AdresseBaseDeDonnees
+        {
+            get { return FenetrePrincipale.adresseBaseDeDonnees; }
+            set { FenetrePrincipale.adresseBaseDeDonnees = value; }
+        }
+
         private UserControl mdiChild;
 
         public UserControl MdiChild

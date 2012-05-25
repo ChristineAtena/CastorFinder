@@ -11,7 +11,8 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        
+        // Cherche le bien dont l'index est fourni en paramètre et le retourne
+        // sinon retourne null
         static private Bien TrouverBien(int index)
         {
             Bien bien = null;
@@ -20,7 +21,7 @@ namespace Pollux.DataBase
                 string requete = "SELECT * FROM BIENS WHERE NUM_B = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())  // si il remonte une ligne, le bien a été trouvé
                 {
                     Ville ville = TrouverVille(reader.GetInt16(1));
                     Client client = TrouverClient(reader.GetInt16(2));
@@ -29,8 +30,8 @@ namespace Pollux.DataBase
                     int surfHab = reader.GetInt16(5);
                     int surfJard = reader.GetInt16(6);
                     bien = new Bien(index, prix, date,surfHab, surfJard, ville, client);
-                    break;
                 }
+                // déconnexion
                 reader.Close();
                 connect.Close();
             }
@@ -41,6 +42,14 @@ namespace Pollux.DataBase
         static public List<Bien> GetListeBiens()
         {
             List<Bien> listeBiens = new List<Bien>();
+            Ville ville;
+            int index;
+            int prix;
+            int surfHab;
+            int surfJard;
+            DateTime date;
+            Client client;
+            Bien bien;
             if (DBConnect())
             {
                 string requete = "SELECT NUM_B, PRIX_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, "
@@ -52,14 +61,14 @@ namespace Pollux.DataBase
                 // ajout des biens dans la liste
                 while (reader.Read())
                 {
-                    Ville ville = new Ville(reader.GetInt32(7), reader.GetString(6), reader.GetInt16(5));
-                    int index = reader.GetInt16(0);
-                    int prix = reader.GetInt32(1);
-                    int surfHab = reader.GetInt16(2);
-                    int surfJard = reader.GetInt16(3);
-                    DateTime date = reader.GetDateTime(4);
-                    Client client = SqlDataProvider.TrouverClient(reader.GetInt16(8));
-                    Bien bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
+                    index = reader.GetInt16(0);
+                    prix = reader.GetInt32(1);
+                    surfHab = reader.GetInt16(2);
+                    surfJard = reader.GetInt16(3);
+                    date = reader.GetDateTime(4);
+                    ville = new Ville(reader.GetInt32(7), reader.GetString(6), reader.GetInt16(5));
+                    client = SqlDataProvider.TrouverClient(reader.GetInt16(8));
+                    bien = new Bien(index, prix, date, surfHab, surfJard, ville, client);
                     listeBiens.Add(bien);
                 }
                 // déconnexion

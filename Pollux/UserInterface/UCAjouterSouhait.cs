@@ -24,7 +24,7 @@ namespace Pollux.UserInterface
             buttonAjouter.Enabled = false;
             disableNumericUpDowns();
         }
-        public UCAjouterSouhait(Client client, bool clientExiste)
+        public UCAjouterSouhait(Client client)
         {
             InitializeComponent();
             loadVilles();
@@ -44,19 +44,16 @@ namespace Pollux.UserInterface
         #region Chargement des comboBox
         private void loadAgents()
         {
-            comboBoxAgent.Items.Clear();
             List<Agent> listeAgents = SqlDataProvider.GetListeAgents();
             comboBoxAgent.DataSource = listeAgents;
         }
         private void loadClients()
         {
-            comboBoxAcheteur.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
             comboBoxAcheteur.DataSource = listeClient;
         }
         private void loadVilles()
         {
-            listBoxVilles.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
             listBoxVilles.DataSource = listeVilles;
         }

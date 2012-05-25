@@ -35,21 +35,21 @@ namespace Pollux.DataBase
         // Retrouver un agent à partir de son index
         static public Agent TrouverAgent(int index)
         {
+            Agent agent = null;
             if (DBConnect())
             {
                 string requete = "SELECT PRÉNOM_A FROM AGENTS WHERE NUM_A = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
                     string prenom = reader.GetString(0);
-                    Agent agent = new Agent(index, prenom);
-                    return agent;
+                    agent = new Agent(index, prenom);
                 }
                 reader.Close();
                 connect.Close();
             }
-            return null;
+            return agent;
         }
 
         static public bool AjouterAgent(string prenom)
@@ -58,7 +58,10 @@ namespace Pollux.DataBase
             if (DBConnect())
             // si connexion
             {
-                string requete = "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'"+prenom+"')";
+                string requete = "if not exists(select PRÉNOM_A from AGENTS where PRÉNOM_A = N'" + prenom + "' ) "
+                                + "begin "
+	                            + "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'" + prenom + "') "
+                                + "end ";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 int rowCount = command.ExecuteNonQuery();
                 if (rowCount == 1)

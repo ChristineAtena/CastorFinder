@@ -11,6 +11,8 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
+        // Cherche le souhait dont l'index est fourni en paramètre et le retourne
+        // sinon retourne null
         static private Souhait TrouverSouhait (int index)
         {
             Souhait souhait = null;
@@ -19,39 +21,15 @@ namespace Pollux.DataBase
                 string requete = "SELECT * FROM SOUHAITS WHERE NUM_S = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())  // si il remonte une ligne, le souhait a été trouvé
                 {
-                    Client client = TrouverClient (reader.GetInt16(1));
-                    int budget;
-                    try
-                    {
-                        budget = reader.GetInt32(2);
-                    }
-                    catch
-                    {
-                        budget = -1;
-                    }
-                    int surfHab;
-                    try
-                    {
-                        surfHab = reader.GetInt16(3);
-                    }
-                    catch
-                    {
-                        surfHab = -1;
-                    }
-                    int surfJard;
-                    try
-                    {
-                        surfJard = reader.GetInt16(4);
-                    }
-                    catch
-                    {
-                        surfJard = -1;
-                    }
+                    Client client = TrouverClient(reader.GetInt16(1));
+                    int budget = !DBNull.Value.Equals(reader[2]) ? reader.GetInt32(2) : -1;
+                    int surfHab = !DBNull.Value.Equals(reader[3]) ? reader.GetInt16(3) : -1;
+                    int surfJard = !DBNull.Value.Equals(reader[4]) ? reader.GetInt16(4) : -1;
                     souhait = new Souhait(index, budget, surfHab, surfJard, TrouverVillesFromIndexSouhait(index), client);
-                    break;
                 }
+                // déconnexion
                 reader.Close();
                 connect.Close();
             }

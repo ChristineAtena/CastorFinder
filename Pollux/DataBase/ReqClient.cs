@@ -11,24 +11,6 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        static public int TrouverClient(string nom, string adresse)
-        {
-            int index = -1;
-            if (DBConnect())
-            {
-                string requete = string.Format("SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}'", nom, adresse);
-                OleDbCommand command = new OleDbCommand(requete, connect);
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    index = reader.GetInt16(0);
-                    // déconnexion
-                    connect.Close();
-                    break;
-                }
-            }
-            return index;
-        }
         /// <summary>
         /// Construire un client à partir de son index
         /// </summary>
@@ -36,29 +18,24 @@ namespace Pollux.DataBase
         /// <returns>le client construit</returns>
         static public Client TrouverClient(int index)
         {
-            int indexAgent;
             Client client = null;
             if (DBConnect())
             {
                 string requete = "SELECT * FROM CLIENTS WHERE NUM_C = "+index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())  // si il remonte une ligne, le client a été trouvé
                 {
                     int indexVille = reader.GetInt16(1);
-                    try
-                    {
-                        indexAgent = reader.GetInt16(2);
-                    }
-                    catch { indexAgent = -1; }
+                    int indexAgent = !DBNull.Value.Equals(reader[2]) ? reader.GetInt16(2) : -1; 
                     string nom = reader.GetString(3);
                     string adresse = reader.GetString(4);
                     string telephone = reader.GetString(5);
-                    // déconnexion
-                    connect.Close();
                     client = new Client(index, nom, adresse, telephone, indexAgent, indexVille);
-                    break;
                 }
+                // déconnexion
+                reader.Close();
+                connect.Close();
             }
             return client;
         }
@@ -114,11 +91,7 @@ namespace Pollux.DataBase
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    try
-                    {
-                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
-                    }
-                    catch (Exception) { agent = null; }
+                    agent = !DBNull.Value.Equals(reader[4]) ? SqlDataProvider.TrouverAgent(reader.GetInt16(4)) : null; 
                     ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
@@ -150,11 +123,7 @@ namespace Pollux.DataBase
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    try
-                    {
-                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
-                    }
-                    catch (Exception) { agent = null; }
+                    agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4)); 
                     ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
@@ -182,11 +151,7 @@ namespace Pollux.DataBase
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    try
-                    {
-                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
-                    }
-                    catch(Exception)  { agent = null; }
+                    agent = !DBNull.Value.Equals(reader[4]) ? SqlDataProvider.TrouverAgent(reader.GetInt16(4)) : null; 
                     ville = SqlDataProvider.TrouverVille(reader.GetInt16(5));
                     client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, ville);
                     listeClients.Add(client);
@@ -203,25 +168,17 @@ namespace Pollux.DataBase
         static public Client ClientExiste(string nom, Ville ville)
         {
             Client client = null;
-            Agent agent;
             if (DBConnect())
             {
                 string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS WHERE NOM_C=N'"+nom+"' AND NUM_V=N'"+ville.Index+"'";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    try
-                    {
-                        agent = SqlDataProvider.TrouverAgent(reader.GetInt16(4));
-                    }
-                    catch (Exception) { agent = null; }
-                    try
-                    {
-                        Ville villeC = SqlDataProvider.TrouverVille(reader.GetInt16(5));
-                        client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, villeC);
-                    }
-                    catch (Exception) { client = null; }
+                if (reader.Read())
+                {   
+                    // si il remonte une ligne, le client a été trouvé
+                    Agent agent = !DBNull.Value.Equals(reader[4]) ? SqlDataProvider.TrouverAgent(reader.GetInt16(4)) : null; 
+                    Ville villeC = SqlDataProvider.TrouverVille(reader.GetInt16(5));
+                    client = new Client(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), agent, villeC);
                 }
                 // déconnexion
                 reader.Close();

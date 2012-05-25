@@ -26,26 +26,12 @@ namespace Pollux.UserInterface
         #region Chargement des comboBox
         private void loadAgents()
         {
-            comboBoxAgents.Items.Clear();
             List<Agent> listeAgents = SqlDataProvider.GetListeAgents();
-            /*
-            foreach (Agent agent in listeAgents)
-            {
-                comboBoxAgents.Items.Add(agent);
-            }
-            */
             comboBoxAgents.DataSource = listeAgents;
         }
         private void loadVilles()
         {
-            comboBoxVilles.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
-            /*
-            foreach (Ville ville in listeVilles)
-            {
-                comboBoxVilles.Items.Add(ville);
-            }
-            */
             comboBoxVilles.DataSource = listeVilles;
         }
         #endregion
@@ -68,13 +54,13 @@ namespace Pollux.UserInterface
                     MessageBox.Show("Ce client existe déjà.", "Attention", MessageBoxButtons.OK);
                     if (radioButtonBien.Checked)
                     {
-                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, true);
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client);
                         ((FenetrePrincipale)this.Parent).init();
                         this.Dispose();
                     }
                     else
                     {
-                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, true);
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client);
                         ((FenetrePrincipale)this.Parent).init();
                         this.Dispose();
                     }
@@ -84,7 +70,7 @@ namespace Pollux.UserInterface
                     client = new Client(textBoxNom.Text, textBoxAdresse.Text, textBoxTelephone.Text, ((Ville)comboBoxVilles.SelectedItem).Index);
                     if (radioButtonBien.Checked)
                     {
-                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client, false);
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterBien(client);
                         ((FenetrePrincipale)this.Parent).init();
                         this.Dispose();
                     }
@@ -92,7 +78,7 @@ namespace Pollux.UserInterface
                     {
                         client.Agent = (Agent)comboBoxAgents.SelectedItem;
 
-                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client, false);
+                        ((FenetrePrincipale)this.Parent).MdiChild = new UCAjouterSouhait(client);
                         ((FenetrePrincipale)this.Parent).init();
                         this.Dispose();
                     }

@@ -14,7 +14,7 @@ namespace Pollux.UserInterface
 {
     public partial class UCAjouterBien : UserControl
     {
-        private Client client;  // UTILE ?? pas l'impression
+        private Client client;
         public UCAjouterBien()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Pollux.UserInterface
             loadVilles();
             buttonAjouter.Enabled = false;
         }
-        public UCAjouterBien(Client c, bool clientExiste)
+        public UCAjouterBien(Client c)
         {
             client = c;
             InitializeComponent();
@@ -37,20 +37,12 @@ namespace Pollux.UserInterface
         #region Chargement des comboBox
         private void loadClients()
         {
-            comboBoxProprietaire.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
             comboBoxProprietaire.DataSource = listeClient;
         }
         private void loadVilles()
         {
-            comboBoxVille.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
-            /*
-            foreach (Ville ville in listeVilles)
-            {
-                comboBoxVille.Items.Add(ville);
-            }
-            */
             comboBoxVille.DataSource = listeVilles;
         }
         #endregion
@@ -155,6 +147,11 @@ namespace Pollux.UserInterface
                 buttonAjouter.Enabled = true;
             else
                 buttonAjouter.Enabled = false;
+        }
+
+        private void numericUpDownBudget_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarAjoutBienPrix.Value = (int)numericUpDownBudget.Value;
         }
     }
 }

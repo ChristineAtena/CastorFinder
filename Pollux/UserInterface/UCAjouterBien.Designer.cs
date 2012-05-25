@@ -133,6 +133,7 @@
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownBudget.TabIndex = 26;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
+            this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
             // dateMiseEnVente
             // 

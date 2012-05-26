@@ -87,31 +87,15 @@ namespace Pollux.UserInterface
         }
         #endregion
 
-        #region Activation boutons Recherche d'un rendez-vous et Créer
-        private void comboBoxBiens_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxClients.SelectedItem != null)
-            {
-                buttonRDV.Enabled = true;
-                buttonCréer.Enabled = true;
-            }
-        }
         private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxTelephone.Text = ((Client)comboBoxClients.SelectedItem).Telephone;
-            if (comboBoxBiens.SelectedItem != null)
-            {
-                buttonRDV.Enabled = true;
-                buttonCréer.Enabled = true;
-            }
         }
-        #endregion
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
-
 
         /// <summary>
         /// Affiche une fenetre avec le calendrier de l'agent pour choisir le jour et l'heure de la visite
@@ -121,6 +105,7 @@ namespace Pollux.UserInterface
             TrouverRDV rdv = new TrouverRDV(((Client)comboBoxClients.SelectedItem).Agent, (Bien)comboBoxBiens.SelectedItem);
             if (rdv.ShowDialog() == DialogResult.OK)
             {
+                buttonCréer.Enabled = true;
                 date = rdv.Date;
                 dateTimePickerDate.Value = date;
                 dateTimePickerHeure.Value = date;

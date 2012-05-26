@@ -70,7 +70,7 @@ namespace Pollux.UserInterface
 
         private void listViewJour_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (listViewJour.SelectedIndices.Count != 0)
             {
                 if (listViewJour.SelectedItems[0].SubItems[1].Text != "")
                 {
@@ -78,7 +78,7 @@ namespace Pollux.UserInterface
                     textBoxNomProprio.Text = ((Visite)listViewJour.SelectedItems[0].Tag).Bien.Client.Nom;
                 }
             }
-            catch
+            else
             {
                 textBoxNumBien.Text = "";
                 textBoxNomProprio.Text = "";

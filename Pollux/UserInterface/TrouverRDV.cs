@@ -70,23 +70,13 @@ namespace Pollux.UserInterface
         // Activation du bouton Valider si la plage horaire sélectionnée est libre
         private void listViewJour_SelectedIndexChanged(object sender, EventArgs e)
         {
-          /*   if (listViewJour.SelectedItems.Count == 0)
-                 buttonValider.Enabled = false;
-             else if (listViewJour.SelectedItems[0].SubItems[1].Text != "") 
-                     buttonValider.Enabled = true;
-                  else
-                     buttonValider.Enabled = false;
-           */
-           try
+            if (listViewJour.SelectedIndices.Count != 0)
             {
                 if (listViewJour.SelectedItems[0].SubItems[1].Text != "")
                     buttonValider.Enabled = false;
+                else
+                    buttonValider.Enabled = true;
             }
-            catch
-            {
-                buttonValider.Enabled = true;
-            }
-         
         }
 
         private void buttonValider_Click(object sender, EventArgs e)

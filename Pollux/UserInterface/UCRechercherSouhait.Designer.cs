@@ -40,18 +40,18 @@
             this.buttonRechercher = new System.Windows.Forms.Button();
             this.checkBoxVille = new System.Windows.Forms.CheckBox();
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
-            this.trackBarRechBienJardin = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfJard = new System.Windows.Forms.TrackBar();
             this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
-            this.trackBarRechBienSurf = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfHab = new System.Windows.Forms.TrackBar();
             this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
-            this.trackBarRechBienPrix = new System.Windows.Forms.TrackBar();
+            this.trackBarBudget = new System.Windows.Forms.TrackBar();
             this.groupBoxRechSouhait.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienJardin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienSurf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienPrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxRechSouhait
@@ -67,11 +67,11 @@
             this.groupBoxRechSouhait.Controls.Add(this.buttonRechercher);
             this.groupBoxRechSouhait.Controls.Add(this.checkBoxVille);
             this.groupBoxRechSouhait.Controls.Add(this.checkBoxJardin);
-            this.groupBoxRechSouhait.Controls.Add(this.trackBarRechBienJardin);
+            this.groupBoxRechSouhait.Controls.Add(this.trackBarSurfJard);
             this.groupBoxRechSouhait.Controls.Add(this.checkBoxSurfHab);
-            this.groupBoxRechSouhait.Controls.Add(this.trackBarRechBienSurf);
+            this.groupBoxRechSouhait.Controls.Add(this.trackBarSurfHab);
             this.groupBoxRechSouhait.Controls.Add(this.checkBoxBudgetMax);
-            this.groupBoxRechSouhait.Controls.Add(this.trackBarRechBienPrix);
+            this.groupBoxRechSouhait.Controls.Add(this.trackBarBudget);
             this.groupBoxRechSouhait.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxRechSouhait.Location = new System.Drawing.Point(0, 30);
             this.groupBoxRechSouhait.Name = "groupBoxRechSouhait";
@@ -92,6 +92,7 @@
             this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownSurfHab.TabIndex = 24;
             this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
+            this.numericUpDownSurfHab.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfHab_KeyUp);
             // 
             // numericUpDownSurfJard
             // 
@@ -105,6 +106,7 @@
             this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownSurfJard.TabIndex = 23;
             this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
+            this.numericUpDownSurfJard.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfJard_KeyUp);
             // 
             // numericUpDownBudget
             // 
@@ -123,6 +125,7 @@
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownBudget.TabIndex = 22;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
+            this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
             // label13
             // 
@@ -204,15 +207,15 @@
             this.checkBoxJardin.UseVisualStyleBackColor = true;
             this.checkBoxJardin.CheckedChanged += new System.EventHandler(this.checkBoxJardin_CheckedChanged);
             // 
-            // trackBarRechBienJardin
+            // trackBarSurfJard
             // 
-            this.trackBarRechBienJardin.Location = new System.Drawing.Point(155, 104);
-            this.trackBarRechBienJardin.Maximum = 10000;
-            this.trackBarRechBienJardin.Name = "trackBarRechBienJardin";
-            this.trackBarRechBienJardin.Size = new System.Drawing.Size(153, 45);
-            this.trackBarRechBienJardin.TabIndex = 13;
-            this.trackBarRechBienJardin.TickFrequency = 0;
-            this.trackBarRechBienJardin.Scroll += new System.EventHandler(this.trackBarRechBienJardin_Scroll);
+            this.trackBarSurfJard.Location = new System.Drawing.Point(155, 104);
+            this.trackBarSurfJard.Maximum = 10000;
+            this.trackBarSurfJard.Name = "trackBarSurfJard";
+            this.trackBarSurfJard.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfJard.TabIndex = 13;
+            this.trackBarSurfJard.TickFrequency = 0;
+            this.trackBarSurfJard.Scroll += new System.EventHandler(this.trackBarSurfJard_Scroll);
             // 
             // checkBoxSurfHab
             // 
@@ -225,15 +228,15 @@
             this.checkBoxSurfHab.UseVisualStyleBackColor = true;
             this.checkBoxSurfHab.CheckedChanged += new System.EventHandler(this.checkBoxSurfHab_CheckedChanged);
             // 
-            // trackBarRechBienSurf
+            // trackBarSurfHab
             // 
-            this.trackBarRechBienSurf.Location = new System.Drawing.Point(155, 66);
-            this.trackBarRechBienSurf.Maximum = 300;
-            this.trackBarRechBienSurf.Name = "trackBarRechBienSurf";
-            this.trackBarRechBienSurf.Size = new System.Drawing.Size(153, 45);
-            this.trackBarRechBienSurf.TabIndex = 14;
-            this.trackBarRechBienSurf.TickFrequency = 0;
-            this.trackBarRechBienSurf.Scroll += new System.EventHandler(this.trackBarRechBienSurf_Scroll);
+            this.trackBarSurfHab.Location = new System.Drawing.Point(155, 66);
+            this.trackBarSurfHab.Maximum = 300;
+            this.trackBarSurfHab.Name = "trackBarSurfHab";
+            this.trackBarSurfHab.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfHab.TabIndex = 14;
+            this.trackBarSurfHab.TickFrequency = 0;
+            this.trackBarSurfHab.Scroll += new System.EventHandler(this.trackBarSurfHab_Scroll);
             // 
             // checkBoxBudgetMax
             // 
@@ -246,15 +249,15 @@
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
             this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
-            // trackBarRechBienPrix
+            // trackBarBudget
             // 
-            this.trackBarRechBienPrix.Location = new System.Drawing.Point(155, 32);
-            this.trackBarRechBienPrix.Maximum = 1000000;
-            this.trackBarRechBienPrix.Name = "trackBarRechBienPrix";
-            this.trackBarRechBienPrix.Size = new System.Drawing.Size(153, 45);
-            this.trackBarRechBienPrix.TabIndex = 15;
-            this.trackBarRechBienPrix.TickFrequency = 0;
-            this.trackBarRechBienPrix.Scroll += new System.EventHandler(this.trackBarRechBienPrix_Scroll);
+            this.trackBarBudget.Location = new System.Drawing.Point(155, 32);
+            this.trackBarBudget.Maximum = 1000000;
+            this.trackBarBudget.Name = "trackBarBudget";
+            this.trackBarBudget.Size = new System.Drawing.Size(153, 45);
+            this.trackBarBudget.TabIndex = 15;
+            this.trackBarBudget.TickFrequency = 0;
+            this.trackBarBudget.Scroll += new System.EventHandler(this.trackBarBudget_Scroll);
             // 
             // UCRechercherSouhait
             // 
@@ -269,9 +272,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienJardin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienSurf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarRechBienPrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,9 +292,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TrackBar trackBarRechBienJardin;
-        private System.Windows.Forms.TrackBar trackBarRechBienSurf;
-        private System.Windows.Forms.TrackBar trackBarRechBienPrix;
+        private System.Windows.Forms.TrackBar trackBarSurfJard;
+        private System.Windows.Forms.TrackBar trackBarSurfHab;
+        private System.Windows.Forms.TrackBar trackBarBudget;
         private System.Windows.Forms.NumericUpDown numericUpDownSurfHab;
         private System.Windows.Forms.NumericUpDown numericUpDownSurfJard;
         private System.Windows.Forms.NumericUpDown numericUpDownBudget;

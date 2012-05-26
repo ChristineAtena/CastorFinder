@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Pollux.Object;
 using Pollux.DataBase;
+using System.Configuration;
 
 namespace Pollux.UserInterface
 {
@@ -19,12 +20,37 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadVilles();
             disableNumericUpDowns();
+            InitialisationParametres();
+        }
+
+        private void InitialisationParametres()
+        {
+            // Budget
+            trackBarBudget.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxBudget"]);
+            trackBarBudget.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinBudget"]);
+            trackBarBudget.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasBudget"]);
+            numericUpDownBudget.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxBudget"]);
+            numericUpDownBudget.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinBudget"]);
+            numericUpDownBudget.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasBudget"]);
+            // Surface Habitable
+            trackBarSurfHab.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxSurfHab"]);
+            trackBarSurfHab.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinSurfHab"]);
+            trackBarSurfHab.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasSurfHab"]);
+            numericUpDownSurfHab.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxSurfHab"]);
+            numericUpDownSurfHab.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinSurfHab"]);
+            numericUpDownSurfHab.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasSurfHab"]);
+            //Surface Jardin
+            trackBarSurfJard.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxSurfJard"]);
+            trackBarSurfJard.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinSurfJard"]);
+            trackBarSurfJard.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasSurfJard"]);
+            numericUpDownSurfJard.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxSurfJard"]);
+            numericUpDownSurfJard.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinSurfJard"]);
+            numericUpDownSurfJard.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasSurfJard"]);
         }
 
         #region Chargement des comboBox
         private void loadVilles()
         {
-            comboBoxVilles.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
             comboBoxVilles.DataSource = listeVilles;
             comboBoxVilles.SelectedIndex = -1;
@@ -32,19 +58,19 @@ namespace Pollux.UserInterface
         #endregion
 
         #region TrackBars
-        private void trackBarRechBienPrix_Scroll(object sender, EventArgs e)
+        private void trackBarBudget_Scroll(object sender, EventArgs e)
         {
-            numericUpDownBudget.Value = trackBarRechBienPrix.Value;
+            numericUpDownBudget.Value = trackBarBudget.Value;
             checkBoxBudgetMax.Checked = true;
         }
-        private void trackBarRechBienSurf_Scroll(object sender, EventArgs e)
+        private void trackBarSurfHab_Scroll(object sender, EventArgs e)
         {
-            numericUpDownSurfHab.Value = trackBarRechBienSurf.Value;
+            numericUpDownSurfHab.Value = trackBarSurfHab.Value;
             checkBoxSurfHab.Checked = true;
         }
-        private void trackBarRechBienJardin_Scroll(object sender, EventArgs e)
+        private void trackBarSurfJard_Scroll(object sender, EventArgs e)
         {
-            numericUpDownSurfJard.Value = trackBarRechBienJardin.Value;
+            numericUpDownSurfJard.Value = trackBarSurfJard.Value;
             checkBoxJardin.Checked = true;
         }
         #endregion
@@ -52,16 +78,31 @@ namespace Pollux.UserInterface
         #region numericUpDown
         private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
         {
-            trackBarRechBienPrix.Value = (int)numericUpDownBudget.Value;
+            trackBarBudget.Value = (int)numericUpDownBudget.Value;
         }
         private void numericUpDownSurfHab_ValueChanged(object sender, EventArgs e)
         {
-            trackBarRechBienSurf.Value = (int)numericUpDownSurfHab.Value;
+            trackBarSurfHab.Value = (int)numericUpDownSurfHab.Value;
         }
 
         private void numericUpDownSurfJard_ValueChanged(object sender, EventArgs e)
         {
-            trackBarRechBienJardin.Value = (int)numericUpDownSurfJard.Value;
+            trackBarSurfJard.Value = (int)numericUpDownSurfJard.Value;
+        }
+
+        private void numericUpDownBudget_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarBudget.Value = (int)numericUpDownBudget.Value;
+        }
+
+        private void numericUpDownSurfHab_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarSurfHab.Value = (int)numericUpDownSurfHab.Value;
+        }
+
+        private void numericUpDownSurfJard_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarSurfJard.Value = (int)numericUpDownSurfJard.Value;
         }
         #endregion
 
@@ -90,13 +131,13 @@ namespace Pollux.UserInterface
             // si coche la case, on fixe le budget a son maximum
             if (checkBoxBudgetMax.Checked == true)
             {
-                numericUpDownBudget.Value = trackBarRechBienPrix.Maximum;
+                numericUpDownBudget.Value = trackBarBudget.Maximum;
                 numericUpDownBudget.Enabled = true;
             }
             else // si décoche la case, on remet à zéro
             {
                 numericUpDownBudget.Value = 0;
-                trackBarRechBienPrix.Value = 0;
+                trackBarBudget.Value = 0;
                 numericUpDownBudget.Enabled = false;
             }
         }
@@ -107,13 +148,13 @@ namespace Pollux.UserInterface
             // si coche la case, on fixe la surf Hab à son minimum
             if (checkBoxSurfHab.Checked == true)
             {
-                numericUpDownSurfHab.Value = trackBarRechBienSurf.Minimum;
+                numericUpDownSurfHab.Value = trackBarSurfHab.Minimum;
                 numericUpDownSurfHab.Enabled = true;
             }
             else // si décoche la case, on remet à zéro
             {
                 numericUpDownSurfHab.Value = 0;
-                trackBarRechBienSurf.Value = 0;
+                trackBarSurfHab.Value = 0;
                 numericUpDownSurfHab.Enabled = false;
             }
         }
@@ -124,13 +165,13 @@ namespace Pollux.UserInterface
             // si coche la case, on fixe la surf du jardin à son minimum
             if (checkBoxJardin.Checked == true)
             {
-                numericUpDownSurfJard.Value = trackBarRechBienJardin.Minimum;
+                numericUpDownSurfJard.Value = trackBarSurfJard.Minimum;
                 numericUpDownSurfJard.Enabled = true;
             }
             else // si décoche la case, on remet à zéro
             {
                 numericUpDownSurfJard.Value = 0;
-                trackBarRechBienJardin.Value = 0;
+                trackBarSurfJard.Value = 0;
                 numericUpDownSurfJard.Enabled = false;
             }
         }

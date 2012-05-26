@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBoxAjoutSouhaits = new System.Windows.Forms.GroupBox();
+            this.numericUpDownSurfHab = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownSurfJard = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBudget = new System.Windows.Forms.NumericUpDown();
             this.listBoxVilles = new System.Windows.Forms.ListBox();
             this.comboBoxAgent = new System.Windows.Forms.ComboBox();
@@ -41,22 +43,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.trackBarAjoutSouhaitJardin = new System.Windows.Forms.TrackBar();
-            this.trackBarAjoutSouhaitSurfHab = new System.Windows.Forms.TrackBar();
-            this.trackBarAjoutSouhaitsBudget = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfJard = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfHab = new System.Windows.Forms.TrackBar();
+            this.trackBarBudget = new System.Windows.Forms.TrackBar();
             this.checkBoxVilles = new System.Windows.Forms.CheckBox();
             this.checkBoxJardin = new System.Windows.Forms.CheckBox();
             this.checkBoxSurfHab = new System.Windows.Forms.CheckBox();
             this.checkBoxBudgetMax = new System.Windows.Forms.CheckBox();
-            this.numericUpDownSurfJard = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownSurfHab = new System.Windows.Forms.NumericUpDown();
             this.groupBoxAjoutSouhaits.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitJardin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitSurfHab)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitsBudget)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxAjoutSouhaits
@@ -75,9 +75,9 @@
             this.groupBoxAjoutSouhaits.Controls.Add(this.label3);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label2);
             this.groupBoxAjoutSouhaits.Controls.Add(this.label1);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitJardin);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitSurfHab);
-            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarAjoutSouhaitsBudget);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarSurfJard);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarSurfHab);
+            this.groupBoxAjoutSouhaits.Controls.Add(this.trackBarBudget);
             this.groupBoxAjoutSouhaits.Controls.Add(this.checkBoxVilles);
             this.groupBoxAjoutSouhaits.Controls.Add(this.checkBoxJardin);
             this.groupBoxAjoutSouhaits.Controls.Add(this.checkBoxSurfHab);
@@ -89,6 +89,34 @@
             this.groupBoxAjoutSouhaits.TabIndex = 2;
             this.groupBoxAjoutSouhaits.TabStop = false;
             this.groupBoxAjoutSouhaits.Text = "Ajouter un souhait";
+            // 
+            // numericUpDownSurfHab
+            // 
+            this.numericUpDownSurfHab.Location = new System.Drawing.Point(314, 85);
+            this.numericUpDownSurfHab.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
+            this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfHab.TabIndex = 11;
+            this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
+            this.numericUpDownSurfHab.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfHab_KeyUp);
+            // 
+            // numericUpDownSurfJard
+            // 
+            this.numericUpDownSurfJard.Location = new System.Drawing.Point(314, 121);
+            this.numericUpDownSurfJard.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
+            this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
+            this.numericUpDownSurfJard.TabIndex = 11;
+            this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
+            this.numericUpDownSurfJard.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfJard_KeyUp);
             // 
             // numericUpDownBudget
             // 
@@ -107,6 +135,7 @@
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownBudget.TabIndex = 11;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
+            this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
             // listBoxVilles
             // 
@@ -126,7 +155,6 @@
             this.comboBoxAgent.Name = "comboBoxAgent";
             this.comboBoxAgent.Size = new System.Drawing.Size(164, 21);
             this.comboBoxAgent.TabIndex = 9;
-            this.comboBoxAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAcheteur_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -214,35 +242,35 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "€";
             // 
-            // trackBarAjoutSouhaitJardin
+            // trackBarSurfJard
             // 
-            this.trackBarAjoutSouhaitJardin.Location = new System.Drawing.Point(155, 122);
-            this.trackBarAjoutSouhaitJardin.Maximum = 10000;
-            this.trackBarAjoutSouhaitJardin.Name = "trackBarAjoutSouhaitJardin";
-            this.trackBarAjoutSouhaitJardin.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutSouhaitJardin.TabIndex = 1;
-            this.trackBarAjoutSouhaitJardin.TickFrequency = 0;
-            this.trackBarAjoutSouhaitJardin.Scroll += new System.EventHandler(this.trackBarAjoutSouhaitJardin_Scroll);
+            this.trackBarSurfJard.Location = new System.Drawing.Point(155, 122);
+            this.trackBarSurfJard.Maximum = 10000;
+            this.trackBarSurfJard.Name = "trackBarSurfJard";
+            this.trackBarSurfJard.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfJard.TabIndex = 1;
+            this.trackBarSurfJard.TickFrequency = 0;
+            this.trackBarSurfJard.Scroll += new System.EventHandler(this.trackBarSurfJard_Scroll);
             // 
-            // trackBarAjoutSouhaitSurfHab
+            // trackBarSurfHab
             // 
-            this.trackBarAjoutSouhaitSurfHab.Location = new System.Drawing.Point(155, 84);
-            this.trackBarAjoutSouhaitSurfHab.Maximum = 300;
-            this.trackBarAjoutSouhaitSurfHab.Name = "trackBarAjoutSouhaitSurfHab";
-            this.trackBarAjoutSouhaitSurfHab.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutSouhaitSurfHab.TabIndex = 1;
-            this.trackBarAjoutSouhaitSurfHab.TickFrequency = 0;
-            this.trackBarAjoutSouhaitSurfHab.Scroll += new System.EventHandler(this.trackBarAjoutSouhaitSurfHab_Scroll);
+            this.trackBarSurfHab.Location = new System.Drawing.Point(155, 84);
+            this.trackBarSurfHab.Maximum = 300;
+            this.trackBarSurfHab.Name = "trackBarSurfHab";
+            this.trackBarSurfHab.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfHab.TabIndex = 1;
+            this.trackBarSurfHab.TickFrequency = 0;
+            this.trackBarSurfHab.Scroll += new System.EventHandler(this.trackBarSurfHab_Scroll);
             // 
-            // trackBarAjoutSouhaitsBudget
+            // trackBarBudget
             // 
-            this.trackBarAjoutSouhaitsBudget.Location = new System.Drawing.Point(155, 50);
-            this.trackBarAjoutSouhaitsBudget.Maximum = 1000000;
-            this.trackBarAjoutSouhaitsBudget.Name = "trackBarAjoutSouhaitsBudget";
-            this.trackBarAjoutSouhaitsBudget.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutSouhaitsBudget.TabIndex = 1;
-            this.trackBarAjoutSouhaitsBudget.TickFrequency = 0;
-            this.trackBarAjoutSouhaitsBudget.Scroll += new System.EventHandler(this.trackBarAjoutSouhaitsBudget_Scroll);
+            this.trackBarBudget.Location = new System.Drawing.Point(155, 50);
+            this.trackBarBudget.Maximum = 1000000;
+            this.trackBarBudget.Name = "trackBarBudget";
+            this.trackBarBudget.Size = new System.Drawing.Size(153, 45);
+            this.trackBarBudget.TabIndex = 1;
+            this.trackBarBudget.TickFrequency = 0;
+            this.trackBarBudget.Scroll += new System.EventHandler(this.trackBarBudget_Scroll);
             // 
             // checkBoxVilles
             // 
@@ -288,32 +316,6 @@
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
             this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
             // 
-            // numericUpDownSurfJard
-            // 
-            this.numericUpDownSurfJard.Location = new System.Drawing.Point(314, 121);
-            this.numericUpDownSurfJard.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
-            this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfJard.TabIndex = 11;
-            this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
-            // 
-            // numericUpDownSurfHab
-            // 
-            this.numericUpDownSurfHab.Location = new System.Drawing.Point(314, 85);
-            this.numericUpDownSurfHab.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
-            this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfHab.TabIndex = 11;
-            this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
-            // 
             // UCAjouterSouhait
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,12 +326,12 @@
             this.Size = new System.Drawing.Size(533, 306);
             this.groupBoxAjoutSouhaits.ResumeLayout(false);
             this.groupBoxAjoutSouhaits.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitJardin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitSurfHab)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutSouhaitsBudget)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,9 +345,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TrackBar trackBarAjoutSouhaitJardin;
-        private System.Windows.Forms.TrackBar trackBarAjoutSouhaitSurfHab;
-        private System.Windows.Forms.TrackBar trackBarAjoutSouhaitsBudget;
+        private System.Windows.Forms.TrackBar trackBarSurfJard;
+        private System.Windows.Forms.TrackBar trackBarSurfHab;
+        private System.Windows.Forms.TrackBar trackBarBudget;
         private System.Windows.Forms.CheckBox checkBoxVilles;
         private System.Windows.Forms.CheckBox checkBoxJardin;
         private System.Windows.Forms.CheckBox checkBoxSurfHab;

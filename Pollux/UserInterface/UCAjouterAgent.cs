@@ -27,12 +27,12 @@ namespace Pollux.UserInterface
         {
             if (SqlDataProvider.AjouterAgent(textBoxPrenom.Text))
             {
-                MessageBox.Show("ajout OK", "coolos");
+                MessageBox.Show("Ajout de l'agent effectué", "Opération réussie");
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("ajout KO", "Prénom de l'agent déjà existant ?");
+                MessageBox.Show("L'agent existe déjà.", "Attention");
             }
         }
 

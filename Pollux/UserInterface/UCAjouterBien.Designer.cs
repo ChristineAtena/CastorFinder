@@ -47,16 +47,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.trackBarAjoutBienJardin = new System.Windows.Forms.TrackBar();
-            this.trackBarAjoutBienSurfHab = new System.Windows.Forms.TrackBar();
-            this.trackBarAjoutBienPrix = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfJard = new System.Windows.Forms.TrackBar();
+            this.trackBarSurfHab = new System.Windows.Forms.TrackBar();
+            this.trackBarBudget = new System.Windows.Forms.TrackBar();
             this.groupBoxAjoutBien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienJardin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienSurfHab)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienPrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxAjoutBien
@@ -79,9 +79,9 @@
             this.groupBoxAjoutBien.Controls.Add(this.label4);
             this.groupBoxAjoutBien.Controls.Add(this.label5);
             this.groupBoxAjoutBien.Controls.Add(this.label6);
-            this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienJardin);
-            this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienSurfHab);
-            this.groupBoxAjoutBien.Controls.Add(this.trackBarAjoutBienPrix);
+            this.groupBoxAjoutBien.Controls.Add(this.trackBarSurfJard);
+            this.groupBoxAjoutBien.Controls.Add(this.trackBarSurfHab);
+            this.groupBoxAjoutBien.Controls.Add(this.trackBarBudget);
             this.groupBoxAjoutBien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxAjoutBien.Location = new System.Drawing.Point(0, 30);
             this.groupBoxAjoutBien.Name = "groupBoxAjoutBien";
@@ -102,6 +102,7 @@
             this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownSurfJard.TabIndex = 26;
             this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
+            this.numericUpDownSurfJard.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfJard_KeyUp);
             // 
             // numericUpDownSurfHab
             // 
@@ -115,6 +116,7 @@
             this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownSurfHab.TabIndex = 26;
             this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
+            this.numericUpDownSurfHab.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfHab_KeyUp);
             // 
             // numericUpDownBudget
             // 
@@ -133,6 +135,7 @@
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
             this.numericUpDownBudget.TabIndex = 26;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
+            this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
             // dateMiseEnVente
             // 
@@ -272,35 +275,35 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "€";
             // 
-            // trackBarAjoutBienJardin
+            // trackBarSurfJard
             // 
-            this.trackBarAjoutBienJardin.Location = new System.Drawing.Point(104, 119);
-            this.trackBarAjoutBienJardin.Maximum = 10000;
-            this.trackBarAjoutBienJardin.Name = "trackBarAjoutBienJardin";
-            this.trackBarAjoutBienJardin.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutBienJardin.TabIndex = 1;
-            this.trackBarAjoutBienJardin.TickFrequency = 0;
-            this.trackBarAjoutBienJardin.Scroll += new System.EventHandler(this.trackBarAjoutBienJardin_Scroll);
+            this.trackBarSurfJard.Location = new System.Drawing.Point(104, 119);
+            this.trackBarSurfJard.Maximum = 10000;
+            this.trackBarSurfJard.Name = "trackBarSurfJard";
+            this.trackBarSurfJard.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfJard.TabIndex = 1;
+            this.trackBarSurfJard.TickFrequency = 0;
+            this.trackBarSurfJard.Scroll += new System.EventHandler(this.trackBarSurfJard_Scroll);
             // 
-            // trackBarAjoutBienSurfHab
+            // trackBarSurfHab
             // 
-            this.trackBarAjoutBienSurfHab.Location = new System.Drawing.Point(104, 83);
-            this.trackBarAjoutBienSurfHab.Maximum = 300;
-            this.trackBarAjoutBienSurfHab.Name = "trackBarAjoutBienSurfHab";
-            this.trackBarAjoutBienSurfHab.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutBienSurfHab.TabIndex = 1;
-            this.trackBarAjoutBienSurfHab.TickFrequency = 0;
-            this.trackBarAjoutBienSurfHab.Scroll += new System.EventHandler(this.trackBarAjoutBienSurfHab_Scroll);
+            this.trackBarSurfHab.Location = new System.Drawing.Point(104, 83);
+            this.trackBarSurfHab.Maximum = 300;
+            this.trackBarSurfHab.Name = "trackBarSurfHab";
+            this.trackBarSurfHab.Size = new System.Drawing.Size(153, 45);
+            this.trackBarSurfHab.TabIndex = 1;
+            this.trackBarSurfHab.TickFrequency = 0;
+            this.trackBarSurfHab.Scroll += new System.EventHandler(this.trackBarSurfHab_Scroll);
             // 
-            // trackBarAjoutBienPrix
+            // trackBarBudget
             // 
-            this.trackBarAjoutBienPrix.Location = new System.Drawing.Point(104, 47);
-            this.trackBarAjoutBienPrix.Maximum = 1000000;
-            this.trackBarAjoutBienPrix.Name = "trackBarAjoutBienPrix";
-            this.trackBarAjoutBienPrix.Size = new System.Drawing.Size(153, 45);
-            this.trackBarAjoutBienPrix.TabIndex = 1;
-            this.trackBarAjoutBienPrix.TickFrequency = 0;
-            this.trackBarAjoutBienPrix.Scroll += new System.EventHandler(this.trackBarAjoutBienPrix_Scroll);
+            this.trackBarBudget.Location = new System.Drawing.Point(104, 47);
+            this.trackBarBudget.Maximum = 1000000;
+            this.trackBarBudget.Name = "trackBarBudget";
+            this.trackBarBudget.Size = new System.Drawing.Size(153, 45);
+            this.trackBarBudget.TabIndex = 1;
+            this.trackBarBudget.TickFrequency = 0;
+            this.trackBarBudget.Scroll += new System.EventHandler(this.trackBarBudget_Scroll);
             // 
             // UCAjouterBien
             // 
@@ -315,9 +318,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfJard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSurfHab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBudget)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienJardin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienSurfHab)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarAjoutBienPrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfJard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSurfHab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarBudget)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -335,9 +338,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar trackBarAjoutBienJardin;
-        private System.Windows.Forms.TrackBar trackBarAjoutBienSurfHab;
-        private System.Windows.Forms.TrackBar trackBarAjoutBienPrix;
+        private System.Windows.Forms.TrackBar trackBarSurfJard;
+        private System.Windows.Forms.TrackBar trackBarSurfHab;
+        private System.Windows.Forms.TrackBar trackBarBudget;
         private System.Windows.Forms.ComboBox comboBoxProprietaire;
         private System.Windows.Forms.ComboBox comboBoxVille;
         private System.Windows.Forms.Button buttonAjoutVille;

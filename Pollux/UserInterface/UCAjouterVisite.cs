@@ -14,13 +14,13 @@ namespace Pollux.UserInterface
 {
     public partial class UCAjouterVisite : UserControl
     {
-        Souhait souhait = null;
-        DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour + 1, 0, 0);
-        
+        private Souhait souhait = null;
+        private DateTime date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0).AddHours(1);
+     
         public UCAjouterVisite()
         {
             InitializeComponent();
-            dateTimePickerHeure.Value = date;
+            dateTimePickerHeure.Value = dateTimePickerDate.Value = date;
             // Chargement de tous les clients acheteurs
             loadClients();
             // Chargement de tous les biens
@@ -30,7 +30,7 @@ namespace Pollux.UserInterface
         public UCAjouterVisite(Souhait souhait)
         {
             InitializeComponent();
-            dateTimePickerHeure.Value = date;
+            dateTimePickerHeure.Value = dateTimePickerDate.Value = date;
             // Fixation du souhait et de l'acheteur concerné
             this.souhait = souhait;
             textBoxTelephone.Text = souhait.Client.Telephone;

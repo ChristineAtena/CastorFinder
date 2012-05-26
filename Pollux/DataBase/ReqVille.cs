@@ -66,13 +66,13 @@ namespace Pollux.DataBase
                 string requete = "SELECT CODE_POSTAL_V, NOM_V FROM VILLES WHERE NUM_V = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
                     int cp = reader.GetInt32(0);
                     string nom = reader.GetString(1);
                     ville = new Ville(cp, nom, index);
-                    break;
                 }
+                //Deconnexion
                 reader.Close();
                 connect.Close();
             }
@@ -87,7 +87,7 @@ namespace Pollux.DataBase
                 string requete = string.Format("SELECT NUM_V FROM VILLES WHERE NOM_V = N'{0}' AND CODE_POSTAL_V = N'{1}'", nom, codePostal);
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
                     index = reader.GetInt16(0);
                 }

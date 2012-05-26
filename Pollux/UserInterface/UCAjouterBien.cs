@@ -9,20 +9,24 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using Pollux.DataBase;
 using Pollux.Object;
+using System.Configuration;
 
 namespace Pollux.UserInterface
 {
     public partial class UCAjouterBien : UserControl
     {
-        private Client client;  // UTILE ?? pas l'impression
+        private Client client;
+
         public UCAjouterBien()
         {
             InitializeComponent();
             loadClients();
             loadVilles();
             buttonAjouter.Enabled = false;
+            InitialisationParametres();
         }
-        public UCAjouterBien(Client c, bool clientExiste)
+
+        public UCAjouterBien(Client c)
         {
             client = c;
             InitializeComponent();
@@ -33,62 +37,95 @@ namespace Pollux.UserInterface
             comboBoxProprietaire.SelectedItem = client;
             comboBoxProprietaire.Enabled = false;
             buttonAjouter.Enabled = false;
+            InitialisationParametres();
         }
+
+        private void InitialisationParametres()
+        {
+            // Budget
+            trackBarBudget.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxBudget"]);
+            trackBarBudget.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinBudget"]);
+            trackBarBudget.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasBudget"]);
+            numericUpDownBudget.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxBudget"]);
+            numericUpDownBudget.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinBudget"]);
+            numericUpDownBudget.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasBudget"]);
+            // Surface Habitable
+            trackBarSurfHab.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxSurfHab"]);
+            trackBarSurfHab.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinSurfHab"]);
+            trackBarSurfHab.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasSurfHab"]);
+            numericUpDownSurfHab.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxSurfHab"]);
+            numericUpDownSurfHab.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinSurfHab"]);
+            numericUpDownSurfHab.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasSurfHab"]);
+            //Surface Jardin
+            trackBarSurfJard.Maximum = Convert.ToInt32(ConfigurationManager.AppSettings["MaxSurfJard"]);
+            trackBarSurfJard.Minimum = Convert.ToInt32(ConfigurationManager.AppSettings["MinSurfJard"]);
+            trackBarSurfJard.LargeChange = Convert.ToInt32(ConfigurationManager.AppSettings["PasSurfJard"]);
+            numericUpDownSurfJard.Maximum = Convert.ToDecimal(ConfigurationManager.AppSettings["MaxSurfJard"]);
+            numericUpDownSurfJard.Minimum = Convert.ToDecimal(ConfigurationManager.AppSettings["MinSurfJard"]);
+            numericUpDownSurfJard.Increment = Convert.ToDecimal(ConfigurationManager.AppSettings["PasSurfJard"]);
+        }
+
         #region Chargement des comboBox
         private void loadClients()
         {
-            comboBoxProprietaire.Items.Clear();
             List<Client> listeClient = SqlDataProvider.GetListeClients();
             comboBoxProprietaire.DataSource = listeClient;
         }
         private void loadVilles()
         {
-            comboBoxVille.Items.Clear();
             List<Ville> listeVilles = SqlDataProvider.GetListeVilles();
-            /*
-            foreach (Ville ville in listeVilles)
-            {
-                comboBoxVille.Items.Add(ville);
-            }
-            */
             comboBoxVille.DataSource = listeVilles;
         }
         #endregion
 
         #region Trackbars
-        private void trackBarAjoutBienPrix_Scroll(object sender, EventArgs e)
+        private void trackBarBudget_Scroll(object sender, EventArgs e)
         {
-            numericUpDownBudget.Value = trackBarAjoutBienPrix.Value;
+            numericUpDownBudget.Value = trackBarBudget.Value;
         }
 
-        private void trackBarAjoutBienSurfHab_Scroll(object sender, EventArgs e)
+        private void trackBarSurfHab_Scroll(object sender, EventArgs e)
         {
-            numericUpDownSurfHab.Value = trackBarAjoutBienSurfHab.Value;
+            numericUpDownSurfHab.Value = trackBarSurfHab.Value;
         }
 
-        private void trackBarAjoutBienJardin_Scroll(object sender, EventArgs e)
+        private void trackBarSurfJard_Scroll(object sender, EventArgs e)
         {
-            numericUpDownSurfJard.Value = trackBarAjoutBienJardin.Value;
+            numericUpDownSurfJard.Value = trackBarSurfJard.Value;
         } 
         #endregion
 
         #region numericUpDowns
         private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
         {
-            trackBarAjoutBienPrix.Value = (int)numericUpDownBudget.Value;
+            trackBarBudget.Value = (int)numericUpDownBudget.Value;
             activationBoutonCreer();
         }
 
         private void numericUpDownSurfHab_ValueChanged(object sender, EventArgs e)
         {
-            trackBarAjoutBienSurfHab.Value = (int)numericUpDownSurfHab.Value;
+            trackBarSurfHab.Value = (int)numericUpDownSurfHab.Value;
             activationBoutonCreer();
         }
 
         private void numericUpDownSurfJard_ValueChanged(object sender, EventArgs e)
         {
-            trackBarAjoutBienJardin.Value = (int)numericUpDownSurfJard.Value;
+            trackBarSurfJard.Value = (int)numericUpDownSurfJard.Value;
             activationBoutonCreer();
+        }
+        private void numericUpDownBudget_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarBudget.Value = (int)numericUpDownBudget.Value;
+        }
+
+        private void numericUpDownSurfHab_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarSurfHab.Value = (int)numericUpDownSurfHab.Value;
+        }
+
+        private void numericUpDownSurfJard_KeyUp(object sender, KeyEventArgs e)
+        {
+            trackBarSurfJard.Value = (int)numericUpDownSurfJard.Value;
         }
         #endregion
         
@@ -156,5 +193,6 @@ namespace Pollux.UserInterface
             else
                 buttonAjouter.Enabled = false;
         }
+
     }
 }

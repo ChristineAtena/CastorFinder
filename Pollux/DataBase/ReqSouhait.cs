@@ -11,6 +11,8 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
+        // Cherche le souhait dont l'index est fourni en paramètre et le retourne
+        // sinon retourne null
         static private Souhait TrouverSouhait (int index)
         {
             Souhait souhait = null;
@@ -19,46 +21,22 @@ namespace Pollux.DataBase
                 string requete = "SELECT * FROM SOUHAITS WHERE NUM_S = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())  // si il remonte une ligne, le souhait a été trouvé
                 {
-                    Client client = TrouverClient (reader.GetInt16(1));
-                    int budget;
-                    try
-                    {
-                        budget = reader.GetInt32(2);
-                    }
-                    catch
-                    {
-                        budget = -1;
-                    }
-                    int surfHab;
-                    try
-                    {
-                        surfHab = reader.GetInt16(3);
-                    }
-                    catch
-                    {
-                        surfHab = -1;
-                    }
-                    int surfJard;
-                    try
-                    {
-                        surfJard = reader.GetInt16(4);
-                    }
-                    catch
-                    {
-                        surfJard = -1;
-                    }
+                    Client client = TrouverClient(reader.GetInt16(1));
+                    int budget = !DBNull.Value.Equals(reader[2]) ? reader.GetInt32(2) : -1;
+                    int surfHab = !DBNull.Value.Equals(reader[3]) ? reader.GetInt16(3) : -1;
+                    int surfJard = !DBNull.Value.Equals(reader[4]) ? reader.GetInt16(4) : -1;
                     souhait = new Souhait(index, budget, surfHab, surfJard, TrouverVillesFromIndexSouhait(index), client);
-                    break;
                 }
+                // déconnexion
                 reader.Close();
                 connect.Close();
             }
             return souhait;
         }
 
-        static private string ConstructionRequeteAjoutSouhait(Souhait souhait, Client client)
+     /*   static private string ConstructionRequeteAjoutSouhait(Souhait souhait, Client client)
         {
             // 1- Construction des parties de requete en fonction des critères retenus
             string requeteCritereChamps = "NUM_C";
@@ -115,6 +93,40 @@ namespace Pollux.DataBase
                             + requeteCritereValeurs + ") " + requeteVilles;
             return requete;
         }
+        */
+
+        // Construction requête pour l'insertion d'un souhait en base
+        static private string ConstructionRequeteAjoutSouhait(Souhait souhait)
+        {
+            // Construction partie 'VALUES'
+            string requeteValues = Convert.ToString(souhait.Client.Index);
+            requeteValues += (souhait.PrixMax != -1) ? ", " + souhait.PrixMax : ", NULL";
+            requeteValues += (souhait.SurfaceHabitableMin != -1) ? ", " + souhait.SurfaceHabitableMin : ", NULL";
+            requeteValues += (souhait.SurfaceJardinMin != -1) ? ", " + souhait.SurfaceJardinMin : ", NULL";
+            // Construction requete insertion d'un souhait
+            // @vSouhaitId = variable permettant de récupérer l'identifiant du souhait inséré
+            string requete = "declare @vSouhaitId smallint "
+                        + "INSERT INTO SOUHAITS (NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S) "
+                        + "VALUES (" + requeteValues + ") "
+                        + "set @vSouhaitId  = @@IDENTITY ";
+            return requete;
+        }
+
+        // Construction requête pour l'insertion des villes souhaitées
+        // /!\ on ne connait pas l'index du souhait 
+        // car son ajout sera effectué en même temps que celui des villes souhaitées
+        static private string ConstructionRequeteAjoutVillesSouhaitees(Souhait souhait)
+        {
+            // construction d'une requête INSERT pour chaque ville souhaitée
+            string requeteVilles = "";
+            if (souhait.Villes != null)
+            {
+                foreach (Ville ville in souhait.Villes)
+                    requeteVilles = requeteVilles + " INSERT INTO VILLES_SOUHAITÉES (NUM_V, NUM_S) "
+                        + "VALUES (" + ville.Index + ", @vSouhaitId) ";
+            }
+            return requeteVilles;
+        }
 
         /// <summary>
         /// Ajoute à la fois le souhait et les villes souhaitées 
@@ -127,6 +139,7 @@ namespace Pollux.DataBase
         /// la construction de la requete =)
         /// 
         /// Courage !
+        /// ==> ça m'a l'air pas mal maintenant.. bcp plus clair
         /// 
         /// </summary>
         static public bool AjouterSouhait(Souhait souhait, Agent agent)
@@ -134,10 +147,16 @@ namespace Pollux.DataBase
             bool ajout = false;
             if (DBConnect())
             {
-                string requeteAjoutSouhait = ConstructionRequeteAjoutSouhait(souhait, null);
+                string requeteAjoutSouhait = ConstructionRequeteAjoutSouhait(souhait);
+                string requeteAjoutVillesSouhaitees = ConstructionRequeteAjoutVillesSouhaitees(souhait);
+                string requeteMAJAgent = "";
+                if (agent != null)
+                    requeteMAJAgent = " UPDATE CLIENTS SET NUM_A=" + agent.Index + " WHERE NUM_C=" + souhait.Client.Index;
                 string requete = "BEGIN TRAN "
                                 + requeteAjoutSouhait
-                                + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
+                                + requeteAjoutVillesSouhaitees
+                                + requeteMAJAgent
+                                + " IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
                                 + "ELSE BEGIN COMMIT TRAN END";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 try
@@ -153,24 +172,48 @@ namespace Pollux.DataBase
             return ajout;   
         }
 
+
+        // Construction requête pour l'insertion d'un client et de son souhait en base
+        static private string ConstructionRequeteAjoutSouhaitEtClient(Souhait souhait, Client client)
+        {
+            // construction partie 'VALUES'
+            string requeteValues = "@vClientId";
+            requeteValues += (souhait.PrixMax != -1) ? ", " + souhait.PrixMax : ", NULL";
+            requeteValues += (souhait.SurfaceHabitableMin != -1) ? ", " + souhait.SurfaceHabitableMin : ", NULL";
+            requeteValues += (souhait.SurfaceJardinMin != -1) ? ", " + souhait.SurfaceJardinMin :", NULL";
+            // construction requete insertion client
+            // @vClientId = variable permettant de récupérer l'identifiant du client inséré
+            string requete = "declare @vClientId smallint "
+                        + "INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C, NUM_A) "
+                        + "VALUES (N'" + client.Nom + "', N'" + client.Adresse + "', " + client.Ville.Index
+                        + ", N'" + client.Telephone + "', " + client.Agent.Index + ") "
+                        + "set @vClientId  = @@IDENTITY ";
+            // construction requete insertion souhait
+            // @vSouhaitId = variable permettant de récupérer l'identifiant du souhait inséré
+            requete += "declare @vSouhaitId smallint "
+                        + "INSERT INTO SOUHAITS (NUM_C, BUDGET_MAX_S, SURFACE_HAB_MIN_S, SURFACE_JARDIN_MIN_S) "
+                        + "VALUES (" + requeteValues + ") "
+                        + "set @vSouhaitId  = @@IDENTITY ";
+            return requete;
+        }
+
         /// <summary>
         /// Ajoute à la fois le client, son souhait et les villes souhaitées 
         /// dans les tables correspondantes ou n'ajoute rien si l'une des insertions échoue
         /// </summary>
-        static public bool AjouterSouhaitEtClient(Client client, Souhait souhait)
+        static public bool AjouterSouhaitEtClient(Souhait souhait, Client client)
         {
             bool ajout = false;
             if (DBConnect())
             {
-                string requeteAjoutSouhait = ConstructionRequeteAjoutSouhait(souhait, client);
+                string requeteAjoutSouhaitEtClient = ConstructionRequeteAjoutSouhaitEtClient(souhait, client);
+                string requeteAjoutVillesSouhaitees = ConstructionRequeteAjoutVillesSouhaitees(souhait);
                 //  Requete ajout du client + de son souhait
-                string requete = string.Format("BEGIN TRAN "
-                        + "INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C, NUM_A) "
-                        + "VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}') "
-                        + requeteAjoutSouhait
-                        + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
-                        + "ELSE BEGIN COMMIT TRAN END",
-                        client.Nom, client.Adresse, client.Ville.Index, client.Telephone, client.Agent.Index);
+                string requete = "BEGIN TRAN "
+                        + requeteAjoutSouhaitEtClient
+                        + requeteAjoutVillesSouhaitees
+                        + " IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
+                        + "ELSE BEGIN COMMIT TRAN END";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 try
                 {

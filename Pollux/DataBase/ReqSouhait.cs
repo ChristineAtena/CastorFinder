@@ -36,65 +36,6 @@ namespace Pollux.DataBase
             return souhait;
         }
 
-     /*   static private string ConstructionRequeteAjoutSouhait(Souhait souhait, Client client)
-        {
-            // 1- Construction des parties de requete en fonction des critères retenus
-            string requeteCritereChamps = "NUM_C";
-            string requeteCritereValeurs = "";
-            string requeteCompCriteres = "";
-            // Client
-            if (souhait.Client.Index != -1)
-            {
-                requeteCritereValeurs = souhait.Client.Index.ToString();
-                requeteCompCriteres = "NUM_C = " + souhait.Client.Index;
-            }
-            else
-            {
-                requeteCritereValeurs = string.Format("(SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}')",client.Nom, client.Adresse);
-                requeteCompCriteres = "NUM_C = " + requeteCritereValeurs;
-            }
-            // Prix
-            if (souhait.PrixMax != -1)
-            {
-                requeteCritereChamps += ", BUDGET_MAX_S";
-                requeteCritereValeurs += ", " + souhait.PrixMax;
-                requeteCompCriteres += " AND BUDGET_MAX_S = " + souhait.PrixMax;
-            }
-            else
-                requeteCompCriteres += " AND BUDGET_MAX_S IS NULL";
-            // Surface Habitable
-            if (souhait.SurfaceHabitableMin != -1)
-            {
-                requeteCritereChamps += ", SURFACE_HAB_MIN_S";
-                requeteCritereValeurs += ", " + souhait.SurfaceHabitableMin;
-                requeteCompCriteres += " AND SURFACE_HAB_MIN_S = " + souhait.SurfaceHabitableMin;
-            }
-            else
-                requeteCompCriteres += " AND SURFACE_HAB_MIN_S IS NULL";
-            // Surface du jardin
-            if (souhait.SurfaceJardinMin != -1)
-            {
-                requeteCritereChamps += ", SURFACE_JARDIN_MIN_S";
-                requeteCritereValeurs += ", " + souhait.SurfaceJardinMin;
-                requeteCompCriteres += " AND SURFACE_JARDIN_MIN_S = " + souhait.SurfaceJardinMin;
-            }
-            else
-                requeteCompCriteres += " AND SURFACE_JARDIN_MIN_S IS NULL";
-            // 2- Construction requete pour l'ajout de l'ensemble des villes souhaitées
-            string requeteVilles = "";
-            if (souhait.Villes != null)
-            {
-                foreach (Ville ville in souhait.Villes)
-                    requeteVilles = requeteVilles + "INSERT INTO VILLES_SOUHAITÉES (NUM_V, NUM_S) VALUES (N'" + ville.Index
-                        + "', (SELECT NUM_S FROM SOUHAITS WHERE " + requeteCompCriteres + ")) ";
-            }
-            // 3- Assemblage des Requetes ajout souhait + villes souhaitées
-            string requete = "INSERT INTO SOUHAITS (" + requeteCritereChamps + ") VALUES ("
-                            + requeteCritereValeurs + ") " + requeteVilles;
-            return requete;
-        }
-        */
-
         // Construction requête pour l'insertion d'un souhait en base
         static private string ConstructionRequeteAjoutSouhait(Souhait souhait)
         {
@@ -131,16 +72,6 @@ namespace Pollux.DataBase
         /// <summary>
         /// Ajoute à la fois le souhait et les villes souhaitées 
         /// dans les tables correspondantes ou n'ajoute rien si l'une des insertions échoue
-        /// 
-        /// J'ai pas bien pris le temps de lire comme ça marchait, ça, mais ça à l'air vraiment con :
-        /// on connait le client, vu qu'il est spécifié, alors pourquoi on galère à retrouver son
-        /// numéro dans la BdD ?
-        /// C'est peut-être idiot comme remarque, mais j'ai plus trop le courage de déchiffrer
-        /// la construction de la requete =)
-        /// 
-        /// Courage !
-        /// ==> ça m'a l'air pas mal maintenant.. bcp plus clair
-        /// 
         /// </summary>
         static public bool AjouterSouhait(Souhait souhait, Agent agent)
         {
@@ -185,8 +116,8 @@ namespace Pollux.DataBase
             // @vClientId = variable permettant de récupérer l'identifiant du client inséré
             string requete = "declare @vClientId smallint "
                         + "INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C, NUM_A) "
-                        + "VALUES (N'" + client.Nom + "', N'" + client.Adresse + "', " + client.Ville.Index
-                        + ", N'" + client.Telephone + "', " + client.Agent.Index + ") "
+                        + "VALUES (N'" + client.Nom.Replace("'", "''") + "', N'" + client.Adresse.Replace("'", "''") + "', " + client.Ville.Index
+                        + ", N'" + client.Telephone.Replace("'", "''") + "', " + client.Agent.Index + ") "
                         + "set @vClientId  = @@IDENTITY ";
             // construction requete insertion souhait
             // @vSouhaitId = variable permettant de récupérer l'identifiant du souhait inséré
@@ -228,6 +159,11 @@ namespace Pollux.DataBase
             return ajout;
         }
 
+        /// <summary>
+        /// Trouver les villes d'un souhait à partir de son index
+        /// </summary>
+        /// <param name="indexSouhait">index du Souhait</param>
+        /// <returns>List<Ville></returns>
         static private List<Ville> TrouverVillesFromIndexSouhait(int indexSouhait)
         {
             List<Ville> listeVilles = new List<Ville>();
@@ -257,6 +193,12 @@ namespace Pollux.DataBase
             return listeVilles;
         }
 
+        /// <summary>
+        /// retourne une liste de souhaits d'un client
+        /// </summary>
+        /// <param name="client">client</param>
+        /// <returns></returns>
+        // TODO VIRER LES TRY CATCH
         static public List<Souhait> GetListeSouhaits(Client client)
         {
             List<Ville> listeVilles = null;
@@ -273,19 +215,12 @@ namespace Pollux.DataBase
                 while (reader.Read())
                 {
                     listeVilles = SqlDataProvider.TrouverVillesFromIndexSouhait(reader.GetInt16(0));
+
                     int index = reader.GetInt16(0);
-                    int prix = -1;
-                    int surfHab = -1;
-                    int surfJard = -1;
-                    try{
-                        prix = reader.GetInt32(1);
-                    }catch{}
-                    try{
-                        surfHab = reader.GetInt16(2);
-                    }catch{}
-                    try{
-                        surfJard = reader.GetInt16(3);
-                    }catch{}
+                    int prix = !DBNull.Value.Equals(reader[1]) ? reader.GetInt32(1) : -1;
+                    int surfHab = !DBNull.Value.Equals(reader[2]) ? reader.GetInt16(2) : -1;
+                    int surfJard = !DBNull.Value.Equals(reader[3]) ? reader.GetInt16(3) : -1;
+
                     Souhait souhait = new Souhait(index, prix, surfHab, surfJard, listeVilles, client);
                     listeSouhaits.Add(souhait);
                 }
@@ -356,30 +291,10 @@ namespace Pollux.DataBase
                     List<Ville> villes = souhait.Villes;
                     int index = reader.GetInt16(0);
                     Client client = TrouverClient(reader.GetInt16(1));
-                    try
-                    {
-                        prix = reader.GetInt32(2);
-                    }
-                    catch
-                    {
-                        prix = -1;
-                    }
-                    try
-                    {
-                        surfHab = reader.GetInt16(3);
-                    }
-                    catch 
-                    {
-                        surfHab = -1;
-                    }
-                    try
-                    {
-                        surfJard = reader.GetInt16(4);
-                    }
-                    catch
-                    {
-                        surfJard = -1;
-                    }
+                    prix = !DBNull.Value.Equals(reader[2]) ? reader.GetInt32(2) : -1;
+                    surfHab = !DBNull.Value.Equals(reader[3]) ? reader.GetInt16(3) : -1;
+                    surfJard = !DBNull.Value.Equals(reader[4]) ? reader.GetInt16(4) : -1;
+
                     Souhait souhaitTrouve = new Souhait(index, prix, surfHab, surfJard, villes, client);
                     listeSouhaits.Add(souhaitTrouve);
                 }
@@ -409,30 +324,9 @@ namespace Pollux.DataBase
                     villes.Add(bien.Ville);
                     int index = reader.GetInt16(0);
                     Client client = TrouverClient(reader.GetInt16(1));
-                    try
-                    {
-                        prix = reader.GetInt32(2);
-                    }
-                    catch
-                    {
-                        prix = -1;
-                    }
-                    try
-                    {
-                        surfHab = reader.GetInt16(3);
-                    }
-                    catch
-                    {
-                        surfHab = -1;
-                    }
-                    try
-                    {
-                        surfJard = reader.GetInt16(4);
-                    }
-                    catch
-                    {
-                        surfJard = -1;
-                    }
+                    prix = !DBNull.Value.Equals(reader[2]) ? reader.GetInt32(2) : -1;
+                    surfHab = !DBNull.Value.Equals(reader[3]) ? reader.GetInt16(3) : -1;
+                    surfJard = !DBNull.Value.Equals(reader[4]) ? reader.GetInt16(4) : -1;
                     Souhait souhaitTrouve = new Souhait(index, prix, surfHab, surfJard, villes, client);
                     listeSouhaits.Add(souhaitTrouve);
                 }

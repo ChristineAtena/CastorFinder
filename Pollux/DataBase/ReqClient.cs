@@ -170,7 +170,7 @@ namespace Pollux.DataBase
             Client client = null;
             if (DBConnect())
             {
-                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS WHERE NOM_C=N'"+nom+"' AND NUM_V=N'"+ville.Index+"'";
+                string requete = "SELECT NUM_C, NOM_C, ADRESSE_C, TEL_C, NUM_A, NUM_V FROM CLIENTS WHERE NOM_C=N'" + nom.Replace("'", "''") + "' AND NUM_V='" + ville.Index + "'";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())

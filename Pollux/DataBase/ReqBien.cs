@@ -262,7 +262,7 @@ namespace Pollux.DataBase
                                 + "(SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}')) "
                                 + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
                                 + "ELSE BEGIN COMMIT TRAN END",
-                                client.Nom, client.Adresse, client.Ville.Index, client.Telephone,
+                                client.Nom.Replace("'", "''"), client.Adresse.Replace("'", "''"), client.Ville.Index, client.Telephone.Replace("'", "''"),
                                 bien.Prix, bien.DateMiseEnVente, bien.SurfaceHabitable, bien.SurfaceJardin, bien.Ville.Index);
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 try

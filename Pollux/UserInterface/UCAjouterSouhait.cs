@@ -149,6 +149,7 @@ namespace Pollux.UserInterface
         private void activationBoutonCreer()
         {
             if (comboBoxAcheteur.SelectedItem != null &&
+                comboBoxAgent.SelectedIndex != -1 &&
                 (checkBoxBudgetMax.Checked ||
                  checkBoxSurfHab.Checked ||
                  checkBoxJardin.Checked ||
@@ -180,6 +181,12 @@ namespace Pollux.UserInterface
                 comboBoxAgent.Enabled = true;
             }
         }
+
+        private void comboBoxAgent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activationBoutonCreer();
+        }
+
         private void checkBoxBudgetMax_CheckedChanged(object sender, EventArgs e)
         {
             activationBoutonCreer();
@@ -290,7 +297,7 @@ namespace Pollux.UserInterface
             // Ajout en base du souhait
             Client acheteur = (Client)comboBoxAcheteur.SelectedItem;
             Souhait souhait = new Souhait(prix, surfHab, surfJard, villes, acheteur);       
-            if (comboBoxAcheteur.Enabled || comboBoxAgent.SelectedIndex != -1)  // client déjà présent en base + agent selectionné
+            if (comboBoxAcheteur.Enabled)  // client déjà présent en base + agent selectionné
             {
                 if (SqlDataProvider.AjouterSouhait(souhait, (Agent)comboBoxAgent.SelectedItem))
                 {

@@ -58,9 +58,9 @@ namespace Pollux.DataBase
             if (DBConnect())
             // si connexion
             {
-                string requete = "if not exists(select PRÉNOM_A from AGENTS where PRÉNOM_A = N'" + prenom + "' ) "
+                string requete = "if not exists(select PRÉNOM_A from AGENTS where PRÉNOM_A = N'" + prenom.Replace("'","''") + "' ) "
                                 + "begin "
-	                            + "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'" + prenom + "') "
+                                + "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'" + prenom.Replace("'", "''") + "') "
                                 + "end ";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 int rowCount = command.ExecuteNonQuery();

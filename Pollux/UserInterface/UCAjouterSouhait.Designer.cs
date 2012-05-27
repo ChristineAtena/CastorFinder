@@ -155,6 +155,7 @@
             this.comboBoxAgent.Name = "comboBoxAgent";
             this.comboBoxAgent.Size = new System.Drawing.Size(164, 21);
             this.comboBoxAgent.TabIndex = 9;
+            this.comboBoxAgent.SelectedIndexChanged += new System.EventHandler(this.comboBoxAgent_SelectedIndexChanged);
             // 
             // label4
             // 

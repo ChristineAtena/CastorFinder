@@ -44,7 +44,7 @@ namespace Pollux.DataBase
             if (DBConnect())
             // si connexion
             {
-                string requete = string.Format("INSERT INTO VILLES (NOM_V, CODE_POSTAL_V) VALUES (N'{0}',N'{1}')", ville.Nom, ville.CodePostal);
+                string requete = string.Format("INSERT INTO VILLES (NOM_V, CODE_POSTAL_V) VALUES (N'{0}',N'{1}')", ville.Nom.Replace("'", "''"), ville.CodePostal);
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 int rowCount = command.ExecuteNonQuery();  
                 if (rowCount == 1)
@@ -84,7 +84,7 @@ namespace Pollux.DataBase
             int index = -1;
             if (DBConnect())
             {
-                string requete = string.Format("SELECT NUM_V FROM VILLES WHERE NOM_V = N'{0}' AND CODE_POSTAL_V = N'{1}'", nom, codePostal);
+                string requete = string.Format("SELECT NUM_V FROM VILLES WHERE NOM_V = N'{0}' AND CODE_POSTAL_V = N'{1}'", nom.Replace("'", "''"), codePostal);
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
                 if (reader.Read())

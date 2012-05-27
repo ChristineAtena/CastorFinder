@@ -20,7 +20,6 @@ namespace Pollux.UserInterface
             InitializeComponent();
             loadAgents();
             loadVilles();
-            //comboBoxAgents.SelectedIndex = 0;
         }
 
         #region Chargement des comboBox

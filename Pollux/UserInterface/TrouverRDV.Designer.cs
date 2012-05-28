@@ -84,7 +84,7 @@
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.ShowToday = false;
             this.monthCalendar.ShowTodayCircle = false;
-            this.monthCalendar.TabIndex = 0;
+            this.monthCalendar.TabIndex = 1;
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
             // 
             // label1
@@ -161,7 +161,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(258, 285);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(88, 23);
-            this.buttonCancel.TabIndex = 3;
+            this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 

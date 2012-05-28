@@ -56,7 +56,7 @@
             this.buttonAnnuler.Location = new System.Drawing.Point(169, 85);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 9;
+            this.buttonAnnuler.TabIndex = 3;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -67,7 +67,7 @@
             this.buttonCreer.Location = new System.Drawing.Point(293, 85);
             this.buttonCreer.Name = "buttonCreer";
             this.buttonCreer.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreer.TabIndex = 8;
+            this.buttonCreer.TabIndex = 2;
             this.buttonCreer.Text = "Créer";
             this.buttonCreer.UseVisualStyleBackColor = true;
             this.buttonCreer.Click += new System.EventHandler(this.buttonCreer_Click);

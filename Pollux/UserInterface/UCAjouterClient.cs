@@ -40,8 +40,6 @@ namespace Pollux.UserInterface
             this.Hide();
         }
 
-        // TEST pas au point pour la création
-        // A FINIR
         private void buttonCreer_Click(object sender, EventArgs e)
         {
             if (textBoxNom.Text != "" && textBoxAdresse.Text != "" && textBoxTelephone.Text != "" && comboBoxVilles.SelectedItem != null)
@@ -84,9 +82,6 @@ namespace Pollux.UserInterface
                 }
             }
         }
-        
-         
-
 
         private void buttonAjoutVille_Click(object sender, EventArgs e)
         {

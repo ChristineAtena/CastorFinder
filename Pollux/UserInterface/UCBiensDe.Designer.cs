@@ -70,7 +70,7 @@
             this.listViewBiens.MultiSelect = false;
             this.listViewBiens.Name = "listViewBiens";
             this.listViewBiens.Size = new System.Drawing.Size(461, 147);
-            this.listViewBiens.TabIndex = 10;
+            this.listViewBiens.TabIndex = 2;
             this.listViewBiens.UseCompatibleStateImageBehavior = false;
             this.listViewBiens.View = System.Windows.Forms.View.Details;
             this.listViewBiens.SelectedIndexChanged += new System.EventHandler(this.listViewBiens_SelectedIndexChanged);
@@ -106,7 +106,7 @@
             this.buttonAnnuler.Location = new System.Drawing.Point(174, 209);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 9;
+            this.buttonAnnuler.TabIndex = 4;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -118,7 +118,7 @@
             this.comboBoxClients.Location = new System.Drawing.Point(59, 20);
             this.comboBoxClients.Name = "comboBoxClients";
             this.comboBoxClients.Size = new System.Drawing.Size(217, 21);
-            this.comboBoxClients.TabIndex = 9;
+            this.comboBoxClients.TabIndex = 1;
             this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
             // 
             // label11
@@ -135,7 +135,7 @@
             this.buttonRechercher.Location = new System.Drawing.Point(255, 209);
             this.buttonRechercher.Name = "buttonRechercher";
             this.buttonRechercher.Size = new System.Drawing.Size(221, 23);
-            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.TabIndex = 3;
             this.buttonRechercher.Text = "Rechercher les souhaits correspondants";
             this.buttonRechercher.UseVisualStyleBackColor = true;
             this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);

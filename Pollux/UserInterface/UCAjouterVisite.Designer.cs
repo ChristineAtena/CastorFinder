@@ -74,7 +74,7 @@
             this.buttonRDV.Location = new System.Drawing.Point(148, 126);
             this.buttonRDV.Name = "buttonRDV";
             this.buttonRDV.Size = new System.Drawing.Size(201, 30);
-            this.buttonRDV.TabIndex = 6;
+            this.buttonRDV.TabIndex = 3;
             this.buttonRDV.Text = "&Trouver un rendez-vous";
             this.buttonRDV.UseVisualStyleBackColor = true;
             this.buttonRDV.Click += new System.EventHandler(this.buttonRDV_Click);
@@ -85,15 +85,15 @@
             this.textBoxTelephone.Location = new System.Drawing.Point(148, 57);
             this.textBoxTelephone.Name = "textBoxTelephone";
             this.textBoxTelephone.Size = new System.Drawing.Size(201, 20);
-            this.textBoxTelephone.TabIndex = 5;
+            this.textBoxTelephone.TabIndex = 0;
             // 
             // buttonAnnuler
             // 
             this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnnuler.Location = new System.Drawing.Point(401, 170);
+            this.buttonAnnuler.Location = new System.Drawing.Point(320, 199);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 3;
+            this.buttonAnnuler.TabIndex = 5;
             this.buttonAnnuler.Text = "&Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -104,7 +104,7 @@
             this.buttonCréer.Location = new System.Drawing.Point(401, 199);
             this.buttonCréer.Name = "buttonCréer";
             this.buttonCréer.Size = new System.Drawing.Size(75, 23);
-            this.buttonCréer.TabIndex = 3;
+            this.buttonCréer.TabIndex = 4;
             this.buttonCréer.Text = "&Créer";
             this.buttonCréer.UseVisualStyleBackColor = true;
             this.buttonCréer.Click += new System.EventHandler(this.buttonCréer_Click);
@@ -155,7 +155,7 @@
             this.comboBoxBiens.Location = new System.Drawing.Point(148, 93);
             this.comboBoxBiens.Name = "comboBoxBiens";
             this.comboBoxBiens.Size = new System.Drawing.Size(201, 21);
-            this.comboBoxBiens.TabIndex = 1;
+            this.comboBoxBiens.TabIndex = 2;
             // 
             // comboBoxClients
             // 

@@ -11,8 +11,11 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        // Cherche le bien dont l'index est fourni en paramètre et le retourne
-        // sinon retourne null
+        /// <summary>
+        /// Recherche un bien à partir de son index
+        /// </summary>
+        /// <param name="index">index du bien</param>
+        /// <returns>bien trouvé, null si non-trouvé</returns>
         static private Bien TrouverBien(int index)
         {
             Bien bien = null;
@@ -38,7 +41,9 @@ namespace Pollux.DataBase
             return bien;
         }
 
-
+        /// <summary>
+        /// Retourne la liste des biens
+        /// </summary>
         static public List<Bien> GetListeBiens()
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -78,7 +83,10 @@ namespace Pollux.DataBase
             return listeBiens;
         }
 
-
+        /// <summary>
+        /// Retourne la liste des biens d'un client
+        /// </summary>
+        /// <param name="client">Client dont on cherche les biens</param>
         static public List<Bien> GetListeBiens(Client client)
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -138,7 +146,9 @@ namespace Pollux.DataBase
             return requete;
         }
 
-
+        /// <summary>
+        /// Construction de la requête de recherche de biens à partir d'un souhait
+        /// </summary>
         static private string ConstructionRequeteRechercheBien(Souhait souhait)
         {
             string requetePrix = (souhait.PrixMax != -1) ? " PRIX_VENTE_B < " + souhait.PrixMax : "";
@@ -163,6 +173,9 @@ namespace Pollux.DataBase
             return requete;
         }
 
+        /// <summary>
+        /// Recherche une liste de biens correspondant à un bien
+        /// </summary>
         static public List<Bien> RechercherListeBiens(Bien bien)
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -191,6 +204,9 @@ namespace Pollux.DataBase
             return listeBiens;
         }
 
+        /// <summary>
+        /// Rechercher une liste de biens correspondant à un souhait
+        /// </summary>
         static public List<Bien> RechercherListeBiens(Souhait souhait)
         {
             List<Bien> listeBiens = new List<Bien>();
@@ -219,7 +235,11 @@ namespace Pollux.DataBase
             return listeBiens;
         }
 
-        // Ajout du bien fournit en paramètre dans la base
+        /// <summary>
+        /// Ajoute un bien en base
+        /// </summary>
+        /// <param name="bien">bien à ajouter</param>
+        /// <returns>true si réussite, false sinon</returns>
         static public bool AjouterBien(Bien bien)
         {
             bool ajout = false;
@@ -248,18 +268,19 @@ namespace Pollux.DataBase
         /// </summary>
         /// <param name="client">Client à ajouter</param>
         /// <param name="bien">Bien à ajouter</param>
-        /// <returns></returns>
+        /// <returns>true si réussite, false sinon</returns>
         static public bool AjouterBienEtClient(Client client, Bien bien)
         {
             bool ajout = false;
             if (DBConnect())
             {
                 string requete = string.Format("BEGIN TRAN "
+                                + "DECLARE @vClientId smallint "
                                 + "INSERT INTO CLIENTS (NOM_C, ADRESSE_C, NUM_V, TEL_C) "
                                 + "VALUES (N'{0}',N'{1}',N'{2}',N'{3}') "
+                                + "SET @vClientId = @@IDENTITY "
                                 + "INSERT INTO BIENS (PRIX_VENTE_B, DATE_MISE_EN_VENTE_B, SURFACE_HAB_B, SURFACE_JARDIN_B, NUM_V, NUM_C) "
-                                + "VALUES (N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', "
-                                + "(SELECT NUM_C FROM CLIENTS WHERE NOM_C = N'{0}' AND ADRESSE_C = N'{1}')) "
+                                + "VALUES (N'{4}', N'{5}', N'{6}', N'{7}', N'{8}', @vClientId)"
                                 + "IF (@@ERROR <> 0) BEGIN ROLLBACK TRAN END "
                                 + "ELSE BEGIN COMMIT TRAN END",
                                 client.Nom.Replace("'", "''"), client.Adresse.Replace("'", "''"), client.Ville.Index, client.Telephone.Replace("'", "''"),

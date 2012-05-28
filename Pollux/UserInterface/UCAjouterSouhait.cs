@@ -323,7 +323,5 @@ namespace Pollux.UserInterface
                 }
             }
         }
-
-
     }
 }

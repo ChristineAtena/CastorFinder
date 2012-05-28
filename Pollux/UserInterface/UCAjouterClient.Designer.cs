@@ -77,7 +77,7 @@
             this.buttonAjoutVille.Location = new System.Drawing.Point(284, 78);
             this.buttonAjoutVille.Name = "buttonAjoutVille";
             this.buttonAjoutVille.Size = new System.Drawing.Size(111, 23);
-            this.buttonAjoutVille.TabIndex = 24;
+            this.buttonAjoutVille.TabIndex = 10;
             this.buttonAjoutVille.Text = "Ajouter une ville";
             this.buttonAjoutVille.UseVisualStyleBackColor = true;
             this.buttonAjoutVille.Click += new System.EventHandler(this.buttonAjoutVille_Click);

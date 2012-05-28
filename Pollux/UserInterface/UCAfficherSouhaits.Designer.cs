@@ -58,7 +58,7 @@
             this.buttonAnnuler.Location = new System.Drawing.Point(288, 208);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 12;
+            this.buttonAnnuler.TabIndex = 3;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -68,7 +68,7 @@
             this.buttonAjouter.Location = new System.Drawing.Point(369, 208);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(107, 23);
-            this.buttonAjouter.TabIndex = 11;
+            this.buttonAjouter.TabIndex = 2;
             this.buttonAjouter.Text = "Ajouter une visite";
             this.buttonAjouter.UseVisualStyleBackColor = true;
             this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
@@ -85,7 +85,7 @@
             this.listViewSouhaits.MultiSelect = false;
             this.listViewSouhaits.Name = "listViewSouhaits";
             this.listViewSouhaits.Size = new System.Drawing.Size(461, 183);
-            this.listViewSouhaits.TabIndex = 10;
+            this.listViewSouhaits.TabIndex = 1;
             this.listViewSouhaits.UseCompatibleStateImageBehavior = false;
             this.listViewSouhaits.View = System.Windows.Forms.View.Details;
             this.listViewSouhaits.SelectedIndexChanged += new System.EventHandler(this.listViewSouhaits_SelectedIndexChanged);

@@ -11,6 +11,11 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
+        /// <summary>
+        /// permet de trouver la liste des visites d'un agent
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <returns></returns>
         static public List<Visite> TrouverListeVisites(Agent agent)
         {
             List<Visite> calendrier = new List<Visite>();
@@ -20,6 +25,7 @@ namespace Pollux.DataBase
             int index;
             if (DBConnect())
             {
+                //création de la requête
                 string requete = "SELECT VISITES.NUM_V, VISITES.NUM_S, NUM_B, DATE_V"
                                 + " FROM VISITES INNER JOIN SOUHAITS ON VISITES.NUM_S = SOUHAITS.NUM_S"
                                 + " INNER JOIN CLIENTS ON SOUHAITS.NUM_C = CLIENTS.NUM_C"
@@ -54,7 +60,8 @@ namespace Pollux.DataBase
             if (DBConnect())
             // si connexion
             {
-                string requete = "INSERT INTO VISITES (NUM_S, NUM_B, DATE_V) VALUES (" + visite.Souhait.Index + "," + visite.Bien.Index + ",N'" + visite.DateHeure + "')";
+                string requete = "INSERT INTO VISITES (NUM_S, NUM_B, DATE_V) "
+                                +"VALUES (" + visite.Souhait.Index + "," + visite.Bien.Index + ",N'" + visite.DateHeure + "')";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 int rowCount = command.ExecuteNonQuery();
                 if (rowCount == 1)
@@ -66,7 +73,5 @@ namespace Pollux.DataBase
             }
             return ajout;
         }
-        
-        
     }
 }

@@ -162,9 +162,13 @@ namespace Pollux.DataBase
             }
             return listeClients;
         }
-
-        // Vérifie si un client avec le même nom et même ville est déjà présent en base
-        // si oui retourne ce client, sinon retourne null
+        
+        /// <summary>
+        /// Vérifie l'existence d'un client en base à partir de son nom et sa ville
+        /// </summary>
+        /// <param name="nom">Nom du client</param>
+        /// <param name="ville">Ville du client</param>
+        /// <returns>true s'il existe, false sinon</returns>
         static public Client ClientExiste(string nom, Ville ville)
         {
             Client client = null;

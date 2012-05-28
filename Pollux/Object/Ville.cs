@@ -48,6 +48,5 @@ namespace Pollux.Object
         {
             return m_nom + " (" + m_codePostal + ")";
         }
-
     }
 }

@@ -90,7 +90,7 @@
             0});
             this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
             this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfHab.TabIndex = 24;
+            this.numericUpDownSurfHab.TabIndex = 6;
             this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
             this.numericUpDownSurfHab.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfHab_KeyUp);
             // 
@@ -104,7 +104,7 @@
             0});
             this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
             this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfJard.TabIndex = 23;
+            this.numericUpDownSurfJard.TabIndex = 9;
             this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
             this.numericUpDownSurfJard.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfJard_KeyUp);
             // 
@@ -123,7 +123,7 @@
             0});
             this.numericUpDownBudget.Name = "numericUpDownBudget";
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownBudget.TabIndex = 22;
+            this.numericUpDownBudget.TabIndex = 3;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
             this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
@@ -143,7 +143,7 @@
             this.comboBoxVilles.Location = new System.Drawing.Point(155, 141);
             this.comboBoxVilles.Name = "comboBoxVilles";
             this.comboBoxVilles.Size = new System.Drawing.Size(271, 21);
-            this.comboBoxVilles.TabIndex = 13;
+            this.comboBoxVilles.TabIndex = 11;
             this.comboBoxVilles.SelectedIndexChanged += new System.EventHandler(this.comboBoxVille_SelectedIndexChanged);
             // 
             // label17
@@ -158,7 +158,7 @@
             // buttonAnnuler
             // 
             this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonAnnuler.Location = new System.Drawing.Point(401, 180);
+            this.buttonAnnuler.Location = new System.Drawing.Point(320, 209);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
             this.buttonAnnuler.TabIndex = 4;
@@ -180,7 +180,7 @@
             this.buttonRechercher.Location = new System.Drawing.Point(401, 209);
             this.buttonRechercher.Name = "buttonRechercher";
             this.buttonRechercher.Size = new System.Drawing.Size(75, 23);
-            this.buttonRechercher.TabIndex = 4;
+            this.buttonRechercher.TabIndex = 12;
             this.buttonRechercher.Text = "Rechercher";
             this.buttonRechercher.UseVisualStyleBackColor = true;
             this.buttonRechercher.Click += new System.EventHandler(this.buttonRechercher_Click);
@@ -191,7 +191,7 @@
             this.checkBoxVille.Location = new System.Drawing.Point(13, 143);
             this.checkBoxVille.Name = "checkBoxVille";
             this.checkBoxVille.Size = new System.Drawing.Size(51, 17);
-            this.checkBoxVille.TabIndex = 0;
+            this.checkBoxVille.TabIndex = 10;
             this.checkBoxVille.Text = "Ville :";
             this.checkBoxVille.UseVisualStyleBackColor = true;
             this.checkBoxVille.CheckedChanged += new System.EventHandler(this.checkBoxVilles_CheckedChanged);
@@ -202,7 +202,7 @@
             this.checkBoxJardin.Location = new System.Drawing.Point(13, 107);
             this.checkBoxJardin.Name = "checkBoxJardin";
             this.checkBoxJardin.Size = new System.Drawing.Size(131, 17);
-            this.checkBoxJardin.TabIndex = 0;
+            this.checkBoxJardin.TabIndex = 7;
             this.checkBoxJardin.Text = "Surface de jardin min :";
             this.checkBoxJardin.UseVisualStyleBackColor = true;
             this.checkBoxJardin.CheckedChanged += new System.EventHandler(this.checkBoxJardin_CheckedChanged);
@@ -213,7 +213,7 @@
             this.trackBarSurfJard.Maximum = 10000;
             this.trackBarSurfJard.Name = "trackBarSurfJard";
             this.trackBarSurfJard.Size = new System.Drawing.Size(153, 45);
-            this.trackBarSurfJard.TabIndex = 13;
+            this.trackBarSurfJard.TabIndex = 8;
             this.trackBarSurfJard.TickFrequency = 0;
             this.trackBarSurfJard.Scroll += new System.EventHandler(this.trackBarSurfJard_Scroll);
             // 
@@ -223,7 +223,7 @@
             this.checkBoxSurfHab.Location = new System.Drawing.Point(13, 71);
             this.checkBoxSurfHab.Name = "checkBoxSurfHab";
             this.checkBoxSurfHab.Size = new System.Drawing.Size(134, 17);
-            this.checkBoxSurfHab.TabIndex = 0;
+            this.checkBoxSurfHab.TabIndex = 4;
             this.checkBoxSurfHab.Text = "Surface habitable min :";
             this.checkBoxSurfHab.UseVisualStyleBackColor = true;
             this.checkBoxSurfHab.CheckedChanged += new System.EventHandler(this.checkBoxSurfHab_CheckedChanged);
@@ -234,7 +234,7 @@
             this.trackBarSurfHab.Maximum = 300;
             this.trackBarSurfHab.Name = "trackBarSurfHab";
             this.trackBarSurfHab.Size = new System.Drawing.Size(153, 45);
-            this.trackBarSurfHab.TabIndex = 14;
+            this.trackBarSurfHab.TabIndex = 5;
             this.trackBarSurfHab.TickFrequency = 0;
             this.trackBarSurfHab.Scroll += new System.EventHandler(this.trackBarSurfHab_Scroll);
             // 
@@ -244,7 +244,7 @@
             this.checkBoxBudgetMax.Location = new System.Drawing.Point(13, 35);
             this.checkBoxBudgetMax.Name = "checkBoxBudgetMax";
             this.checkBoxBudgetMax.Size = new System.Drawing.Size(88, 17);
-            this.checkBoxBudgetMax.TabIndex = 0;
+            this.checkBoxBudgetMax.TabIndex = 1;
             this.checkBoxBudgetMax.Text = "Budget max :";
             this.checkBoxBudgetMax.UseVisualStyleBackColor = true;
             this.checkBoxBudgetMax.CheckedChanged += new System.EventHandler(this.checkBoxBudgetMax_CheckedChanged);
@@ -255,7 +255,7 @@
             this.trackBarBudget.Maximum = 1000000;
             this.trackBarBudget.Name = "trackBarBudget";
             this.trackBarBudget.Size = new System.Drawing.Size(153, 45);
-            this.trackBarBudget.TabIndex = 15;
+            this.trackBarBudget.TabIndex = 2;
             this.trackBarBudget.TickFrequency = 0;
             this.trackBarBudget.Scroll += new System.EventHandler(this.trackBarBudget_Scroll);
             // 

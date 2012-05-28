@@ -81,6 +81,12 @@ namespace Pollux.UserInterface
         #endregion
 
         #region numericUpDowns
+        private void disableNumericUpDowns()
+        {
+            numericUpDownBudget.Enabled = false;
+            numericUpDownSurfHab.Enabled = false;
+            numericUpDownSurfJard.Enabled = false;
+        }
         private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
         {
             trackBarBudget.Value = (int)numericUpDownBudget.Value;
@@ -205,13 +211,6 @@ namespace Pollux.UserInterface
         }
         #endregion  
 
-        private void disableNumericUpDowns()
-        {
-            numericUpDownBudget.Enabled = false;
-            numericUpDownSurfHab.Enabled = false;
-            numericUpDownSurfJard.Enabled = false;
-        }
-
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -247,6 +246,5 @@ namespace Pollux.UserInterface
             ((FenetrePrincipale)this.Parent).init();
             this.Dispose();
         }
-
     }
 }

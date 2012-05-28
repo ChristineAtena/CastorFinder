@@ -100,7 +100,7 @@
             0});
             this.numericUpDownSurfJard.Name = "numericUpDownSurfJard";
             this.numericUpDownSurfJard.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfJard.TabIndex = 26;
+            this.numericUpDownSurfJard.TabIndex = 7;
             this.numericUpDownSurfJard.ValueChanged += new System.EventHandler(this.numericUpDownSurfJard_ValueChanged);
             this.numericUpDownSurfJard.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfJard_KeyUp);
             // 
@@ -114,7 +114,7 @@
             0});
             this.numericUpDownSurfHab.Name = "numericUpDownSurfHab";
             this.numericUpDownSurfHab.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownSurfHab.TabIndex = 26;
+            this.numericUpDownSurfHab.TabIndex = 5;
             this.numericUpDownSurfHab.ValueChanged += new System.EventHandler(this.numericUpDownSurfHab_ValueChanged);
             this.numericUpDownSurfHab.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownSurfHab_KeyUp);
             // 
@@ -133,7 +133,7 @@
             0});
             this.numericUpDownBudget.Name = "numericUpDownBudget";
             this.numericUpDownBudget.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDownBudget.TabIndex = 26;
+            this.numericUpDownBudget.TabIndex = 3;
             this.numericUpDownBudget.ValueChanged += new System.EventHandler(this.numericUpDownBudget_ValueChanged);
             this.numericUpDownBudget.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDownBudget_KeyUp);
             // 
@@ -143,7 +143,7 @@
             this.dateMiseEnVente.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateMiseEnVente.Name = "dateMiseEnVente";
             this.dateMiseEnVente.Size = new System.Drawing.Size(169, 20);
-            this.dateMiseEnVente.TabIndex = 25;
+            this.dateMiseEnVente.TabIndex = 9;
             // 
             // label27
             // 
@@ -159,7 +159,7 @@
             this.buttonAjoutVille.Location = new System.Drawing.Point(264, 154);
             this.buttonAjoutVille.Name = "buttonAjoutVille";
             this.buttonAjoutVille.Size = new System.Drawing.Size(111, 23);
-            this.buttonAjoutVille.TabIndex = 23;
+            this.buttonAjoutVille.TabIndex = 12;
             this.buttonAjoutVille.Text = "Ajouter une ville";
             this.buttonAjoutVille.UseVisualStyleBackColor = true;
             this.buttonAjoutVille.Click += new System.EventHandler(this.buttonAjoutVille_Click);
@@ -180,7 +180,7 @@
             this.comboBoxProprietaire.Location = new System.Drawing.Point(104, 20);
             this.comboBoxProprietaire.Name = "comboBoxProprietaire";
             this.comboBoxProprietaire.Size = new System.Drawing.Size(271, 21);
-            this.comboBoxProprietaire.TabIndex = 7;
+            this.comboBoxProprietaire.TabIndex = 1;
             // 
             // label10
             // 
@@ -233,7 +233,7 @@
             this.buttonAnnuler.Location = new System.Drawing.Point(324, 188);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 4;
+            this.buttonAnnuler.TabIndex = 11;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -243,7 +243,7 @@
             this.buttonAjouter.Location = new System.Drawing.Point(404, 188);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(75, 23);
-            this.buttonAjouter.TabIndex = 4;
+            this.buttonAjouter.TabIndex = 10;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = true;
             this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
@@ -281,7 +281,7 @@
             this.trackBarSurfJard.Maximum = 10000;
             this.trackBarSurfJard.Name = "trackBarSurfJard";
             this.trackBarSurfJard.Size = new System.Drawing.Size(153, 45);
-            this.trackBarSurfJard.TabIndex = 1;
+            this.trackBarSurfJard.TabIndex = 6;
             this.trackBarSurfJard.TickFrequency = 0;
             this.trackBarSurfJard.Scroll += new System.EventHandler(this.trackBarSurfJard_Scroll);
             // 
@@ -291,7 +291,7 @@
             this.trackBarSurfHab.Maximum = 300;
             this.trackBarSurfHab.Name = "trackBarSurfHab";
             this.trackBarSurfHab.Size = new System.Drawing.Size(153, 45);
-            this.trackBarSurfHab.TabIndex = 1;
+            this.trackBarSurfHab.TabIndex = 4;
             this.trackBarSurfHab.TickFrequency = 0;
             this.trackBarSurfHab.Scroll += new System.EventHandler(this.trackBarSurfHab_Scroll);
             // 
@@ -301,7 +301,7 @@
             this.trackBarBudget.Maximum = 1000000;
             this.trackBarBudget.Name = "trackBarBudget";
             this.trackBarBudget.Size = new System.Drawing.Size(153, 45);
-            this.trackBarBudget.TabIndex = 1;
+            this.trackBarBudget.TabIndex = 2;
             this.trackBarBudget.TickFrequency = 0;
             this.trackBarBudget.Scroll += new System.EventHandler(this.trackBarBudget_Scroll);
             // 

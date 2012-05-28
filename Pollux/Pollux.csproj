@@ -112,12 +112,6 @@
     <Compile Include="UserInterface\UCBiensDe.Designer.cs">
       <DependentUpon>UCBiensDe.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserInterface\UCListeBiens.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserInterface\UCListeBiens.Designer.cs">
-      <DependentUpon>UCListeBiens.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserInterface\UCClientsDe.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -204,9 +198,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\UCBiensDe.resx">
       <DependentUpon>UCBiensDe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserInterface\UCListeBiens.resx">
-      <DependentUpon>UCListeBiens.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\FenetrePrincipale.resx">
       <DependentUpon>FenetrePrincipale.cs</DependentUpon>

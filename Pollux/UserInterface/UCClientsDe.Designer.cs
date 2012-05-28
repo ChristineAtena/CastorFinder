@@ -58,7 +58,7 @@
             this.buttonAnnuler.Location = new System.Drawing.Point(267, 209);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(75, 23);
-            this.buttonAnnuler.TabIndex = 9;
+            this.buttonAnnuler.TabIndex = 4;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -70,7 +70,7 @@
             this.comboBoxAgents.Location = new System.Drawing.Point(59, 20);
             this.comboBoxAgents.Name = "comboBoxAgents";
             this.comboBoxAgents.Size = new System.Drawing.Size(301, 21);
-            this.comboBoxAgents.TabIndex = 9;
+            this.comboBoxAgents.TabIndex = 1;
             this.comboBoxAgents.SelectedIndexChanged += new System.EventHandler(this.comboBoxAgents_SelectedIndexChanged);
             // 
             // listBoxClients
@@ -79,7 +79,7 @@
             this.listBoxClients.Location = new System.Drawing.Point(15, 55);
             this.listBoxClients.Name = "listBoxClients";
             this.listBoxClients.Size = new System.Drawing.Size(461, 147);
-            this.listBoxClients.TabIndex = 8;
+            this.listBoxClients.TabIndex = 2;
             this.listBoxClients.SelectedIndexChanged += new System.EventHandler(this.listBoxClients_SelectedIndexChanged);
             // 
             // label11
@@ -96,7 +96,7 @@
             this.buttonAfficherSouhaits.Location = new System.Drawing.Point(348, 209);
             this.buttonAfficherSouhaits.Name = "buttonAfficherSouhaits";
             this.buttonAfficherSouhaits.Size = new System.Drawing.Size(128, 23);
-            this.buttonAfficherSouhaits.TabIndex = 4;
+            this.buttonAfficherSouhaits.TabIndex = 3;
             this.buttonAfficherSouhaits.Text = "Afficher les souhaits";
             this.buttonAfficherSouhaits.UseVisualStyleBackColor = true;
             this.buttonAfficherSouhaits.Click += new System.EventHandler(this.buttonAfficherSouhaits_Click);

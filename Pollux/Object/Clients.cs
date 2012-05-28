@@ -49,6 +49,15 @@ namespace Pollux.Object
         #endregion
 
         #region constructeurs Client avec index
+        /// <summary>
+        /// Constructeur avec les index des villes et des agents
+        /// </summary>
+        /// <param name="index">index du client</param>
+        /// <param name="nom">nom du client</param>
+        /// <param name="adresse">adresse du client</param>
+        /// <param name="telephone">n° de téléphone du client</param>
+        /// <param name="index_agent">index de l'agent</param>
+        /// <param name="index_ville">index de la ville</param>
         public Client(int index, string nom, string adresse, string telephone, int index_agent, int index_ville)
         {
             m_index = index;
@@ -58,15 +67,16 @@ namespace Pollux.Object
             m_agent = SqlDataProvider.TrouverAgent(index_agent);
             m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
- /*       public Client(int index, string nom, string adresse, string telephone, int index_ville)
-        {
-            m_index = index;
-            m_nom = nom;
-            m_adresse = adresse;
-            m_telephone = telephone;
-            m_ville = SqlDataProvider.trouverVille(index_ville);
-        }*/
 
+        /// <summary>
+        /// Constructeur avec la ville et l'agent
+        /// </summary>
+        /// <param name="index">index du client</param>
+        /// <param name="nom">nom du client</param>
+        /// <param name="adresse">adresse du client</param>
+        /// <param name="telephone">n° de téléphone du client</param>
+        /// <param name="agent">agent assigné</param>
+        /// <param name="ville">ville</param>
         public Client(int index, string nom, string adresse, string telephone, Agent agent, Ville ville)
         {
             m_index = index;
@@ -78,6 +88,14 @@ namespace Pollux.Object
         }
         #endregion
         #region Constructeurs Clients sans index
+        /// <summary>
+        /// Constructeur sans index, avec les index de l'agent de la ville
+        /// </summary>
+        /// <param name="nom">nom du client</param>
+        /// <param name="adresse">adresse du client</param>
+        /// <param name="telephone">n° de téléphone du client</param>
+        /// <param name="index_agent">index de son agent</param>
+        /// <param name="index_ville">index de sa ville</param>
         public Client(string nom, string adresse, string telephone, int index_agent, int index_ville)
         {
             m_nom = nom;
@@ -86,6 +104,14 @@ namespace Pollux.Object
             m_agent = SqlDataProvider.TrouverAgent(index_agent);
             m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
+
+        /// <summary>
+        /// Constructeur sans index, avec l'index de la ville
+        /// </summary>
+        /// <param name="nom">nom du client</param>
+        /// <param name="adresse">adresse du client</param>
+        /// <param name="telephone">n° de téléphone du client</param>
+        /// <param name="index_ville">index de sa ville</param>
         public Client(string nom, string adresse, string telephone, int index_ville)
         {
             m_nom = nom;
@@ -93,6 +119,15 @@ namespace Pollux.Object
             m_telephone = telephone;
             m_ville = SqlDataProvider.TrouverVille(index_ville);
         }
+
+        /// <summary>
+        /// Constructeur sans index, avec une ville et un agent
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="adresse"></param>
+        /// <param name="telephone"></param>
+        /// <param name="agent"></param>
+        /// <param name="ville"></param>
         public Client(string nom, string adresse, string telephone, Agent agent, Ville ville)
         {
             m_nom = nom;

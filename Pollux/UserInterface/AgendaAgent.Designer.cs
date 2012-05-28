@@ -84,7 +84,7 @@
             this.buttonAfficher.Location = new System.Drawing.Point(267, 2);
             this.buttonAfficher.Name = "buttonAfficher";
             this.buttonAfficher.Size = new System.Drawing.Size(88, 23);
-            this.buttonAfficher.TabIndex = 10;
+            this.buttonAfficher.TabIndex = 2;
             this.buttonAfficher.Text = "Afficher";
             this.buttonAfficher.UseVisualStyleBackColor = true;
             this.buttonAfficher.Click += new System.EventHandler(this.buttonAfficher_Click);
@@ -100,7 +100,7 @@
             this.buttonValider.Location = new System.Drawing.Point(328, 274);
             this.buttonValider.Name = "buttonValider";
             this.buttonValider.Size = new System.Drawing.Size(110, 23);
-            this.buttonValider.TabIndex = 9;
+            this.buttonValider.TabIndex = 5;
             this.buttonValider.Text = "OK";
             this.buttonValider.UseVisualStyleBackColor = true;
             // 
@@ -112,7 +112,7 @@
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.ShowToday = false;
             this.monthCalendar.ShowTodayCircle = false;
-            this.monthCalendar.TabIndex = 5;
+            this.monthCalendar.TabIndex = 3;
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
             // 
             // H
@@ -144,7 +144,7 @@
             this.listViewJour.MultiSelect = false;
             this.listViewJour.Name = "listViewJour";
             this.listViewJour.Size = new System.Drawing.Size(242, 232);
-            this.listViewJour.TabIndex = 8;
+            this.listViewJour.TabIndex = 4;
             this.listViewJour.UseCompatibleStateImageBehavior = false;
             this.listViewJour.View = System.Windows.Forms.View.Details;
             this.listViewJour.SelectedIndexChanged += new System.EventHandler(this.listViewJour_SelectedIndexChanged);
@@ -165,7 +165,7 @@
             this.comboBoxAgents.Location = new System.Drawing.Point(81, 4);
             this.comboBoxAgents.Name = "comboBoxAgents";
             this.comboBoxAgents.Size = new System.Drawing.Size(180, 21);
-            this.comboBoxAgents.TabIndex = 11;
+            this.comboBoxAgents.TabIndex = 1;
             // 
             // textBoxNumBien
             // 

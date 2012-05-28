@@ -11,7 +11,10 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-
+        /// <summary>
+        /// Créé une liste des agents
+        /// </summary>
+        /// <returns></returns>
         static public List<Agent> GetListeAgents()
         {
             List<Agent> listeAgents = new List<Agent>();
@@ -32,7 +35,11 @@ namespace Pollux.DataBase
             return listeAgents;
         }
 
-        // Retrouver un agent à partir de son index
+        /// <summary>
+        /// Retrouve un agent à partir de son index
+        /// </summary>
+        /// <param name="index">index de l'agent</param>
+        /// <returns>Agent cherché</returns>
         static public Agent TrouverAgent(int index)
         {
             Agent agent = null;
@@ -41,7 +48,7 @@ namespace Pollux.DataBase
                 string requete = "SELECT PRÉNOM_A FROM AGENTS WHERE NUM_A = " + index;
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 OleDbDataReader reader = command.ExecuteReader();
-                if (reader.Read())
+                if (reader.Read())//si il y a un résultat
                 {
                     string prenom = reader.GetString(0);
                     agent = new Agent(index, prenom);
@@ -52,16 +59,21 @@ namespace Pollux.DataBase
             return agent;
         }
 
+        /// <summary>
+        /// Ajoute un agent de base
+        /// </summary>
+        /// <param name="prenom">Prénom de l'agent</param>
+        /// <returns>true si réussite, false sinon</returns>
         static public bool AjouterAgent(string prenom)
         {
             bool ajout = false;
             if (DBConnect())
             // si connexion
             {
-                string requete = "if not exists(select PRÉNOM_A from AGENTS where PRÉNOM_A = N'" + prenom.Replace("'","''") + "' ) "
-                                + "begin "
+                string requete = "IF NOT EXISTS(SELECT PRÉNOM_A FROM AGENTS WHERE PRÉNOM_A = N'" + prenom.Replace("'","''") + "' ) "
+                                + "BEGIN "
                                 + "INSERT INTO AGENTS (PRÉNOM_A) VALUES (N'" + prenom.Replace("'", "''") + "') "
-                                + "end ";
+                                + "END ";
                 OleDbCommand command = new OleDbCommand(requete, connect);
                 int rowCount = command.ExecuteNonQuery();
                 if (rowCount == 1)
@@ -73,6 +85,5 @@ namespace Pollux.DataBase
             }
             return ajout;
         }
-
     }
 }

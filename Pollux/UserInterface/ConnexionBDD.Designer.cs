@@ -39,7 +39,7 @@
             this.textBoxAdresse.Location = new System.Drawing.Point(137, 10);
             this.textBoxAdresse.Name = "textBoxAdresse";
             this.textBoxAdresse.Size = new System.Drawing.Size(232, 20);
-            this.textBoxAdresse.TabIndex = 0;
+            this.textBoxAdresse.TabIndex = 1;
             // 
             // label1
             // 

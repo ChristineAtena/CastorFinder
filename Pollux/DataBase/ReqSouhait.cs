@@ -11,8 +11,11 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-        // Cherche le souhait dont l'index est fourni en paramètre et le retourne
-        // sinon retourne null
+        /// <summary>
+        /// Retrouver un souhait à partir de son index
+        /// </summary>
+        /// <param name="index">index du souhait cherché</param>
+        /// <returns>Souhait cherché</returns>
         static private Souhait TrouverSouhait (int index)
         {
             Souhait souhait = null;
@@ -36,7 +39,11 @@ namespace Pollux.DataBase
             return souhait;
         }
 
-        // Construction requête pour l'insertion d'un souhait en base
+        /// <summary>
+        /// Construction requête pour l'insertion d'un souhait en base
+        /// </summary>
+        /// <param name="souhait">Souhait à ajouter</param>
+        /// <returns></returns>
         static private string ConstructionRequeteAjoutSouhait(Souhait souhait)
         {
             // Construction partie 'VALUES'
@@ -52,10 +59,14 @@ namespace Pollux.DataBase
                         + "set @vSouhaitId  = @@IDENTITY ";
             return requete;
         }
-
-        // Construction requête pour l'insertion des villes souhaitées
-        // /!\ on ne connait pas l'index du souhait 
-        // car son ajout sera effectué en même temps que celui des villes souhaitées
+        
+        /// <summary>
+        /// Construction requête pour l'insertion des villes souhaitées
+        /// /!\ on ne connait pas l'index du souhait 
+        /// car son ajout sera effectué en même temps que celui des villes souhaitées
+        /// </summary>
+        /// <param name="souhait"></param>
+        /// <returns></returns>
         static private string ConstructionRequeteAjoutVillesSouhaitees(Souhait souhait)
         {
             // construction d'une requête INSERT pour chaque ville souhaitée
@@ -72,7 +83,7 @@ namespace Pollux.DataBase
         /// <summary>
         /// Ajoute à la fois le souhait et les villes souhaitées 
         /// dans les tables correspondantes ou n'ajoute rien si l'une des insertions échoue
-        /// </summary>
+        /// </summary>        
         static public bool AjouterSouhait(Souhait souhait, Agent agent)
         {
             bool ajout = false;
@@ -103,8 +114,9 @@ namespace Pollux.DataBase
             return ajout;   
         }
 
-
-        // Construction requête pour l'insertion d'un client et de son souhait en base
+        /// <summary>
+        /// Construction requête pour l'insertion d'un client et de son souhait en base
+        /// </summary>
         static private string ConstructionRequeteAjoutSouhaitEtClient(Souhait souhait, Client client)
         {
             // construction partie 'VALUES'
@@ -198,7 +210,6 @@ namespace Pollux.DataBase
         /// </summary>
         /// <param name="client">client</param>
         /// <returns></returns>
-        // TODO VIRER LES TRY CATCH
         static public List<Souhait> GetListeSouhaits(Client client)
         {
             List<Ville> listeVilles = null;
@@ -232,7 +243,10 @@ namespace Pollux.DataBase
         }
 
 
-        //TODO : quand un souhait ne spécifie pas de ville, il doit être séléctionné sur un filtre ville.
+        /// <summary>
+        /// Construction de la requête de recherche de souhait
+        /// </summary>
+        /// <param name="souhait">souhait</param>
         static private string ConstructionRequeteRechercheSouhait(Souhait souhait)
         {
             string requetePrix = (souhait.PrixMax != -1) ? " (BUDGET_MAX_S > " + souhait.PrixMax + " OR BUDGET_MAX_S IS NULL)" : "(BUDGET_MAX_S > -1 OR BUDGET_MAX_S IS NULL)";
@@ -254,6 +268,10 @@ namespace Pollux.DataBase
             return requete;
         }
 
+        /// <summary>
+        /// Construction de la requête de recherche de souhait
+        /// </summary>
+        /// <param name="bien">souhait</param>
         static private string ConstructionRequeteRechercheSouhait(Bien bien)
         {
             string requetePrix = " (BUDGET_MAX_S > " + bien.Prix + " OR BUDGET_MAX_S IS NULL) ";
@@ -275,6 +293,9 @@ namespace Pollux.DataBase
             return requete;
         }
 
+        /// <summary>
+        /// Recherche une liste de souhaits en fonction d'un souhait
+        /// </summary>
         static public List<Souhait> RechercherListeSouhaits(Souhait souhait)
         {
             int prix = -1;
@@ -305,6 +326,9 @@ namespace Pollux.DataBase
             return listeSouhaits;
         }
 
+        /// <summary>
+        /// Recherche une liste de souhaits en fonction d'un bien
+        /// </summary>
         static public List<Souhait> RechercherListeSouhaits(Bien bien)
         {
             int prix = -1;

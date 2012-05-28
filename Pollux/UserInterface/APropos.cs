@@ -14,6 +14,7 @@ namespace Pollux.UserInterface
         public APropos()
         {
             InitializeComponent();
+            //création des liens
             texte.Links.Add(72, 13, "mailto:julien.bellue@etu.u-bordeaux1.fr");
             texte.Links.Add(87, 16, "mailto:olivier.defossez@etu.u-bordeaux1.fr");
             texte.Links.Add(105, 17, "mailto:christine.delpech@etu.u-bordeaux1.fr");

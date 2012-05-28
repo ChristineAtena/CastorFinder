@@ -18,6 +18,11 @@
         }
         #endregion
 
+        /// <summary>
+        /// Constructeur d'agent
+        /// </summary>
+        /// <param name="index">index de l'agent</param>
+        /// <param name="prenom">Prénom de l'agent</param>
         public Agent(int index, string prenom)
         {
             m_index = index;

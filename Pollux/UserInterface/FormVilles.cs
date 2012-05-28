@@ -14,14 +14,12 @@ namespace Pollux.UserInterface
 {
     public partial class FormVilles : Form
     {
-
         public FormVilles()
         {
             InitializeComponent();
             boutonAjouter.Enabled = false;
         }
 
-        
         private void boutonAjouter_Click(object sender, EventArgs e)
         {
             int codePostal;

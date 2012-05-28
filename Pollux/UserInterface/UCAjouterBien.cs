@@ -138,8 +138,6 @@ namespace Pollux.UserInterface
             }
         }
 
-
-        // A FINIR
         private void buttonAjouter_Click(object sender, EventArgs e)
         {
             // Récupération des infos

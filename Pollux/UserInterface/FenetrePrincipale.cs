@@ -14,14 +14,6 @@ namespace Pollux
 {       
     public partial class FenetrePrincipale : Form
     {
-       /* private static string adresseBaseDeDonnees = "localhost";
-
-        public static string AdresseBaseDeDonnees
-        {
-            get { return FenetrePrincipale.adresseBaseDeDonnees; }
-            set { FenetrePrincipale.adresseBaseDeDonnees = value; }
-        }*/
-
         private UserControl mdiChild;
 
         public UserControl MdiChild
@@ -39,7 +31,9 @@ namespace Pollux
             if (SqlDataProvider.InitialisationConnexion())
                 toolStripStatusLabel.Text = "Connexion à la base de données réussie"; 
             else
-                toolStripStatusLabel.Text = "Attention : impossible de se connecter à la base de données";        
+            {
+                System.Environment.Exit(-1);
+            }
         }
         #region Fenetres
         public void init()

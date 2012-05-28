@@ -76,6 +76,12 @@ namespace Pollux.UserInterface
         #endregion
 
         #region numericUpDown
+        private void disableNumericUpDowns()
+        {
+            numericUpDownBudget.Enabled = false;
+            numericUpDownSurfHab.Enabled = false;
+            numericUpDownSurfJard.Enabled = false;
+        }
         private void numericUpDownBudget_ValueChanged(object sender, EventArgs e)
         {
             trackBarBudget.Value = (int)numericUpDownBudget.Value;
@@ -105,13 +111,6 @@ namespace Pollux.UserInterface
             trackBarSurfJard.Value = (int)numericUpDownSurfJard.Value;
         }
         #endregion
-
-        private void disableNumericUpDowns()
-        {
-            numericUpDownBudget.Enabled = false;
-            numericUpDownSurfHab.Enabled = false;
-            numericUpDownSurfJard.Enabled = false;
-        }
 
         #region Activation bouton Rechercher et controle des checkBox
         private void activationBoutonRechercher()

@@ -52,15 +52,16 @@ namespace Pollux.Object
             set { m_client = value; }
         }
         #endregion
+        #region Constructeurs
         /// <summary>
         /// Constructeur sans index
         /// </summary>
-        /// <param name="prix"></param>
-        /// <param name="dateMiseEnVente"></param>
-        /// <param name="surfaceHabitable"></param>
-        /// <param name="surfaceJardin"></param>
-        /// <param name="ville"></param>
-        /// <param name="client"></param>
+        /// <param name="prix">Prix du bien</param>
+        /// <param name="dateMiseEnVente">date de mise en vente du bien</param>
+        /// <param name="surfaceHabitable">surface habitable du bien</param>
+        /// <param name="surfaceJardin">surface de jardin du bien</param>
+        /// <param name="ville">ville où se situe le bien</param>
+        /// <param name="client">client propriétaire</param>
         public Bien(int prix, DateTime dateMiseEnVente, int surfaceHabitable, int surfaceJardin, Ville ville, Client client)
         {
             m_prix = prix;
@@ -73,13 +74,13 @@ namespace Pollux.Object
         /// <summary>
         /// Constructeur avec index
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="prix"></param>
-        /// <param name="dateMiseEnVente"></param>
-        /// <param name="surfaceHabitable"></param>
-        /// <param name="surfaceJardin"></param>
-        /// <param name="ville"></param>
-        /// <param name="client"></param>
+        /// <param name="index">index du bien</param>
+        /// <param name="prix">prix du bien</param>
+        /// <param name="dateMiseEnVente">date de mise en vente du bien</param>
+        /// <param name="surfaceHabitable">surface habitable du bien</param>
+        /// <param name="surfaceJardin">surface de jardin du bien</param>
+        /// <param name="ville">ville où se situe le bien</param>
+        /// <param name="client">client propriétaire</param>
         public Bien(int index, int prix, DateTime dateMiseEnVente, int surfaceHabitable, int surfaceJardin, Ville ville, Client client)
         {
             m_index = index;
@@ -90,6 +91,7 @@ namespace Pollux.Object
             m_ville = ville;
             m_client = client;
         }
+        #endregion
 
         public override string ToString()
         {

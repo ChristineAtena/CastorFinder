@@ -10,7 +10,10 @@ namespace Pollux.DataBase
 {
     static public partial class SqlDataProvider  
     {
-
+        /// <summary>
+        /// Obtient la liste des villes en base
+        /// </summary>
+        /// <returns>la liste des villes</returns>
         static public List<Ville> GetListeVilles()
         {
             List<Ville> listeVilles = new List<Ville>();
@@ -37,7 +40,11 @@ namespace Pollux.DataBase
             return listeVilles;
         }
 
-        // Ajout d'une ville dans la base
+        /// <summary>
+        /// Ajout d'une ville dans la base
+        /// </summary>
+        /// <param name="ville">Ville à ajouter</param>
+        /// <returns>true si l'ajout a marché, false sinon</returns>
         static public bool AjouterVille(Ville ville)
         {
             bool ajout = false;
@@ -57,7 +64,11 @@ namespace Pollux.DataBase
             return ajout;
         }
 
-        // Retrouver une ville à partir de son index
+        /// <summary>
+        /// Retrouver une ville à partir de son index
+        /// </summary>
+        /// <param name="index">index de la ville à trouver</param>
+        /// <returns>Ville</returns>
         static public Ville TrouverVille(int index)
         {
             Ville ville = null;
@@ -79,6 +90,12 @@ namespace Pollux.DataBase
             return ville;
         }
 
+        /// <summary>
+        /// trouver l'index correspondant à un couple (code postal, nom de ville)
+        /// </summary>
+        /// <param name="codePostal">Code postal</param>
+        /// <param name="nom">Nom de la ville</param>
+        /// <returns>index</returns>
         static public int TrouverVille(int codePostal, string nom)
         {
             int index = -1;
@@ -97,7 +114,11 @@ namespace Pollux.DataBase
             return index;
         }
 
-        // Vérification si la ville passée en paramètre est déjà dans la base
+        /// <summary>
+        /// Vérification si la ville passée en paramètre est déjà dans la base
+        /// </summary>
+        /// <param name="villeRecherchee">Ville à vérifier</param>
+        /// <returns>true si elle existe, false sinon</returns>
         static public bool VerificationPresenceVille(Ville villeRecherchee)
         {
             bool presente = false;

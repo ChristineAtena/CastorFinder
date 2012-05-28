@@ -110,7 +110,8 @@ namespace Pollux.UserInterface
             if (textBoxNom.Text != "" && 
                 textBoxAdresse.Text != "" && 
                 textBoxTelephone.Text != "" && 
-                comboBoxVilles.SelectedItem != null)
+                comboBoxVilles.SelectedItem != null &&
+                comboBoxAgents.Items.Count > 0)
                 buttonCreer.Enabled = true;
             else
                 buttonCreer.Enabled = false;

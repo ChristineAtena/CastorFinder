@@ -90,6 +90,7 @@ namespace Pollux.UserInterface
         private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxTelephone.Text = ((Client)comboBoxClients.SelectedItem).Telephone;
+            activationBoutonRDV();
         }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)
@@ -132,5 +133,18 @@ namespace Pollux.UserInterface
             this.Dispose();
         }
 
+        private void comboBoxBiens_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activationBoutonRDV();
+        }
+
+        private void activationBoutonRDV()
+        {
+            if (comboBoxClients.SelectedItem != null &&
+                comboBoxBiens.SelectedItem != null)
+                buttonRDV.Enabled = true;
+            else
+                buttonRDV.Enabled = false;
+        }
     }
 }

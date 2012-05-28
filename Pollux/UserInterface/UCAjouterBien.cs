@@ -186,7 +186,8 @@ namespace Pollux.UserInterface
         {
             //pas de contrôle sur la taille du jardin : elle peut être à 0.
             if (numericUpDownBudget.Value != 0 &&
-                numericUpDownSurfHab.Value != 0)
+                numericUpDownSurfHab.Value != 0 &&
+                comboBoxProprietaire.SelectedItem != null)
                 buttonAjouter.Enabled = true;
             else
                 buttonAjouter.Enabled = false;

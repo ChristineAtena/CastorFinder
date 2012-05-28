@@ -70,6 +70,7 @@
             // 
             // buttonRDV
             // 
+            this.buttonRDV.Enabled = false;
             this.buttonRDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRDV.Location = new System.Drawing.Point(148, 126);
             this.buttonRDV.Name = "buttonRDV";
@@ -156,6 +157,7 @@
             this.comboBoxBiens.Name = "comboBoxBiens";
             this.comboBoxBiens.Size = new System.Drawing.Size(201, 21);
             this.comboBoxBiens.TabIndex = 2;
+            this.comboBoxBiens.SelectedIndexChanged += new System.EventHandler(this.comboBoxBiens_SelectedIndexChanged);
             // 
             // comboBoxClients
             // 
